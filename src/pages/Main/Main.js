@@ -1,5 +1,6 @@
 import './Main.scss';
+
 const Main = () => {
-  return <div className="main">메인</div>;
+  return <div className="main">main</div>;
 };
 export default Main;
