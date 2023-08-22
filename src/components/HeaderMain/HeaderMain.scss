@@ -1,0 +1,38 @@
+.headerMain {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 40px;
+  width: 100%;
+
+  .logo {
+    font-family: 'Russo One', sans-serif;
+    font-size: 30px;
+    font-style: italic;
+  }
+
+  .center {
+    display: flex;
+  }
+
+  .right {
+    display: flex;
+
+    .gnbList {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      list-style: none;
+
+      .gnbItem {
+        font-family: 'Pretendard-Regular';
+        margin-right: 55px;
+        float: left;
+        font-weight: 500;
+        font-size: 18px;
+        a {
+          font-family: 'Pretendard-Regular';
+        }
+      }
+    }
+  }
+}

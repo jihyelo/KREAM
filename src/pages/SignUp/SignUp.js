@@ -1,5 +1,6 @@
 import './SignUp.scss';
+
 const SignUp = () => {
-  return <div className="signUp">회원가입</div>;
+  return <div className="signUp"></div>;
 };
 export default SignUp;
