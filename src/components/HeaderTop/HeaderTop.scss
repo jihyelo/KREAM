@@ -1,0 +1,17 @@
+.headerTop {
+  display: flex;
+  padding: 14px 40px 0;
+  width: 100%;
+
+  .headerTopList {
+    display: flex;
+    justify-content: end;
+    width: 100%;
+
+    .headerTopItem {
+      display: flex;
+      margin-left: 23px;
+      font-size: 13px;
+    }
+  }
+}
