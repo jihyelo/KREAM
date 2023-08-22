@@ -1,0 +1,33 @@
+.inputBox {
+  padding: 10px 0 20px;
+  width: 400px;
+
+  .inputTitle {
+    font-size: 13px;
+    width: 100%;
+    font-weight: 700;
+  }
+  .inputItem {
+    width: 100%;
+    border-bottom: solid rgb(233, 233, 233) 1px;
+    font-size: 13px;
+
+    .input {
+      width: 100%;
+      padding: 12px 30px 8px 0;
+      background-color: transparent;
+      border-bottom: solid black 1px;
+      border-radius: 0;
+      border: none;
+      padding: 8px 0 px 0;
+      resize: none;
+    }
+    input:focus {
+      outline: none;
+    }
+  }
+  .inputError {
+    margin-top: 3px;
+    font-size: 8px;
+  }
+}
