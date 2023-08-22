@@ -1,0 +1,218 @@
+.footer {
+  border-top: 1px solid #ebebeb;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1280px;
+  padding-bottom: 50px;
+  padding-top: 50px;
+
+  .footerInner {
+    padding-left: 40px;
+    padding-right: 40px;
+
+    .serviceArea {
+      border-bottom: 1px solid #ebebeb;
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: space-between;
+      padding-bottom: 56px;
+
+      .customerService {
+        .serviceTitle {
+          font-weight: 700;
+          align-items: center;
+          display: inline-flex;
+          font-size: 15px;
+          letter-spacing: -0.16px;
+          cursor: pointer;
+
+          .serviceTel {
+            letter-spacing: normal;
+            margin-left: 4px;
+          }
+        }
+
+        .serviceTime {
+          padding-top: 8px;
+
+          .timeBox {
+            line-height: 17px;
+
+            .timeTerm {
+              margin-right: 4px;
+              color: rgba(34, 34, 34, 0.5);
+              float: left;
+              font-size: 12px;
+              letter-spacing: -0.07px;
+              line-height: 20px;
+              max-width: 263px;
+            }
+          }
+        }
+
+        .serviceNoti {
+          clear: both;
+          font-size: 12px;
+          letter-spacing: -0.07px;
+          padding-top: 8px;
+        }
+
+        .serviceBtnBox {
+          padding-top: 17px;
+
+          .small {
+            cursor: pointer;
+            border-radius: 0;
+            background-color: #222;
+            color: #fff;
+            font-weight: 700;
+            font-size: 12px;
+            height: 34px;
+            letter-spacing: -0.06px;
+            padding: 0 14px;
+            align-items: center;
+            cursor: pointer;
+            display: inline-flex;
+            justify-content: center;
+            text-align: center;
+            vertical-align: middle;
+          }
+        }
+      }
+    }
+  }
+  .footerMenu {
+    display: flex;
+
+    .menuBox {
+      width: 160px;
+
+      .menuTitle {
+        font-size: 15px;
+        font-weight: 700;
+        letter-spacing: -0.16px;
+
+        .menuList {
+          padding-top: 16px;
+
+          .menuItem {
+            margin-top: 12px;
+
+            .menuLink {
+              cursor: pointer;
+              color: rgba(34, 34, 34, 0.5);
+              display: inline-block;
+              font-size: 13px;
+              letter-spacing: -0.21px;
+            }
+          }
+        }
+      }
+    }
+    .menuBox:nth-child(2) {
+      margin-left: 80px;
+    }
+  }
+  .corporationArea {
+    margin-top: 30px;
+    position: relative;
+
+    .termList {
+      display: inline-flex;
+      padding-bottom: 16px;
+
+      .termItem {
+        margin-right: 20px;
+
+        .termLink {
+          cursor: pointer;
+          color: #000;
+          display: block;
+          font-size: 13px;
+          letter-spacing: -0.21px;
+        }
+        .bold {
+          font-weight: 700;
+        }
+      }
+    }
+    .footerSns {
+      position: absolute;
+      right: 0;
+      top: 0;
+
+      .snsBox {
+        font-size: 0;
+
+        .sns {
+          display: inline-block;
+        }
+      }
+    }
+    .btnBusiness {
+      display: none;
+    }
+  }
+  .businessInfo {
+    .infoList {
+      .infoItem {
+        float: left;
+
+        .businessTitle {
+          max-width: 645px;
+          margin-right: 4px;
+          color: rgba(34, 34, 34, 0.5);
+          float: left;
+          font-size: 12px;
+          letter-spacing: -0.07px;
+          line-height: 20px;
+
+          .blank {
+            margin-right: 17px;
+          }
+        }
+      }
+    }
+  }
+
+  .noticeGuarantee {
+    clear: both;
+    font-size: 11px;
+    letter-spacing: -0.06px;
+    padding: 40px 0 8px;
+
+    .title {
+      font-weight: 700;
+    }
+    .description {
+      color: rgba(34, 34, 34, 0.5);
+      margin-top: 4px;
+
+      .linkGurantee {
+        margin-left: 4px;
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .noticeArea {
+    align-items: flex-end;
+    display: flex;
+    padding-top: 11px;
+
+    .notice {
+      color: rgba(34, 34, 34, 0.4);
+      font-size: 11px;
+      letter-spacing: -0.06px;
+      max-width: 605px;
+      line-height: 15px;
+    }
+
+    .copyright {
+      color: rgba(34, 34, 34, 0.3);
+      flex-shrink: 0;
+      font-size: 11px;
+      margin-left: auto;
+    }
+  }
+}
