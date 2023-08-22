@@ -1,64 +1,45 @@
 import { useNavigate } from 'react-router-dom';
+import { CiSearch } from 'react-icons/ci';
 import { useState } from 'react';
 import LoginSignUpButton from '../../components/LoginSignUpButton/LoginSignUpButton';
 import HeaderMain from '../../components/HeaderMain/HeaderMain';
 import HeaderTop from '../../components/HeaderTop/HeaderTop';
 import InputBox from '../../components/InputBox/InputBox';
-import { CiSearch } from 'react-icons/ci';
+import login from '../../API/login';
 import './Login.scss';
 
 const Login = () => {
-  const navigate = useNavigate();
-  const goToMain = () => {
-    // fetch('https://10.58.52.172:3000/users/signup', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json;charset=utf-8',
-    //   },
-    //   body: JSON.stringify({
-    //     email: userDataValue.email,
-    //     password: userDataValue.password,
-    //   }),
-    // })
-    //   .then(res => {
-    //     if (res.ok) {
-    //       return res.json();
-    //     }
-    //   })
-    //   .then(data => {
-    //     if (data.message === 'sucess login') {
-    //       localStorage.setItem('TOKEN', data.token);
-    //       alert('로그인 성공');
-    //       navigate('/product-list');
-    //     } else {
-    //       alert('로그인 실패');
-    //     }
-    //   });
-    navigate('/product-list');
-  };
-  const handleInput = e => {
-    const { type, value } = e.target;
-    console.log(e.target.value);
-    setUserDataValue({ ...userDataValue, [type]: value });
-    console.log(userDataValue);
-  };
-
+  const [loged, setLoged] = useState(false);
   const [userDataValue, setUserDataValue] = useState({
     email: '',
     password: '',
   });
+  const { email, password } = userDataValue;
 
-  let isVaild = () => {
-    return userDataValue.email.includes('@') &&
-      userDataValue.password.length >= 5
-      ? false
-      : true;
+  const navigate = useNavigate();
+
+  const onClickLoginButton = () => {
+    login(email, password, () => {
+      navigate('/product-list');
+      setLoged(prev => !prev);
+    });
   };
+
+  const handleInput = e => {
+    const { type, value } = e.target;
+    setUserDataValue({ ...userDataValue, [type]: value });
+  };
+
+  const isVaild =
+    email.includes('@') &&
+    email.endsWith('.com') &&
+    8 <= password.length &&
+    password.length <= 16;
 
   return (
     <div className="login">
       <div className="gnbHeader">
-        <HeaderTop />
+        <HeaderTop loged={loged} setLoged={setLoged} />
         <HeaderMain right={right} />
       </div>
       <div className="layout">
@@ -77,7 +58,7 @@ const Login = () => {
               errorMessage="이메일 주소를 정확히 입력해주세요"
               inputTitle="이메일 주소"
               onChange={handleInput}
-              value={userDataValue.inputId}
+              value={email}
             />
             <InputBox
               type="password"
@@ -85,14 +66,14 @@ const Login = () => {
               errorMessage="영문, 숫자, 특수문자를 조합해서 입력해주세요. (8-16자)"
               inputTitle="비밀번호"
               onChange={handleInput}
-              value={userDataValue.inputPassword}
+              value={password}
             />
             <LoginSignUpButton
               className="LoginButton"
               buttonText="로그인"
-              onClick={goToMain}
-              disabled={isVaild()}
-            ></LoginSignUpButton>
+              onClick={onClickLoginButton}
+              disabled={!isVaild}
+            />
           </div>
         </div>
       </div>
