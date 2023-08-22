@@ -9,6 +9,7 @@ import Bookmark from './pages/Bookmark/Bookmark';
 import SizeSelect from './pages/SizeSelect/SizeSelect';
 import TradeOption from './pages/TradeOption/TradeOption';
 import Payment from './pages/Payment/Payment';
+import Footer from './components/Footer/Footer';
 
 const Router = () => {
   return (
@@ -24,6 +25,7 @@ const Router = () => {
         <Route path="/trade-option" element={<TradeOption />} />
         <Route path="/payment" element={<Payment />} />
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 };

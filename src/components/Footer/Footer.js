@@ -1,8 +1,23 @@
 import './Footer.scss';
+
+const INSTRUCTIONS = [
+  '검수기준',
+  '이용정책',
+  '패널티 정책',
+  '커뮤니티 가이드라인',
+];
+
+const CUSTOMER_INFO = [
+  '공지사항',
+  '서비스 소개',
+  '스토어 안내',
+  '판매자 방문접수',
+];
+
 const Footer = () => {
   return (
     <div className="footer">
-      <div className="inner">
+      <div className="footerInner">
         <div className="serviceArea">
           <div className="customerService">
             <div className="serviceTitle">
@@ -28,18 +43,13 @@ const Footer = () => {
               <div className="menuTitle">
                 이용안내
                 <ul className="menuList">
-                  <li className="memuItem">
-                    <span className="menuLink">검수기준</span>
-                  </li>
-                  <li className="memuItem">
-                    <span className="menuLink">이용정책</span>
-                  </li>
-                  <li className="memuItem">
-                    <span className="menuLink">패널티 정책</span>
-                  </li>
-                  <li className="memuItem">
-                    <span className="menuLink">커뮤니티 가이드라인</span>
-                  </li>
+                  {INSTRUCTIONS.map(instruction => {
+                    return (
+                      <li className="menuItem" key={instruction}>
+                        <span className="menuLink">{instruction}</span>
+                      </li>
+                    );
+                  })}
                 </ul>
               </div>
             </div>
@@ -47,18 +57,11 @@ const Footer = () => {
               <div className="menuTitle">
                 고객지원
                 <ul className="menuList">
-                  <li className="memuItem">
-                    <span className="menuLink">공지사항</span>
-                  </li>
-                  <li className="memuItem">
-                    <span className="menuLink">서비스 소개</span>
-                  </li>
-                  <li className="memuItem">
-                    <span className="menuLink">스토어 안내</span>
-                  </li>
-                  <li className="memuItem">
-                    <span className="menuLink">판매자 방문접수</span>
-                  </li>
+                  {CUSTOMER_INFO.map(customer => (
+                    <li className="menuItem" key={customer}>
+                      <span className="menuLink">{customer}</span>
+                    </li>
+                  ))}
                 </ul>
               </div>
             </div>
@@ -84,9 +87,9 @@ const Footer = () => {
           </ul>
           <div className="footerSns">
             <div className="snsBox">
-              <span className="sns" aria-label="인스타그램" />
-              <span className="sns" aria-label="페이스북" />
-              <span className="sns" aria-label="카카오톡" />
+              <span className="sns"> 인스타그램 </span>
+              <span className="sns"> 페이스북 </span>
+              <span className="sns"> 카카오톡 </span>
             </div>
             <div className="btnBusiness" />
           </div>
