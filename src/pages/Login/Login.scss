@@ -1,0 +1,49 @@
+.gnbHeader {
+  position: fixed;
+  background-color: white;
+  top: 0;
+  width: 100%;
+}
+
+.layout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 97px;
+  width: 100%;
+
+  .containerLogin {
+    display: flex;
+    flex-direction: column;
+    padding: 0 40px;
+
+    .loginAera {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      margin: 0 260px;
+      padding: 60px 0 160px;
+
+      .loginTitle {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        padding: 0 0 50px;
+
+        .loginTitleLogo {
+          display: flex;
+
+          padding: 6px;
+          font-family: 'Russo One', sans-serif;
+          font-style: italic;
+          font-size: 30px;
+        }
+
+        .logoTitleContent {
+          font-family: 'Russo One', sans-serif;
+          font-size: 13px;
+        }
+      }
+    }
+  }
+}
