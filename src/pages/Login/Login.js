@@ -26,8 +26,8 @@ const Login = () => {
   };
 
   const handleInput = e => {
-    const { type, value } = e.target;
-    setUserDataValue({ ...userDataValue, [type]: value });
+    const { name, value } = e.target;
+    setUserDataValue({ ...userDataValue, [name]: value });
   };
 
   const isVaild =
@@ -54,6 +54,7 @@ const Login = () => {
             <InputBox
               type="email"
               className="input"
+              name="email"
               placeholder="예) kream@kream.com"
               errorMessage="이메일 주소를 정확히 입력해주세요"
               inputTitle="이메일 주소"
@@ -63,6 +64,7 @@ const Login = () => {
             <InputBox
               type="password"
               className="input"
+              name="password"
               errorMessage="영문, 숫자, 특수문자를 조합해서 입력해주세요. (8-16자)"
               inputTitle="비밀번호"
               onChange={handleInput}
@@ -70,7 +72,7 @@ const Login = () => {
             />
             <LoginSignUpButton
               className="LoginButton"
-              buttonText="로그인"
+              children="로그인"
               onClick={onClickLoginButton}
               disabled={!isVaild}
             />

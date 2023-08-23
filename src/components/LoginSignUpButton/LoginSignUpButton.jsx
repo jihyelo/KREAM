@@ -1,9 +1,9 @@
 import './LoginSignUpButton.scss';
 
-const LoginSignUpButton = ({ className, onClick, disabled, buttonText }) => {
+const LoginSignUpButton = ({ className, onClick, disabled, children }) => {
   return (
     <button className={className} onClick={onClick} disabled={disabled}>
-      {buttonText}
+      {children}
     </button>
   );
 };

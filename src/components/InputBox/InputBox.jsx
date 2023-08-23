@@ -3,10 +3,12 @@ import './InputBox.scss';
 const InputBox = ({
   type,
   className,
+  name,
   placeholder,
   errorMessage,
   inputTitle,
   onChange,
+  value,
 }) => {
   return (
     <div className="inputBox">
@@ -15,8 +17,10 @@ const InputBox = ({
         <input
           type={type}
           className={className}
+          name={name}
           placeholder={placeholder}
           onChange={onChange}
+          value={value}
         />
       </div>
       <p className="inputError">{errorMessage}</p>

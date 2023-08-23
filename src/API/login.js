@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router';
 
+//TODO async, await 사용하기
 const login = (email, password, onSuccessLogin) => {
   fetch('https://10.58.52.172:3000/users/signup', {
     method: 'POST',
@@ -18,9 +19,11 @@ const login = (email, password, onSuccessLogin) => {
     })
     .then(data => {
       if (data.message === 'success login') {
+        localStorage.setItem('TOKEN', data.token);
         onSuccessLogin && onSuccessLogin();
       }
-    });
+    })
+    .catch(alert('로그인 실패'));
 };
 
 // const login = (userDataValue, setLoged) => {
