@@ -25,6 +25,16 @@ const SignUp = () => {
     handleCloseModal();
   };
 
+  const handleToggleTerm = termName => {
+    setTerms(prevTerms => ({
+      ...prevTerms,
+      [termName]: {
+        ...prevTerms[termName],
+        checked: !prevTerms[termName].checked,
+      },
+    }));
+  };
+
   const [isLoggedIn, setisLoggedIn] = useState(false);
 
   const [userDataValue, setUserDataValue] = useState({
@@ -144,29 +154,13 @@ const SignUp = () => {
             </CheckBox>
             <CheckBox
               checked={terms['이용약관 동의'].checked}
-              onChange={e => {
-                setTerms({
-                  ...terms,
-                  '이용약관 동의': {
-                    ...terms['이용약관 동의'],
-                    checked: e.target.checked,
-                  },
-                });
-              }}
+              onChange={() => handleToggleTerm('이용약관 동의')}
             >
               이용약관 동의
             </CheckBox>
             <CheckBox
               checked={terms['개인정보 수집 및 이용 동의'].checked}
-              onChange={e => {
-                setTerms({
-                  ...terms,
-                  '개인정보 수집 및 이용 동의': {
-                    ...terms['개인정보 수집 및 이용 동의'],
-                    checked: e.target.checked,
-                  },
-                });
-              }}
+              onChange={() => handleToggleTerm('개인정보 수집 및 이용 동의')}
             >
               개인정보 수집 및 이용 동의
             </CheckBox>
@@ -199,43 +193,19 @@ const SignUp = () => {
             </CheckBox>
             <CheckBox
               checked={terms['앱푸시'].checked}
-              onChange={e => {
-                setTerms({
-                  ...terms,
-                  앱푸시: {
-                    ...terms['앱푸시'],
-                    checked: e.target.checked,
-                  },
-                });
-              }}
+              onChange={() => handleToggleTerm('앱푸시')}
             >
               앱 푸시
             </CheckBox>
             <CheckBox
               checked={terms['문자메세지'].checked}
-              onChange={e => {
-                setTerms({
-                  ...terms,
-                  문자메세지: {
-                    ...terms['문자메세지'],
-                    checked: e.target.checked,
-                  },
-                });
-              }}
+              onChange={() => handleToggleTerm('문자메세지')}
             >
               문자 메시지
             </CheckBox>
             <CheckBox
               checked={terms['이메일'].checked}
-              onChange={e => {
-                setTerms({
-                  ...terms,
-                  이메일: {
-                    ...terms['이메일'],
-                    checked: e.target.checked,
-                  },
-                });
-              }}
+              onChange={() => handleToggleTerm('이메일')}
             >
               이메일
             </CheckBox>
