@@ -26,7 +26,7 @@ const login = (email, password, onSuccessLogin) => {
     .catch(alert('로그인 실패'));
 };
 
-// const login = (userDataValue, setLoged) => {
+// const login = (userDataValue, setisLoggedIn) => {
 //   const navigate = useNavigate;
 //   fetch('https://10.58.52.172:3000/users/signup', {
 //     method: 'POST',
@@ -47,7 +47,7 @@ const login = (email, password, onSuccessLogin) => {
 //       if (data.message === 'sucess login') {
 //         localStorage.setItem('TOKEN', data.token);
 //         alert('로그인 성공');
-//         setLoged(prev => !prev);
+//         setisLoggedIn(prev => !prev);
 //         navigate('/product-list');
 //       } else {
 //         alert('로그인 실패');

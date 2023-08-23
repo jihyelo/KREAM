@@ -1,15 +1,13 @@
 import { useNavigate } from 'react-router-dom';
-import { CiSearch } from 'react-icons/ci';
 import { useState } from 'react';
 import LoginSignUpButton from '../../components/LoginSignUpButton/LoginSignUpButton';
-import HeaderMain from '../../components/HeaderMain/HeaderMain';
 import HeaderTop from '../../components/HeaderTop/HeaderTop';
 import InputBox from '../../components/InputBox/InputBox';
 import login from '../../API/login';
 import './Login.scss';
 
 const Login = () => {
-  const [loged, setLoged] = useState(false);
+  const [isLoggedIn, setisLoggedIn] = useState(false);
   const [userDataValue, setUserDataValue] = useState({
     email: '',
     password: '',
@@ -21,7 +19,7 @@ const Login = () => {
   const onClickLoginButton = () => {
     login(email, password, () => {
       navigate('/product-list');
-      setLoged(prev => !prev);
+      setisLoggedIn(prev => !prev);
     });
   };
 
@@ -39,12 +37,11 @@ const Login = () => {
   return (
     <div className="login">
       <div className="gnbHeader">
-        <HeaderTop loged={loged} setLoged={setLoged} />
-        <HeaderMain right={right} />
+        <HeaderTop isLoggedIn={isLoggedIn} setisLoggedIn={setisLoggedIn} />
       </div>
       <div className="layout">
         <div className="containerLogin">
-          <div className="loginAera">
+          <div className="loginAera" onChange={handleInput}>
             <div className="loginTitle">
               <p className="loginTitleLogo">KREAM</p>
               <p className="logoTitleContent">
@@ -58,7 +55,6 @@ const Login = () => {
               placeholder="예) kream@kream.com"
               errorMessage="이메일 주소를 정확히 입력해주세요"
               inputTitle="이메일 주소"
-              onChange={handleInput}
               value={email}
             />
             <InputBox
@@ -67,7 +63,6 @@ const Login = () => {
               name="password"
               errorMessage="영문, 숫자, 특수문자를 조합해서 입력해주세요. (8-16자)"
               inputTitle="비밀번호"
-              onChange={handleInput}
               value={password}
             />
             <LoginSignUpButton
@@ -82,20 +77,5 @@ const Login = () => {
     </div>
   );
 };
-
-const right = (
-  <>
-    <ul className="gnbList">
-      <li className="gnbItem">HOME</li>
-      <li className="gnbItem">STYLE</li>
-      <li className="gnbItem">
-        <a gref="/product-list">SHOP</a>
-      </li>
-    </ul>
-    <div className="searchBtnBox">
-      <CiSearch className="serarchBtn" size="27" />
-    </div>
-  </>
-);
 
 export default Login;
