@@ -9,6 +9,7 @@ const InputBox = ({
   inputTitle,
   onChange,
   value,
+  onClick,
 }) => {
   return (
     <div className="inputBox">
@@ -21,6 +22,7 @@ const InputBox = ({
           placeholder={placeholder}
           onChange={onChange}
           value={value}
+          onClick={onClick}
         />
       </div>
       <p className="inputError">{errorMessage}</p>

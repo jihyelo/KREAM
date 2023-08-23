@@ -5,21 +5,44 @@ import HeaderTop from '../../components/HeaderTop/HeaderTop';
 import InputBox from '../../components/InputBox/InputBox';
 import CheckBox from '../../components/CheckBox/CheckBox';
 import signUp from '../../API/signUp';
+import SizeSelectModal from '../../components/SizeSelectModal/SizeSelectModal';
 import './SignUp.scss';
 
 const SignUp = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedSize, setSelectedSize] = useState(null);
+
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleSelectSize = size => {
+    setSelectedSize(size);
+    handleCloseModal();
+  };
+
   const [isLoggedIn, setisLoggedIn] = useState(false);
 
   const [userDataValue, setUserDataValue] = useState({
     email: '',
     password: '',
     size: '',
-    serviceTerms: '',
   });
-  const data = [
-    { id: 0, title: '이용약관 동의' },
-    { id: 1, title: '개인정보 수집 및 이용 동의' },
-  ];
+
+  const defaultTerms = {
+    '이용약관 동의': { required: true, checked: false },
+    '개인정보 수집 및 이용 동의': { required: true, checked: false },
+    앱푸시: { required: false, checked: false },
+    문자메세지: { required: false, checked: false },
+    이메일: { required: false, checked: false },
+  };
+
+  const [terms, setTerms] = useState(defaultTerms);
+
   const { email, password, size } = userDataValue;
 
   const navigate = useNavigate();
@@ -39,7 +62,9 @@ const SignUp = () => {
     email.includes('@') &&
     email.endsWith('.com') &&
     8 <= password.length &&
-    password.length <= 16;
+    password.length <= 16 &&
+    terms['이용약관 동의'].checked &&
+    terms['개인정보 수집 및 이용 동의'].checked;
 
   return (
     <div className="signUp">
@@ -79,20 +104,141 @@ const SignUp = () => {
             />
             <InputBox
               type="text"
-              className="input"
+              className="input size"
               name="size"
               placeholder="선택하세요"
               inputTitle="신발 사이즈"
-              value={size}
+              value={selectedSize || ''}
+              onClick={handleOpenModal}
+              readOnly
             />
 
-            {/* <CheckBox type="checkbox">(필수) 서비스 이용약관</CheckBox>
-            <CheckBox>이용약관 동의</CheckBox>
-            <CheckBox>개인정보 수집 및 이용 동의</CheckBox>
-            <CheckBox>(선택) 마케팅 수신</CheckBox>
-            <CheckBox>앱 푸시</CheckBox>
-            <CheckBox>문자 메시지</CheckBox>
-            <CheckBox>이메일</CheckBox> */}
+            <div>
+              <SizeSelectModal
+                isOpen={isModalOpen}
+                onClose={handleCloseModal}
+                onSelectSize={handleSelectSize}
+              />
+            </div>
+
+            <CheckBox
+              checked={
+                terms['이용약관 동의'].checked &&
+                terms['개인정보 수집 및 이용 동의'].checked
+              }
+              onChange={e => {
+                setTerms({
+                  ...terms,
+                  '이용약관 동의': {
+                    ...terms['이용약관 동의'],
+                    checked: e.target.checked,
+                  },
+                  '개인정보 수집 및 이용 동의': {
+                    ...terms['개인정보 수집 및 이용 동의'],
+                    checked: e.target.checked,
+                  },
+                });
+              }}
+            >
+              (필수) 서비스 이용약관
+            </CheckBox>
+            <CheckBox
+              checked={terms['이용약관 동의'].checked}
+              onChange={e => {
+                setTerms({
+                  ...terms,
+                  '이용약관 동의': {
+                    ...terms['이용약관 동의'],
+                    checked: e.target.checked,
+                  },
+                });
+              }}
+            >
+              이용약관 동의
+            </CheckBox>
+            <CheckBox
+              checked={terms['개인정보 수집 및 이용 동의'].checked}
+              onChange={e => {
+                setTerms({
+                  ...terms,
+                  '개인정보 수집 및 이용 동의': {
+                    ...terms['개인정보 수집 및 이용 동의'],
+                    checked: e.target.checked,
+                  },
+                });
+              }}
+            >
+              개인정보 수집 및 이용 동의
+            </CheckBox>
+
+            <CheckBox
+              checked={
+                terms.앱푸시.checked &&
+                terms['문자메세지'].checked &&
+                terms['이메일'].checked
+              }
+              onChange={e => {
+                setTerms({
+                  ...terms,
+                  앱푸시: {
+                    ...terms['앱푸시'],
+                    checked: e.target.checked,
+                  },
+                  문자메세지: {
+                    ...terms['문자메세지'],
+                    checked: e.target.checked,
+                  },
+                  이메일: {
+                    ...terms['이메일'],
+                    checked: e.target.checked,
+                  },
+                });
+              }}
+            >
+              (선택) 마케팅 수신
+            </CheckBox>
+            <CheckBox
+              checked={terms['앱푸시'].checked}
+              onChange={e => {
+                setTerms({
+                  ...terms,
+                  앱푸시: {
+                    ...terms['앱푸시'],
+                    checked: e.target.checked,
+                  },
+                });
+              }}
+            >
+              앱 푸시
+            </CheckBox>
+            <CheckBox
+              checked={terms['문자메세지'].checked}
+              onChange={e => {
+                setTerms({
+                  ...terms,
+                  문자메세지: {
+                    ...terms['문자메세지'],
+                    checked: e.target.checked,
+                  },
+                });
+              }}
+            >
+              문자 메시지
+            </CheckBox>
+            <CheckBox
+              checked={terms['이메일'].checked}
+              onChange={e => {
+                setTerms({
+                  ...terms,
+                  이메일: {
+                    ...terms['이메일'],
+                    checked: e.target.checked,
+                  },
+                });
+              }}
+            >
+              이메일
+            </CheckBox>
 
             <LoginSignUpButton
               className="LoginButton"

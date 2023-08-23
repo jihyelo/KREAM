@@ -21,6 +21,10 @@
       border: none;
       padding: 8px 0 px 0;
       resize: none;
+      outline: none;
+    }
+    .size {
+      cursor: pointer;
     }
     &:focus {
       outline: none;

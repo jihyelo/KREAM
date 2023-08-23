@@ -1,8 +1,14 @@
 import './CheckBox.scss';
-const Checkbox = ({ type, disabled, checked, children }) => {
+const Checkbox = ({ disabled, checked, children, onChange, value }) => {
   return (
     <label>
-      <input type={type} disabled={disabled} checked={checked} />
+      <input
+        type="checkbox"
+        disabled={disabled}
+        checked={checked}
+        onChange={onChange}
+        value={value}
+      />
       {children}
     </label>
   );
