@@ -1,11 +1,9 @@
 import { useNavigate } from 'react-router-dom';
 import './HeaderTop.scss';
-import { useLocation } from 'react-router-dom';
 
 const HeaderTop = ({ loged, setLoged }) => {
   const navigate = useNavigate;
 
-  const location = useLocation();
   const onClickHeaderLogin = () => {
     if (loged == true) {
       fetch('https://10.58.52.172:3000/users/', {
