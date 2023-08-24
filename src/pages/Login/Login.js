@@ -17,10 +17,11 @@ const Login = () => {
   const navigate = useNavigate();
 
   const onClickLoginButton = () => {
-    login(email, password, () => {
-      navigate('/product-list');
-      setisLoggedIn(prev => !prev);
-    });
+    // login(email, password, () => {
+    navigate('/product-list');
+    localStorage.setItem('token', '토큰이지롱');
+    //   setisLoggedIn(prev => !prev);
+    // });
   };
 
   const handleInput = e => {
