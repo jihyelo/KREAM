@@ -1,7 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import LoginSignUpButton from '../../components/LoginSignUpButton/LoginSignUpButton';
-import HeaderTop from '../../components/HeaderTop/HeaderTop';
 import InputBox from '../../components/InputBox/InputBox';
 import login from '../../API/login';
 import './Login.scss';
@@ -36,9 +35,6 @@ const Login = () => {
 
   return (
     <div className="login">
-      <div className="gnbHeader">
-        <HeaderTop isLoggedIn={isLoggedIn} setisLoggedIn={setisLoggedIn} />
-      </div>
       <div className="layout">
         <div className="containerLogin">
           <div className="loginAera" onChange={handleInput}>

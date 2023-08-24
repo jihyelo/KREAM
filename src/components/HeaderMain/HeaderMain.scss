@@ -1,8 +1,11 @@
 .headerMain {
   display: flex;
   justify-content: space-between;
-  padding: 20px 40px;
+  padding: 23px 50px;
+  margin: 27px 0;
   width: 100%;
+  position: fixed;
+  background-color: white;
 
   .logo {
     font-family: 'Russo One', sans-serif;

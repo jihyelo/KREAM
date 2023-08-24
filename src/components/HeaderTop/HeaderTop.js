@@ -14,15 +14,15 @@ const HeaderTop = ({ isLoggedIn, setisLoggedIn }) => {
   };
   return (
     <div className="headerTop">
-      <ul className="headerTopList">
-        <li className="headerTopItem">고객센터</li>
-        <li className="headerTopItem">마이페이지</li>
-        <li className="headerTopItem">관심상품</li>
-        <li className="headerTopItem">알림</li>
-        <li className="headerTopItem" onClick={onClickHeaderLogin}>
+      <div className="headerTopList">
+        <div className="headerTopItem">고객센터</div>
+        <div className="headerTopItem">마이페이지</div>
+        <div className="headerTopItem">관심상품</div>
+        <div className="headerTopItem">알림</div>
+        <div className="headerTopItem" onClick={onClickHeaderLogin}>
           {isLoggedIn ? '로그아웃' : '로그인'}
-        </li>
-      </ul>
+        </div>
+      </div>
     </div>
   );
 };
