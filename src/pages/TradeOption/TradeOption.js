@@ -1,8 +1,11 @@
+import { useNavigate } from 'react-router-dom';
 import HeaderTop from '../../components/HeaderTop/HeaderTop';
 import HeaderMain from '../../components/HeaderMain/HeaderMain';
 import './TradeOption.scss';
 
 const TradeOption = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="tradeOption">
       <HeaderTop />
@@ -76,7 +79,14 @@ const TradeOption = () => {
                   <span className="priceWarning" />
                 </div>
                 <div className="btnConfirm">
-                  <button className="nextBtn">즉시 구매 계속</button>
+                  <button
+                    className="nextBtn"
+                    onClick={() => {
+                      navigate('/payment');
+                    }}
+                  >
+                    즉시 구매 계속
+                  </button>
                 </div>
               </div>
             </div>
