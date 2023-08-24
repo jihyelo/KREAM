@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import HeaderTop from '../../components/HeaderTop/HeaderTop';
 import HeaderMain from '../../components/HeaderMain/HeaderMain';
+import ProductInfo from '../../components/ProductInfo/ProductInfo';
 import SizeSelectItem from '../../components/SelectButton/SelectButton';
 import './SizeSelect.scss';
 
@@ -28,21 +29,7 @@ const SizeSelect = () => {
         <div className="contentArea">
           <div className="tradeBefore">
             <div className="tradeBeforeCheck">
-              <div className="productInfo">
-                <div className="productThumb">
-                  <div className="product">
-                    <img src="../../images/shoe1.jpg" alt="shoes" />
-                  </div>
-                </div>
-                <div className="productDetail">
-                  <p className="code">CJ9179-200</p>
-                  <p className="name">Nike Air Force 1 '07 WB Flex</p>
-                  <p className="translatedName">
-                    나이키 에어포스 1 '07 WB 플렉스
-                  </p>
-                  <div className="shippingExpress">빠른배송</div>
-                </div>
-              </div>
+              <ProductInfo />
 
               <div className="tradeBeforeSelect">
                 <div className="selectAreaMd">
