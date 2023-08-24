@@ -27,7 +27,6 @@ const Login = () => {
     const { name, value } = e.target;
     setUserDataValue({ ...userDataValue, [name]: value });
   };
-
   const isVaild =
     email.includes('@') &&
     email.endsWith('.com') &&
