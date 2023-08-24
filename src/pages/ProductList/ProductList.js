@@ -31,7 +31,142 @@ const ProductList = () => {
       <div className="trendContainer">
         <img src="/images/trendViewport.PNG" />
       </div>
-      <div className="content">{/* <div className="" */}</div>
+      <div className="content">
+        <div className="searchFilterBox scroll">
+          <div>
+            <input type="checkbox" />
+            <label>가방</label>
+          </div>
+          <div>
+            <input type="checkbox" />
+            <label>가방</label>
+          </div>
+          <div>
+            <input type="checkbox" />
+            <label>가방</label>
+          </div>
+          <div>
+            <input type="checkbox" />
+            <label>가방</label>
+          </div>
+          <div>
+            <input type="checkbox" />
+            <label>가방</label>
+          </div>
+          <div>
+            <input type="checkbox" />
+            <label>가방</label>
+          </div>
+          <div>
+            <input type="checkbox" />
+            <label>가방</label>
+          </div>
+          <div>
+            <input type="checkbox" />
+            <label>가방</label>
+          </div>
+          <div>
+            <input type="checkbox" />
+            <label>가방</label>
+          </div>
+          <div>
+            <input type="checkbox" />
+            <label>가방</label>
+          </div>
+          <div>
+            <input type="checkbox" />
+            <label>가방</label>
+          </div>
+          <div>
+            <input type="checkbox" />
+            <label>가방</label>
+          </div>
+          <div>
+            <input type="checkbox" />
+            <label>가방</label>
+          </div>
+          <div>
+            <input type="checkbox" />
+            <label>가방</label>
+          </div>
+          <div>
+            <input type="checkbox" />
+            <label>가방</label>
+          </div>
+          <div>
+            <input type="checkbox" />
+            <label>가방</label>
+          </div>
+          <div>
+            <input type="checkbox" />
+            <label>가방</label>
+          </div>
+          <div>
+            <input type="checkbox" />
+            <label>가방</label>
+          </div>
+          <div>
+            <input type="checkbox" />
+            <label>가방</label>
+          </div>{' '}
+          <div>
+            <input type="checkbox" />
+            <label>가방</label>
+          </div>{' '}
+          <div>
+            <input type="checkbox" />
+            <label>가방</label>
+          </div>{' '}
+          <div>
+            <input type="checkbox" />
+            <label>가방</label>
+          </div>{' '}
+          <div>
+            <input type="checkbox" />
+            <label>가방</label>
+          </div>{' '}
+          <div>
+            <input type="checkbox" />
+            <label>가방</label>
+          </div>{' '}
+          <div>
+            <input type="checkbox" />
+            <label>가방</label>
+          </div>{' '}
+          <div>
+            <input type="checkbox" />
+            <label>가방</label>
+          </div>{' '}
+          <div>
+            <input type="checkbox" />
+            <label>가방</label>
+          </div>{' '}
+          <div>
+            <input type="checkbox" />
+            <label>가방</label>
+          </div>{' '}
+          <div>
+            <input type="checkbox" />
+            <label>가방</label>
+          </div>{' '}
+          <div>
+            <input type="checkbox" />
+            <label>가방</label>
+          </div>{' '}
+          <div>
+            <input type="checkbox" />
+            <label>가방</label>
+          </div>
+        </div>
+        <div className="searchContent scroll">
+          <img src="/images/sampleImg.PNG" />
+          <img src="/images/sampleImg.PNG" />
+          <img src="/images/sampleImg.PNG" />
+          <img src="/images/sampleImg.PNG" />
+          <img src="/images/sampleImg.PNG" />
+          <img src="/images/sampleImg.PNG" />
+        </div>
+      </div>
     </div>
   );
 };

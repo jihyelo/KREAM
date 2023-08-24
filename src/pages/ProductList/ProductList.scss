@@ -1,7 +1,10 @@
 .productList {
-  display: flex;
-  flex-direction: column;
+  // display: flex;
+  // flex-direction: column;
+  max-width: 1500px;
+  min-width: 560px;
   padding-top: 97px;
+  height: auto;
   width: 100%;
 
   .searchTitle {
@@ -23,11 +26,12 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 60px;
+    padding: 0 100px;
     border-bottom: solid rgb(240, 240, 240) 0.3px;
     position: sticky;
     top: 100px;
     background-color: white;
+    z-index: 999;
 
     .categoryItem {
       display: inline-flex;
@@ -35,6 +39,7 @@
       padding-bottom: 15px;
       padding-top: 15px;
       font-size: 16px;
+      background-color: white;
 
       cursor: pointer;
     }
@@ -44,6 +49,43 @@
     padding-right: 40px;
     img {
       width: 100%;
+      padding: 0 50px;
     }
   }
+  .content {
+    display: flex;
+    padding: 0 40px;
+    // position: sticky;
+    // top: 100px;
+    // overflow: auto;
+    // position: relative;
+    .searchFilterBox {
+      border: solid black 0.5px;
+      position: sticky;
+      overflow: auto;
+      width: 180px;
+      z-index: 1;
+      top: 150px;
+      height: 500px;
+    }
+    .searchContent {
+      // position: sticky;
+      // top: 300px;
+      overflow: hidden;
+      height: auto;
+      width: 1000px;
+      margin-left: 200px;
+      img {
+        width: 100%;
+      }
+    }
+  }
+}
+.scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.scroll {
+  -ms-overflow-style: none; /* 인터넷 익스플로러 */
+  scrollbar-width: none; /* 파이어폭스 */
 }
