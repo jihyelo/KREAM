@@ -24,8 +24,10 @@ const ProductList = () => {
         <div className="titleText">SHOP</div>
       </div>
       <div className="category">
-        {categoryItems?.map(item => (
-          <div className="categoryItem">{item}</div>
+        {categoryItems.map((item, index) => (
+          <div className="categoryItem" key={index}>
+            {item}
+          </div>
         ))}
       </div>
       <div className="trendContainer">
