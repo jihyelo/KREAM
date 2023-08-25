@@ -1,10 +1,8 @@
-import React, { useEffect, useRef } from 'react';
-import ReactDOM from 'react-dom';
+import React from 'react';
 import './SizeSelectModal.scss';
 
 const SizeSelectModal = ({ isOpen, onClose, onSelectSize }) => {
   const sizes = [220, 230, 240, 250, 260, 270, 280];
-  const modalRef = useRef(null);
 
   if (!isOpen) {
     return null;
