@@ -15,7 +15,7 @@ const Login = () => {
 
   const onClickLoginButton = () => {
     login(email, password, () => {
-      localStorage.setItem('token', 'asdfasdfasdf');
+      localStorage.setItem('accessToken');
       navigate('/product-list');
     });
   };
