@@ -1,18 +1,28 @@
 import './CheckBox.scss';
-const Checkbox = ({ disabled, checked, children, onChange, name, value }) => {
+const CheckBox = ({
+  id,
+  disabled,
+  checked,
+  children,
+  onChange,
+  checkItemHandler,
+}) => {
+  const checkHandled = e => {
+    console.log('checkHandled');
+    checkItemHandler(e.target.id, e.target.checked);
+  };
   return (
     <label>
       <input
         type="checkbox"
-        name={name}
+        id={id}
         disabled={disabled}
         checked={checked}
-        onChange={onChange}
-        value={value}
+        onChange={checkHandled}
       />
-      {children}
+      {id}
     </label>
   );
 };
 
-export default Checkbox;
+export default CheckBox;
