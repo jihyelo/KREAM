@@ -12,11 +12,14 @@ const SignUp = () => {
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedSize, setSelectedSize] = useState(null);
-  const [checkItems, setCheckItems] = useState([]);
+  const [ServiceItems, setServiceItems] = useState([]);
+  const [requiredItems, setRequiredItems] = useState([]);
 
   const [userDataValue, setUserDataValue] = useState({
     email: '',
     password: '',
+    이용약관동의: false,
+    개인정보동의: false,
     앱푸시: false,
     문자메시지: false,
     이메일: false,
@@ -24,15 +27,24 @@ const SignUp = () => {
 
   const { email, password, 앱푸시, 문자메시지, 이메일 } = userDataValue;
 
-  const checkList = [
+  const ServiceList = [
     {
-      id: '앱푸시',
+      name: '앱푸시',
     },
     {
-      id: '문자메시지',
+      name: '문자메시지',
     },
     {
-      id: '이메일',
+      name: '이메일',
+    },
+  ];
+
+  const requiredList = [
+    {
+      name: '개인정보동의',
+    },
+    {
+      name: '이용약관동의',
     },
   ];
 
@@ -44,33 +56,59 @@ const SignUp = () => {
     });
   };
 
-  useEffect(() => {
-    console.log(userDataValue);
-  }, []);
-
-  const checkItemHandler = (id, isChecked) => {
+  const checkItemHandler = (name, isChecked) => {
     if (isChecked) {
-      setCheckItems(prev => [...prev, id]);
+      setServiceItems(prev => [...prev, name]);
     } else {
-      setCheckItems(checkItems.filter(item => item !== id));
+      setServiceItems(ServiceItems.filter(item => item !== name));
     }
-
+    if (isChecked) {
+      setRequiredItems(prev => [...prev, name]);
+    } else {
+      setRequiredItems(requiredItems.filter(item => item !== name));
+    }
     setUserDataValue(prevUserDataValue => ({
       ...prevUserDataValue,
-      [id]: isChecked,
+      [name]: isChecked,
     }));
-
-    console.log({ [id]: isChecked });
+  };
+  //TODO 하드코딩 노노 refactor
+  const allServiceCheckedHandler = e => {
+    if (e.target.checked) {
+      setServiceItems(ServiceList.map(item => item.name));
+      setUserDataValue(prevUserDataValue => ({
+        ...prevUserDataValue,
+        앱푸시: true,
+        문자메시지: true,
+        이메일: true,
+      }));
+    } else {
+      setServiceItems([]);
+      setUserDataValue(prevUserDataValue => ({
+        ...prevUserDataValue,
+        앱푸시: false,
+        문자메시지: false,
+        이메일: false,
+      }));
+    }
   };
 
-  const allCheckedHandler = e => {
+  const allRequiredCheckedHandler = e => {
     if (e.target.checked) {
-      setCheckItems(checkList.map(item => item.id));
+      setRequiredItems(requiredList.map(item => item.name));
+      setUserDataValue(prevUserDataValue => ({
+        ...prevUserDataValue,
+        이용약관동의: true,
+        개인정보동의: true,
+      }));
     } else {
-      setCheckItems([]);
+      setRequiredItems([]);
+      setUserDataValue(prevUserDataValue => ({
+        ...prevUserDataValue,
+        이용약관동의: false,
+        개인정보동의: false,
+      }));
     }
-
-    console.log(`allCheck = `, e.target.checked);
   };
 
   const handleOpenModal = () => {
@@ -87,7 +125,7 @@ const SignUp = () => {
   };
 
   const onClickSignUpButton = () => {
-    signUp(email, password, 앱푸시, 문자메시지, 이메일, () => {
+    signUp(userDataValue, email, password, 앱푸시, 문자메시지, 이메일, () => {
       navigate('/login');
     });
   };
@@ -98,12 +136,11 @@ const SignUp = () => {
     8 <= password.length &&
     password.length <= 16;
   console.log(userDataValue);
-
   return (
     <div className="signUp">
       <div className="layout">
         <div className="containerLogin">
-          <div className="loginAera" onChange={handleInput}>
+          <div className="loginAera">
             <div className="loginTitle">
               <p className="signUpTitle">회원가입</p>
             </div>
@@ -115,6 +152,7 @@ const SignUp = () => {
               errorMessage="이메일 주소를 정확히 입력해주세요"
               inputTitle="이메일 주소*"
               value={email}
+              onChange={handleInput}
             />
             <InputBox
               type="password"
@@ -124,6 +162,7 @@ const SignUp = () => {
               errorMessage="영문, 숫자, 특수문자를 조합해서 입력해주세요. (8-16자)"
               inputTitle="비밀번호*"
               value={password}
+              onChange={handleInput}
             />
             <InputBox
               type="text"
@@ -131,6 +170,7 @@ const SignUp = () => {
               placeholder="추천인 코드를 입력해주세요"
               errorMessage="일치하는 코드를 찾을 수 없습니다"
               inputTitle="추천인코드"
+              onChange={handleInput}
             />
             <InputBox
               type="text"
@@ -154,18 +194,41 @@ const SignUp = () => {
             <label>
               <input
                 type="checkbox"
-                onChange={allCheckedHandler}
-                checked={checkItems.length === checkList.length ? true : false}
+                onChange={allRequiredCheckedHandler}
+                checked={
+                  requiredItems.length === requiredList.length ? true : false
+                }
+              />
+              [필수] 만 14세 이상이며 모두 동의합니다.
+            </label>
+            <div>
+              {requiredList.map(item => (
+                <CheckBox
+                  key={item.name}
+                  name={item.name}
+                  checkItemHandler={checkItemHandler}
+                  checked={requiredItems.includes(item.name) ? true : false}
+                />
+              ))}
+            </div>
+
+            <label>
+              <input
+                type="checkbox"
+                onChange={allServiceCheckedHandler}
+                checked={
+                  ServiceItems.length === ServiceList.length ? true : false
+                }
               />
               [선택] 광고성 정보 수신에 모두 동의합니다.
             </label>
             <div>
-              {checkList.map(item => (
+              {ServiceList.map(item => (
                 <CheckBox
-                  key={item.id}
-                  id={item.id}
+                  key={item.name}
+                  name={item.name}
                   checkItemHandler={checkItemHandler}
-                  checked={checkItems.includes(item.id) ? true : false}
+                  checked={ServiceItems.includes(item.name) ? true : false}
                 />
               ))}
             </div>

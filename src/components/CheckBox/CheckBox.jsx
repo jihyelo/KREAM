@@ -1,6 +1,6 @@
 import './CheckBox.scss';
 const CheckBox = ({
-  id,
+  name,
   disabled,
   checked,
   children,
@@ -9,18 +9,18 @@ const CheckBox = ({
 }) => {
   const checkHandled = e => {
     console.log('checkHandled');
-    checkItemHandler(e.target.id, e.target.checked);
+    checkItemHandler(e.target.name, e.target.checked);
   };
   return (
     <label>
       <input
         type="checkbox"
-        id={id}
+        name={name}
         disabled={disabled}
         checked={checked}
         onChange={checkHandled}
       />
-      {id}
+      {name}
     </label>
   );
 };
