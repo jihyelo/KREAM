@@ -1,7 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import LoginSignUpButton from '../../components/LoginSignUpButton/LoginSignUpButton';
-import HeaderTop from '../../components/HeaderTop/HeaderTop';
 import InputBox from '../../components/InputBox/InputBox';
 import login from '../../API/login';
 import './Login.scss';
@@ -16,6 +15,7 @@ const Login = () => {
 
   const onClickLoginButton = () => {
     login(email, password, () => {
+      localStorage.setItem('token', 'asdfasdfasdf');
       navigate('/product-list');
     });
   };

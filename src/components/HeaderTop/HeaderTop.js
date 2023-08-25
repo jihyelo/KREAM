@@ -1,20 +1,12 @@
-import { useNavigate, useLocation } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './HeaderTop.scss';
 
 const HeaderTop = () => {
   const navigate = useNavigate();
-  // const { pathname } = useLocation();
-  // const [loged, setLoged] = useState(false);
-
-  // useEffect(() => {
-  //   localStorage.getItem('token') ? setLoged(true) : setLoged(false);
-  // }, [pathname]);
 
   const onClickHeaderLogin = () => {
     if (localStorage.getItem('token')) {
       localStorage.removeItem('token');
-      // setLoged(false);
       alert('로그아웃 되었습니다');
     }
     if (!localStorage.getItem('token')) {
