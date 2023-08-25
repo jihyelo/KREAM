@@ -46,10 +46,10 @@ const TradeOption = () => {
                   <div className="tabArea">
                     <ul className="tabList">
                       <li className="item">
-                        <div className="itemLink">구매 입찰</div>
+                        <button className="itemLink">구매 입찰</button>
                       </li>
                       <li className="item on">
-                        <div className="itemLink ">즉시 구매</div>
+                        <button className="itemLink ">즉시 구매</button>
                       </li>
                     </ul>
                   </div>

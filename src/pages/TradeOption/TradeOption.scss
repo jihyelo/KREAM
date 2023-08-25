@@ -65,7 +65,7 @@
       }
 
       .priceDescisionBox {
-        padding: 0 32px 32px;
+        padding-bottom: 32px;
         width: 100%;
 
         .priceList {
@@ -109,7 +109,7 @@
             display: flex;
             justify-content: space-between;
             border: 1px solid #ebebeb;
-            background-color: #f4f4f4;
+            background-color: #efefef;
             border-radius: 80px;
             margin-bottom: 27px;
             padding: 3px;
@@ -121,12 +121,13 @@
 
               .itemLink {
                 width: 100%;
+                border-color: rgba(0, 0, 0, 0);
                 border-radius: 80px;
                 color: rgba(34, 34, 34, 0.8);
                 font-size: 13px;
                 letter-spacing: -0.21px;
                 letter-spacing: 0.15px;
-                padding: 14px 0;
+                padding: 10px 0;
               }
             }
             .on {
@@ -199,7 +200,6 @@
   .totalConfirm {
     background-color: #fff;
     border-top: 1px solid #ebebeb;
-    padding: 0 32px 32px;
 
     .priceTotal {
       padding-bottom: 12px;
@@ -244,6 +244,7 @@
         height: 52px;
         letter-spacing: -0.16px;
         width: 100%;
+        margin-top: 10px;
       }
     }
   }
