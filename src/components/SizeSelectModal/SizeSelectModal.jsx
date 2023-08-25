@@ -6,11 +6,6 @@ const SizeSelectModal = ({ isOpen, onClose, onSelectSize }) => {
   const sizes = [220, 230, 240, 250, 260, 270, 280];
   const modalRef = useRef(null);
 
-  const handleSizeButtonClick = size => {
-    onSelectSize(size);
-    onClose();
-  };
-
   if (!isOpen) {
     return null;
   }
@@ -26,7 +21,7 @@ const SizeSelectModal = ({ isOpen, onClose, onSelectSize }) => {
             <div
               className="sizeButton"
               key={size}
-              onClick={() => handleSizeButtonClick(size)}
+              onClick={() => onSelectSize(size)}
             >
               {size}
             </div>

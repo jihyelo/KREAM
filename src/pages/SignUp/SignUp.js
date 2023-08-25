@@ -58,20 +58,25 @@ const SignUp = () => {
 
   const checkItemHandler = (name, isChecked) => {
     if (isChecked) {
-      setServiceItems(prev => [...prev, name]);
+      ServiceList.find(
+        item => JSON.stringify(item) === JSON.stringify({ name: name }),
+      )
+        ? setServiceItems(prev => [...prev, name])
+        : setRequiredItems(prev => [...prev, name]);
     } else {
-      setServiceItems(ServiceItems.filter(item => item !== name));
+      ServiceList.find(
+        item => JSON.stringify(item) === JSON.stringify({ name: name }),
+      )
+        ? setServiceItems(ServiceItems.filter(item => item !== name))
+        : setRequiredItems(requiredItems.filter(item => item !== name));
     }
-    if (isChecked) {
-      setRequiredItems(prev => [...prev, name]);
-    } else {
-      setRequiredItems(requiredItems.filter(item => item !== name));
-    }
+
     setUserDataValue(prevUserDataValue => ({
       ...prevUserDataValue,
       [name]: isChecked,
     }));
   };
+
   //TODO 하드코딩 노노 refactor
   const allServiceCheckedHandler = e => {
     if (e.target.checked) {
@@ -134,8 +139,9 @@ const SignUp = () => {
     email.includes('@') &&
     email.endsWith('.com') &&
     8 <= password.length &&
-    password.length <= 16;
-  console.log(userDataValue);
+    password.length <= 16 &&
+    requiredItems.length == 2;
+
   return (
     <div className="signUp">
       <div className="layout">
