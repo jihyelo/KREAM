@@ -1,16 +1,34 @@
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import LoginSignUpButton from '../../components/LoginSignUpButton/LoginSignUpButton';
-import HeaderTop from '../../components/HeaderTop/HeaderTop';
 import InputBox from '../../components/InputBox/InputBox';
 import CheckBox from '../../components/CheckBox/CheckBox';
 import signUp from '../../API/signUp';
 import SizeSelectModal from '../../components/SizeSelectModal/SizeSelectModal';
+import '../../API/signUp';
 import './SignUp.scss';
 
 const SignUp = () => {
+  const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedSize, setSelectedSize] = useState(null);
+  const defaultTerms = {
+    '이용약관 동의': { required: true, checked: false },
+    '개인정보 수집 및 이용 동의': { required: true, checked: false },
+    앱푸시: { required: false, checked: false },
+    문자메세지: { required: false, checked: false },
+    이메일: { required: false, checked: false },
+  };
+  const [terms, setTerms] = useState(defaultTerms);
+  const [userDataValue, setUserDataValue] = useState({
+    email: '',
+    password: '',
+    앱푸시: false,
+    문자메세지: false,
+    이메일: false,
+  });
+
+  const { email, password, agreeApp, agreeSms, agreeEmail } = userDataValue;
 
   const handleOpenModal = () => {
     setIsModalOpen(true);
@@ -25,7 +43,15 @@ const SignUp = () => {
     handleCloseModal();
   };
 
-  const handleToggleTerm = termName => {
+  const handleInput = e => {
+    const { name, value } = e.target;
+    setUserDataValue({
+      ...userDataValue,
+      [name]: value,
+    });
+  };
+
+  const handleToggleTerm = (termName, e) => {
     setTerms(prevTerms => ({
       ...prevTerms,
       [termName]: {
@@ -33,39 +59,18 @@ const SignUp = () => {
         checked: !prevTerms[termName].checked,
       },
     }));
+    const { checked } = e.target;
+    setUserDataValue(prevUserDataValue => ({
+      ...prevUserDataValue,
+      [termName]: checked,
+    }));
+    console.log({ [termName]: checked });
   };
 
-  const [isLoggedIn, setisLoggedIn] = useState(false);
-
-  const [userDataValue, setUserDataValue] = useState({
-    email: '',
-    password: '',
-    size: '',
-  });
-
-  const defaultTerms = {
-    '이용약관 동의': { required: true, checked: false },
-    '개인정보 수집 및 이용 동의': { required: true, checked: false },
-    앱푸시: { required: false, checked: false },
-    문자메세지: { required: false, checked: false },
-    이메일: { required: false, checked: false },
-  };
-
-  const [terms, setTerms] = useState(defaultTerms);
-
-  const { email, password, size } = userDataValue;
-
-  const navigate = useNavigate();
-
-  const onClickLoginButton = () => {
-    signUp(email, password, size, () => {
+  const onClickSignUpButton = () => {
+    signUp(email, password, agreeApp, agreeSms, agreeEmail, () => {
       navigate('/login');
     });
-  };
-
-  const handleInput = e => {
-    const { name, value } = e.target;
-    setUserDataValue({ ...userDataValue, [name]: value });
   };
 
   const isVaild =
@@ -76,11 +81,10 @@ const SignUp = () => {
     terms['이용약관 동의'].checked &&
     terms['개인정보 수집 및 이용 동의'].checked;
 
+  console.log(userDataValue);
+
   return (
     <div className="signUp">
-      <div className="gnbHeader">
-        <HeaderTop isLoggedIn={isLoggedIn} setisLoggedIn={setisLoggedIn} />
-      </div>
       <div className="layout">
         <div className="containerLogin">
           <div className="loginAera" onChange={handleInput}>
@@ -154,13 +158,13 @@ const SignUp = () => {
             </CheckBox>
             <CheckBox
               checked={terms['이용약관 동의'].checked}
-              onChange={() => handleToggleTerm('이용약관 동의')}
+              onChange={e => handleToggleTerm('이용약관 동의', e)}
             >
               이용약관 동의
             </CheckBox>
             <CheckBox
               checked={terms['개인정보 수집 및 이용 동의'].checked}
-              onChange={() => handleToggleTerm('개인정보 수집 및 이용 동의')}
+              onChange={e => handleToggleTerm('개인정보 수집 및 이용 동의', e)}
             >
               개인정보 수집 및 이용 동의
             </CheckBox>
@@ -192,20 +196,23 @@ const SignUp = () => {
               (선택) 마케팅 수신
             </CheckBox>
             <CheckBox
+              name={agreeApp}
               checked={terms['앱푸시'].checked}
-              onChange={() => handleToggleTerm('앱푸시')}
+              onChange={e => handleToggleTerm('앱푸시', e)}
             >
               앱 푸시
             </CheckBox>
             <CheckBox
+              name={agreeSms}
               checked={terms['문자메세지'].checked}
-              onChange={() => handleToggleTerm('문자메세지')}
+              onChange={e => handleToggleTerm('문자메세지', e)}
             >
               문자 메시지
             </CheckBox>
             <CheckBox
+              name={agreeEmail}
               checked={terms['이메일'].checked}
-              onChange={() => handleToggleTerm('이메일')}
+              onChange={e => handleToggleTerm('이메일', e)}
             >
               이메일
             </CheckBox>
@@ -213,7 +220,7 @@ const SignUp = () => {
             <LoginSignUpButton
               className="LoginButton"
               children="회원가입"
-              onClick={onClickLoginButton}
+              onClick={onClickSignUpButton}
               disabled={!isVaild}
             />
           </div>
