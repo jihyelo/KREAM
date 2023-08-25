@@ -7,21 +7,17 @@ import login from '../../API/login';
 import './Login.scss';
 
 const Login = () => {
-  const [isLoggedIn, setisLoggedIn] = useState(false);
+  const navigate = useNavigate();
   const [userDataValue, setUserDataValue] = useState({
     email: '',
     password: '',
   });
   const { email, password } = userDataValue;
 
-  const navigate = useNavigate();
-
   const onClickLoginButton = () => {
-    // login(email, password, () => {
-    navigate('/product-list');
-    localStorage.setItem('token', '토큰이지롱');
-    //   setisLoggedIn(prev => !prev);
-    // });
+    login(email, password, () => {
+      navigate('/product-list');
+    });
   };
 
   const handleInput = e => {
@@ -36,9 +32,6 @@ const Login = () => {
 
   return (
     <div className="login">
-      <div className="gnbHeader">
-        <HeaderTop isLoggedIn={isLoggedIn} setisLoggedIn={setisLoggedIn} />
-      </div>
       <div className="layout">
         <div className="containerLogin">
           <div className="loginAera" onChange={handleInput}>
