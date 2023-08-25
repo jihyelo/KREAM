@@ -1,5 +1,3 @@
-import { useNavigate } from 'react-router';
-
 //TODO async, await 사용하기
 const signUp = (
   userDataValue,
@@ -10,7 +8,7 @@ const signUp = (
   이메일,
   onSuccessSignUp,
 ) => {
-  fetch('https://10.58.52.172:3000/users/signup', {
+  fetch('http://10.58.52.133:3000/user/signup', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json;charset=utf-8',
@@ -18,22 +16,30 @@ const signUp = (
     body: JSON.stringify({
       email: email,
       password: password,
-      agreeApp: userDataValue[앱푸시],
-      agreeSms: userDataValue[문자메시지],
-      agreeEmail: userDataValue[이메일],
+      agree_app: Number(앱푸시),
+      agree_sms: Number(문자메시지),
+      agree_email: Number(이메일),
     }),
   })
-    .then(res => {
-      if (res.ok) {
-        return res.json();
+    .then(response => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error('회원가입 실패');
       }
     })
     .then(data => {
-      if (data.message === 'success signUp') {
-        onSuccessSignUp && onSuccessSignUp();
+      if (data.message === 'user is created') {
+        localStorage.setItem('TOKEN', data.accessToken);
+        if (onSuccessSignUp) {
+          onSuccessSignUp();
+        }
       }
     })
-    .catch(alert('회원가입 실패'));
+    .catch(error => {
+      console.error(error);
+      alert('회원가입 실패');
+    });
 };
 
 export default signUp;
