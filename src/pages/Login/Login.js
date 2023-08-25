@@ -1,13 +1,11 @@
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import LoginSignUpButton from '../../components/LoginSignUpButton/LoginSignUpButton';
-import HeaderTop from '../../components/HeaderTop/HeaderTop';
 import InputBox from '../../components/InputBox/InputBox';
 import login from '../../API/login';
 import './Login.scss';
 
 const Login = () => {
-  const [isLoggedIn, setisLoggedIn] = useState(false);
   const [userDataValue, setUserDataValue] = useState({
     email: '',
     password: '',
@@ -19,7 +17,6 @@ const Login = () => {
   const onClickLoginButton = () => {
     login(email, password, () => {
       navigate('/product-list');
-      setisLoggedIn(prev => !prev);
     });
   };
 
@@ -36,9 +33,6 @@ const Login = () => {
 
   return (
     <div className="login">
-      <div className="gnbHeader">
-        <HeaderTop isLoggedIn={isLoggedIn} setisLoggedIn={setisLoggedIn} />
-      </div>
       <div className="layout">
         <div className="containerLogin">
           <div className="loginAera" onChange={handleInput}>
