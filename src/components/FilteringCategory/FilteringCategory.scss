@@ -45,6 +45,7 @@
     font-size: 13px;
     letter-spacing: -0.07px;
     text-decoration: underline;
+    cursor: pointer;
   }
 
   .filterExpress {
@@ -66,38 +67,63 @@
       font-size: 13px;
     }
   }
-
-  .filterTitle {
-    align-items: center;
-    cursor: pointer;
-    display: flex;
-    justify-content: space-between;
-    padding: 16px 0;
-
-    .titleBox {
+  .filterList {
+    border-bottom: 1px solid #ebebeb;
+    margin-top: 10px;
+    .filterTitle {
+      align-items: center;
+      cursor: pointer;
       display: flex;
-      flex-direction: column;
-      max-width: calc(100% - 30px);
-      .mainTitle {
-        font-size: 13px;
-        font-weight: 600;
-        letter-spacing: -0.07px;
-        position: relative;
+      justify-content: space-between;
+      padding: 16px 0;
+
+      .titleBox {
+        display: flex;
+        flex-direction: column;
+        max-width: calc(100% - 30px);
+        .mainTitle {
+          font-size: 13px;
+          font-weight: 600;
+          letter-spacing: -0.07px;
+          position: relative;
+        }
+        .placeholder {
+          color: rgba(34, 34, 34, 0.5);
+          font-size: 15px;
+          letter-spacing: -0.15px;
+          margin-top: 4px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
       }
-      .placeholder {
-        color: rgba(34, 34, 34, 0.5);
-        font-size: 15px;
-        letter-spacing: -0.15px;
-        margin-top: 4px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
+
+      .plusBox {
+        margin: 0;
+        padding: 0;
       }
     }
+  }
 
-    .plusBox {
-      margin: 0;
-      padding: 0;
+  .filterMenu {
+    padding-bottom: 24px;
+  }
+  .menu {
+    align-items: flex-start;
+    display: flex;
+    font-size: 14px;
+    letter-spacing: -0.21px;
+    .CheckedTrue {
+      flex-shrink: 0;
+      height: 17px;
+      margin-right: 8px;
+      width: 16px;
+    }
+    .CheckedFalse {
+      flex-shrink: 0;
+      height: 17px;
+      margin-right: 8px;
+      width: 16px;
     }
   }
 }

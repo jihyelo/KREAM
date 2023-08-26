@@ -25,7 +25,10 @@ const ProductList = () => {
         {/*TODO 초기화, 필터된 카테고리 수 표시*/}
 
         <div className="searchFilterBox">
-          <FilteringCategory />
+          <FilteringCategory
+            checkedFilterItem={checkedFilterItem}
+            setCheckedFilterItem={setCheckedFilterItem}
+          />
         </div>
 
         <div className="searchContent scroll">
