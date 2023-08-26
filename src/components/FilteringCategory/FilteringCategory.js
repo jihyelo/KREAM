@@ -39,11 +39,17 @@ const FilteringCategory = ({ checkedFilterItem, setCheckedFilterItem }) => {
       <div className="filterStatus">
         <div className="statusBox">
           <div className="statusText">필터</div>
-          <div className="statusNum">{checkedFilterItem.length}</div>
+          {checkedFilterItem.length ? (
+            <div className="statusNum">{checkedFilterItem.length}</div>
+          ) : null}
         </div>
         <div className="deleteFilterButton" onClick={deleteFilter}>
           초기화
         </div>
+      </div>
+      <div className="filterExpress">
+        <img src="/images/expressThunder.PNG" />
+        <div className="filterExpressText">빠른배송</div>
       </div>
 
       {filterListData.map((data, index) => (
@@ -78,7 +84,9 @@ const FilterList = ({
       <div className="filterTitle" onClick={handlerFilterTitle}>
         <div className="titleBox">
           <div className="mainTitle">{mainTitle}</div>
-          <div className="placeholder">{placeholder}</div>
+          {!openCategoryList && (
+            <div className="placeholder">{placeholder}</div>
+          )}
         </div>
         <div className="plusBox">
           {openCategoryList ? <BiMinus /> : <BsPlusLg />}
