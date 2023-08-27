@@ -26,6 +26,7 @@
         font-weight: 700;
         letter-spacing: -0.07px;
         line-height: 16px;
+        margin-bottom: 2px;
       }
       .engName {
         -webkit-line-clamp: 2;
@@ -37,7 +38,8 @@
         text-overflow: ellipsis;
       }
       .priceArea {
-        margin-top .byNowPrice {
+        margin-top: 12px;
+        .byNowPrice {
           font-size: 14px;
           font-weight: 700;
           line-height: 17px;
@@ -58,6 +60,10 @@
     .wishFigure {
       align-items: center;
       display: inline-flex;
+      .wishIcon {
+        color: rgba(34, 34, 34, 0.5);
+        cursor: pointer;
+      }
       .wishCount {
         color: rgba(34, 34, 34, 0.5);
         font-size: 12px;
@@ -68,6 +74,10 @@
     .reviewFigure {
       align-items: center;
       display: inline-flex;
+      .riviewIcon {
+        color: rgba(34, 34, 34, 0.5);
+        cursor: pointer;
+      }
       .reviewCount {
         color: rgba(34, 34, 34, 0.5);
         font-size: 12px;

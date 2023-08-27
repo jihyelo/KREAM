@@ -49,8 +49,6 @@ const ProductList = () => {
       </div>
 
       <div className="content">
-        {/*TODO 초기화, 필터된 카테고리 수 표시*/}
-
         <div className="searchFilterBox">
           <FilteringCategory
             checkedFilterItem={checkedFilterItem}

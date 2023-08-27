@@ -21,12 +21,12 @@ const ProductCard = ({ image, brand, engName, byNowPrice }) => {
 
       <div className="actionWishReview">
         <div className="wishFigure">
-          <LiaBookmarkSolid />
+          <LiaBookmarkSolid className="wishIcon" />
           <div className="wishCount">1368</div>
         </div>
-        <div clssName="reviewFigure">
-          <VscPreview />
-          <div className="riviewCount">18</div>
+        <div className="reviewFigure">
+          <VscPreview className="riviewIcon" />
+          <div className="reviewCount">22</div>
         </div>
       </div>
     </div>
