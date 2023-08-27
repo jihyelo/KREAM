@@ -7,6 +7,8 @@ const SortingResult = () => {
   const [countIndex, setCountIndex] = useState(0);
   const [toggleSortingList, setToggleSortingList] = useState(false);
 
+  //TODO sortingList 외부영역 클릭시 sortingList 닫히기
+
   // const sortingListRef = useRef(null);
 
   // useEffect(() => {
@@ -22,6 +24,7 @@ const SortingResult = () => {
   //     console.log('clickSortingListOutside called');
   //   }
   // };
+
   const handleOnclick = (e, index) => {
     setCountIndex(index);
     setToggleSortingList(prev => !prev);
@@ -29,12 +32,13 @@ const SortingResult = () => {
   const SortingButtonOnClick = () => {
     return setToggleSortingList(prev => !prev);
   };
+
   return (
     <div className="sortingResult">
       <button className="sortingTitleButton" onClick={SortingButtonOnClick}>
         {SORTING_ITEM_DESC[countIndex]['mainDesc']}
       </button>
-      <LuArrowDownUp />
+      <LuArrowDownUp className="downUpIcon" />
       {toggleSortingList && (
         <ul className="sortingList">
           {SORTING_ITEM_DESC.map((item, index) => (
@@ -42,7 +46,7 @@ const SortingResult = () => {
               key={index}
               itemOn={countIndex == index && 'itemOn'}
               isChecked={countIndex == index && true}
-              onClick={e => handleOnclick(e, index)}
+              handleOnclick={e => handleOnclick(e, index)}
               itemMainDesc={item['mainDesc']}
               itemSubDesc={item['subDesc']}
             />
@@ -56,12 +60,12 @@ const SortingResult = () => {
 const SortingItem = ({
   isChecked,
   itemOn,
-  onClick,
+  handleOnclick,
   itemMainDesc,
   itemSubDesc,
 }) => {
   return (
-    <li className={'sortingItem'} onClick={onClick}>
+    <li className={'sortingItem'} onClick={handleOnclick}>
       <div className="sortingLink">
         <div className={`${itemOn} mainDesc`}>{itemMainDesc}</div>
         <div className="subDesc">{itemSubDesc}</div>
