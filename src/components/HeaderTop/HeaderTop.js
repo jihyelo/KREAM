@@ -1,14 +1,15 @@
 import { useNavigate } from 'react-router-dom';
 import './HeaderTop.scss';
 
-const HeaderTop = ({ isLoggedIn, setisLoggedIn }) => {
-  const navigate = useNavigate;
+const HeaderTop = () => {
+  const navigate = useNavigate();
 
   const onClickHeaderLogin = () => {
-    if (isLoggedIn) {
+    if (localStorage.getItem('token')) {
       localStorage.removeItem('token');
+      alert('로그아웃 되었습니다');
     }
-    if (!isLoggedIn) {
+    if (!localStorage.getItem('token')) {
       navigate('/login');
     }
   };
@@ -20,10 +21,11 @@ const HeaderTop = ({ isLoggedIn, setisLoggedIn }) => {
         <li className="headerTopItem">관심상품</li>
         <li className="headerTopItem">알림</li>
         <li className="headerTopItem" onClick={onClickHeaderLogin}>
-          {isLoggedIn ? '로그아웃' : '로그인'}
+          {localStorage.getItem('token') ? '로그아웃' : '로그인'}
         </li>
       </ul>
     </div>
   );
 };
+
 export default HeaderTop;
