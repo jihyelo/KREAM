@@ -4,7 +4,7 @@ import LoginSignUpButton from '../../components/LoginSignUpButton/LoginSignUpBut
 import InputBox from '../../components/InputBox/InputBox';
 import CheckBox from '../../components/CheckBox/CheckBox';
 import signUp from '../../API/signUp';
-import SizeSelectModal from '../../components/SizeSelectModal/SizeSelectModal';
+import SizeSelectModal from './SizeSelectModal/SizeSelectModal';
 import '../../API/signUp';
 import './SignUp.scss';
 

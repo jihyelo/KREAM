@@ -1,5 +1,17 @@
+import DetailLeftBox from './DetailLeftBox/DetailLeftBox';
+import DetailRightBox from './DetailRightBox/DetailRightBox';
+
 import './ProductDetail.scss';
 const ProductDetail = () => {
-  return <div className="productDetail">상세 페이지</div>;
+  return (
+    <div className="productDetail">
+      <div className="content">
+        <div className="columnBind">
+          <DetailRightBox />
+          <DetailLeftBox />
+        </div>
+      </div>
+    </div>
+  );
 };
 export default ProductDetail;
