@@ -1,7 +1,7 @@
 .filteringCategory {
   margin-right: 10px;
-  max-height: calc(100vh - var(--global-header-height) - 84px);
-  overflow-x: hidden;
+  height: 600px;
+  overflow-y: auto;
   padding-right: 10px;
   position: -webkit-sticky;
 

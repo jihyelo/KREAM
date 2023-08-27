@@ -121,4 +121,27 @@ const filterListData = [
     placeholder: '모든 브랜드',
     filterItems: ['Adidas', 'Nike', 'New Balance'],
   },
+  {
+    mainTitle: '성별',
+    placeholder: '모든 성별',
+    filterItems: ['남성', '여성', '키즈'],
+  },
+  {
+    mainTitle: '컬렉션',
+    placeholder: '모든 컬렉션',
+    filterItems: [
+      'Luxury',
+      'Contemporary',
+      'Jordan 1',
+      'Jordan 3',
+      'Jordan 4',
+      'Jordan 5',
+      'Jordan 6',
+      'Jordan 11',
+      'Nike Dunk',
+      'Nike Air Force',
+      'Nike Air Max 1',
+      'Nike Air Max 95',
+    ],
+  },
 ];

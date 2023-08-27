@@ -1,10 +1,37 @@
 import SortingResult from '../../components/SortingResult/SortingResult';
 import FilteringCategory from '../../components/FilteringCategory/FilteringCategory';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import './ProductList.scss';
+import SearchResultList from '../../components/SearchResultList/SearchResultList';
 const ProductList = () => {
+  const [productDataList, setProductDataList] = useState();
   const [checkedFilterItem, setCheckedFilterItem] = useState([]);
+
+  useEffect(() => {
+    fetchProduct();
+  }, []);
+
+  const fetchProduct = () => {
+    return fetch('/data/data.json', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+      },
+    })
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error('데이터를 불러오는 데 실패했습니다.');
+        }
+      })
+      .then(data => {
+        return setProductDataList(data.data);
+      });
+    // .catch(alert('데이터를 불러오는 데 실패했습니다.'));
+  };
+
   return (
     <div className="productList">
       <div className="searchTitle">
@@ -37,17 +64,17 @@ const ProductList = () => {
             <SortingResult />
           </div>
 
-          <img src="/images/sampleImg.PNG" />
-          <img src="/images/sampleImg.PNG" />
-          <img src="/images/sampleImg.PNG" />
-          <img src="/images/sampleImg.PNG" />
-          <img src="/images/sampleImg.PNG" />
-          <img src="/images/sampleImg.PNG" />
+          <SearchResultList
+            productDataList={productDataList}
+            setProductDataList={setProductDataList}
+          />
         </div>
       </div>
     </div>
   );
 };
+
+export default ProductList;
 
 const CATEGORY_ITEMS = [
   '전체',
@@ -66,5 +93,3 @@ const CATEGORY_ITEMS = [
   '캠핑',
   '가구/리빙',
 ];
-
-export default ProductList;
