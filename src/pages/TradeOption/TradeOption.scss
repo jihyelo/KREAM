@@ -137,6 +137,12 @@
                 background-color: #ef6253;
                 color: #fff;
                 font-weight: 700;
+                width: 100%;
+                border-radius: 80px;
+                font-size: 13px;
+                letter-spacing: -0.21px;
+                letter-spacing: 0.15px;
+                padding: 10px 0;
               }
             }
           }
@@ -164,6 +170,7 @@
               .amount {
                 font-style: italic;
                 font-weight: 600;
+                font-size: 20px;
                 letter-spacing: -0.1px;
                 letter-spacing: normal;
                 line-height: 26px;
@@ -174,77 +181,130 @@
                 line-height: 26px;
                 padding-left: 2px;
               }
+              .inputAmount {
+                margin-top: -1px;
+                font-size: 20px;
+                font-style: normal;
+                font-weight: 500;
+                letter-spacing: normal;
+                line-height: 26px;
+                max-width: 200px;
+                overflow: visible;
+                text-align: right;
+                border: 0;
+                outline: none;
+              }
+              .inputAmount::placeholder {
+                color: #ccc;
+              }
+              .inputAmount::-webkit-input-placeholder {
+                color: #ccc;
+              }
+              input:-ms-input-placeholder {
+                color: #ccc;
+              }
+              input:focus::-webkit-input-placeholder,
+              textarea:focus::-webkit-input-placeholder {
+                color: transparent;
+              }
+              input[type='number']::-webkit-inner-spin-button,
+              input[type='number']::-webkit-outer-spin-button {
+                -webkit-appearance: none;
+                margin: 0;
+              }
             }
           }
           .priceWarning {
             display: none;
-          }
-        }
 
-        .priceBlind {
-          border-top: 2px solid #ebebeb;
-          padding-top: 10px;
-          font-size: 13px;
-          letter-spacing: -0.07px;
-          padding-top: 12px;
-
-          p {
-            color: rgba(34, 34, 34, 0.5);
-            font-size: 13px;
-            padding-top: 10px;
+            .sectionTitle {
+              padding-bottom: 16px;
+            }
           }
         }
       }
-    }
-  }
-  .totalConfirm {
-    background-color: #fff;
-    border-top: 1px solid #ebebeb;
 
-    .priceTotal {
-      padding-bottom: 12px;
-      padding-top: 16px;
+      .priceBlind {
+        border-top: 2px solid #ebebeb;
+        padding-top: 10px;
+        font-size: 13px;
+        letter-spacing: -0.07px;
+        padding-top: 12px;
 
-      .priceBox {
-        align-items: center;
-        display: flex;
-        justify-content: space-between;
-
-        .priceTitle {
-          font-size: 13px;
-          font-weight: bold;
-        }
-
-        .priceEmptyDesc {
+        p {
           color: rgba(34, 34, 34, 0.5);
+          font-size: 13px;
+          padding-top: 10px;
         }
+      }
+
+      .totalConfirm {
+        background-color: #fff;
+        border-top: 1px solid #ebebeb;
 
         .priceTotal {
-          font-size: 13px;
-          letter-spacing: -0.07px;
-        }
-      }
-    }
+          padding-bottom: 12px;
+          padding-top: 16px;
 
-    .btnConfirm {
-      .nextBtn {
-        background-color: #222;
-        color: #fff;
-        align-items: center;
-        //color: rgba(34, 34, 34, 0.8);
-        cursor: pointer;
-        display: inline-flex;
-        justify-content: center;
-        text-align: center;
-        vertical-align: middle;
-        border: none;
-        border-radius: 12px;
-        font-size: 16px;
-        font-weight: 700;
-        height: 52px;
-        letter-spacing: -0.16px;
-        width: 100%;
-        margin-top: 10px;
+          .priceBox {
+            align-items: center;
+            display: flex;
+            justify-content: space-between;
+
+            .priceTitle {
+              font-size: 13px;
+              font-weight: bold;
+            }
+
+            .priceEmptyDesc {
+              color: rgba(34, 34, 34, 0.5);
+            }
+
+            .priceTotal {
+              font-size: 13px;
+              letter-spacing: -0.07px;
+            }
+          }
+        }
+        .deadlineInfo {
+          border-top: 8px solid #f4f4f4;
+
+          .sectionTitle {
+            padding-bottom: 16px;
+
+            .titleTxt {
+              font-size: 14px;
+              letter-spacing: -0.21px;
+            }
+          }
+        }
+
+        .btnConfirm {
+          .nextBtn {
+            background-color: #222;
+            color: #fff;
+            align-items: center;
+            //color: rgba(34, 34, 34, 0.8);
+            cursor: pointer;
+            display: inline-flex;
+            justify-content: center;
+            text-align: center;
+            vertical-align: middle;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 700;
+            height: 52px;
+            letter-spacing: -0.16px;
+            width: 100%;
+            margin-top: 10px;
+          }
+          .disabled {
+            background-color: #ebebeb;
+            color: #fff;
+            cursor: default;
+          }
+        }
       }
     }
   }
