@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import './SelectButton.scss';
+import './SelectItem.scss';
 
-const SelectButton = ({ size, price, bid }) => {
+const SelectItem = ({ size, price, bid }) => {
   const [isClicked, setIsClicked] = useState(false);
 
   const handleClick = () => {
@@ -12,7 +12,7 @@ const SelectButton = ({ size, price, bid }) => {
     <li className="selectItem">
       <button
         className={`sizeSelectBtn ${isClicked ? 'clicked' : ''}`}
-        onClick={() => handleClick()}
+        onClick={handleClick}
       >
         <p className="size">{size}</p>
         <p className="price small">{price}</p>
@@ -22,4 +22,4 @@ const SelectButton = ({ size, price, bid }) => {
   );
 };
 
-export default SelectButton;
+export default SelectItem;

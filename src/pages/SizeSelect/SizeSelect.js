@@ -3,13 +3,24 @@ import { useNavigate } from 'react-router-dom';
 import HeaderTop from '../../components/HeaderTop/HeaderTop';
 import HeaderMain from '../../components/HeaderMain/HeaderMain';
 import ProductInfo from '../../components/ProductInfo/ProductInfo';
-import SizeSelectItem from '../../components/SelectButton/SelectButton';
+import SelectItem from '../../components/SelectItem/SelectItem';
 import './SizeSelect.scss';
 
 const SizeSelect = () => {
+  const [isProduct, setIsProduct] = useState([]);
   const [isSizeSelect, setIsSizeSelect] = useState([]);
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    fetch('/data/productData.json', {
+      method: 'GET',
+    })
+      .then(res => res.json())
+      .then(data => {
+        setIsProduct(data);
+      });
+  }, []);
 
   useEffect(() => {
     fetch('/data/sizeSelectData.json', {
@@ -29,14 +40,24 @@ const SizeSelect = () => {
         <div className="contentArea">
           <div className="tradeBefore">
             <div className="tradeBeforeCheck">
-              <ProductInfo />
+              {isProduct.map(info => {
+                return (
+                  <ProductInfo
+                    key={info.key}
+                    code={info.code}
+                    name={info.name}
+                    translatedName={info.translatedName}
+                    shippingExpress={info.shippingExpress}
+                  />
+                );
+              })}
 
               <div className="tradeBeforeSelect">
                 <div className="selectAreaMd">
                   <ul className="selectList">
                     {isSizeSelect.map(item => {
                       return (
-                        <SizeSelectItem
+                        <SelectItem
                           key={item.key}
                           size={item.size}
                           price={item.price}
