@@ -1,5 +1,5 @@
 import DetailRightTop from '../DetialRightTop/DetailRightTop';
-
+import ProductInfo from '../ProductInfo/ProductInfo';
 import './DetailRightBox.scss';
 
 const DetailRightBox = () => {
@@ -8,7 +8,7 @@ const DetailRightBox = () => {
       <div className="columnBox">
         <DetailRightTop />
 
-        <div className="productInfoWrap"></div>
+        <ProductInfo />
         <div className="displaySections"></div>
         <div className="deliveryWayWrap"></div>
         <div className="bannerBox"></div>
