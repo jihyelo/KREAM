@@ -1,4 +1,4 @@
-import ProductCard from '../../components/ProductCard/ProductCard';
+import ProductCard from '../ProductCard/ProductCard';
 import './SearchResultList.scss';
 
 const SearchResultList = ({ productDataList, setProductDataList }) => {

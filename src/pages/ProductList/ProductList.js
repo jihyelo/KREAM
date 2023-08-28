@@ -1,9 +1,9 @@
-import SortingResult from '../../components/SortingResult/SortingResult';
-import FilteringCategory from '../../components/FilteringCategory/FilteringCategory';
+import SortingResult from './SortingResult/SortingResult';
+import FilteringCategory from './FilteringCategory/FilteringCategory';
 import { useEffect, useState } from 'react';
 
 import './ProductList.scss';
-import SearchResultList from '../../components/SearchResultList/SearchResultList';
+import SearchResultList from './SearchResultList/SearchResultList';
 const ProductList = () => {
   const [productDataList, setProductDataList] = useState();
   const [checkedFilterItem, setCheckedFilterItem] = useState([]);
