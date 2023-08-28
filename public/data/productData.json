@@ -1,10 +1,13 @@
 [
   {
     "id": 1,
-    "src": "../images/shoe1.jpg",
-    "code": "CJ9179-200",
     "name": "Nike Air Force 1 '07 WB Flex",
+    "serial_number": "a123b123",
+    "url": "../images/shoe1.jpg",
+    "type": "220",
+    "code": "CJ9179-200",
     "translatedName": "나이키 에어포스 1 '07 WB 플렉스",
-    "shippingExpress": "빠른배송"
+    "buyPrice": "149000.00",
+    "sellPrice": "171000.00"
   }
 ]
