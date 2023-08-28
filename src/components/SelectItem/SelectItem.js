@@ -1,17 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './SelectItem.scss';
 
-const SelectItem = ({ size, price, bid }) => {
-  const [isClicked, setIsClicked] = useState(false);
-
-  const handleClick = () => {
-    setIsClicked(!isClicked);
-  };
-
+const SelectItem = ({ size, price, bid, isSelected, handleClick }) => {
   return (
     <li className="selectItem">
       <button
-        className={`sizeSelectBtn ${isClicked ? 'clicked' : ''}`}
+        className={`sizeSelectBtn ${isSelected ? 'clicked' : ''}`}
         onClick={handleClick}
       >
         <p className="size">{size}</p>

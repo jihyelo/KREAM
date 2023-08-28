@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import HeaderTop from '../../components/HeaderTop/HeaderTop';
-import HeaderMain from '../../components/HeaderMain/HeaderMain';
 import ProductInfo from '../../components/ProductInfo/ProductInfo';
 import SelectItem from '../../components/SelectItem/SelectItem';
 import './SizeSelect.scss';
 
 const SizeSelect = () => {
-  const [isProduct, setIsProduct] = useState([]);
-  const [isSizeSelect, setIsSizeSelect] = useState([]);
+  const [productData, setProductData] = useState({});
+  const [sizeSelectList, setSizeSelectList] = useState([]);
+  const [selectedSizeId, setSelectedSizeId] = useState();
 
   const navigate = useNavigate();
 
@@ -18,7 +17,7 @@ const SizeSelect = () => {
     })
       .then(res => res.json())
       .then(data => {
-        setIsProduct(data);
+        setProductData(data[0]);
       });
   }, []);
 
@@ -28,40 +27,34 @@ const SizeSelect = () => {
     })
       .then(res => res.json())
       .then(data => {
-        setIsSizeSelect(data);
+        setSizeSelectList(data);
       });
   }, []);
 
   return (
     <div className="sizeSelect">
-      <HeaderTop />
-      <HeaderMain />
       <div className="container">
         <div className="contentArea">
           <div className="tradeBefore">
             <div className="tradeBeforeCheck">
-              {isProduct.map(info => {
-                return (
-                  <ProductInfo
-                    key={info.key}
-                    code={info.code}
-                    name={info.name}
-                    translatedName={info.translatedName}
-                    shippingExpress={info.shippingExpress}
-                  />
-                );
-              })}
-
+              <ProductInfo
+                code={productData.code}
+                name={productData.name}
+                translatedName={productData.translatedName}
+                shippingExpress={productData.shippingExpress}
+              />
               <div className="tradeBeforeSelect">
                 <div className="selectAreaMd">
                   <ul className="selectList">
-                    {isSizeSelect.map(item => {
+                    {sizeSelectList.map(item => {
                       return (
                         <SelectItem
-                          key={item.key}
+                          key={item.id}
                           size={item.size}
                           price={item.price}
                           bid={item.bid}
+                          isSelected={item.id === selectedSizeId}
+                          handleClick={() => setSelectedSizeId(item.id)}
                         />
                       );
                     })}
