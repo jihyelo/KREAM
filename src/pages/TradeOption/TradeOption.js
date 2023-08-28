@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import HeaderTop from '../../components/HeaderTop/HeaderTop';
-import HeaderMain from '../../components/HeaderMain/HeaderMain';
 import BidDeadline from '../../components/BidDeadline/BidDeadline';
 import './TradeOption.scss';
 
@@ -11,8 +9,6 @@ const TradeOption = () => {
 
   return (
     <div className="tradeOption">
-      <HeaderTop />
-      <HeaderMain />
       <div className="container">
         <div className="contentArea">
           <div className="tradeBefore">
