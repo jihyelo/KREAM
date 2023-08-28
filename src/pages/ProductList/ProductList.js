@@ -7,18 +7,22 @@ import SearchResultList from './SearchResultList/SearchResultList';
 const ProductList = () => {
   const [productDataList, setProductDataList] = useState();
   const [checkedFilterItem, setCheckedFilterItem] = useState([]);
-
+  const [totalProductCount, setTotalProductCount] = useState();
   useEffect(() => {
     fetchProduct();
   }, []);
 
   const fetchProduct = () => {
-    return fetch('/data/data.json', {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
+    return fetch(
+      '/data/data.json',
+
+      {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8',
+        },
       },
-    })
+    )
       .then(response => {
         if (response.ok) {
           return response.json();
@@ -27,9 +31,43 @@ const ProductList = () => {
         }
       })
       .then(data => {
-        return setProductDataList(data.data);
+        setProductDataList(data.data);
+        setTotalProductCount(data.totalProductCount);
+      })
+      .catch(error => {
+        alert('데이터를 불러오는 데 실패했습니다');
       });
-    // .catch(alert('데이터를 불러오는 데 실패했습니다.'));
+  };
+
+  const postProduct = () => {
+    return fetch(
+      // `http://32423:3000/product/search?shop_category_id=${
+      //   '스니커즈','샌들/슬리퍼',
+      // }
+      // &brand_name=${{ brand: 'Adidas', brand: 'Nike' }}
+      // &sort=${{ sort: 'lowest_price' }}`,
+
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8',
+        },
+      },
+    )
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error('데이터를 불러오는 데 실패했습니다.');
+        }
+      })
+      .then(data => {
+        setProductDataList(data.data);
+        setTotalProductCount(data.totalProductCount);
+      })
+      .catch(error => {
+        alert('데이터를 불러오는 데 실패했습니다');
+      });
   };
 
   return (
@@ -58,7 +96,7 @@ const ProductList = () => {
 
         <div className="searchContent scroll">
           <div className="shopCount">
-            <div className="filterResult">상품 142,290</div>
+            <div className="filterResult">상품{totalProductCount}</div>
             <SortingResult />
           </div>
 
