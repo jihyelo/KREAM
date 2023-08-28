@@ -1,0 +1,363 @@
+.container {
+  background-color: #fafafa;
+
+  .content {
+    margin: 0 auto;
+    max-width: 780px;
+    padding: 20px 40px 160px;
+
+    .tradeImmediate {
+      background-color: #fff;
+
+      section {
+        background-color: #fff;
+        border-top: 8px solid #fafafa;
+        padding: 32px;
+      }
+
+      .address {
+        .sectionUnit {
+          margin-top: 22px;
+          padding-top: 15px;
+
+          .sectionTitle {
+            align-items: center;
+            display: flex;
+            padding-bottom: 12px;
+
+            .titleTxt {
+              font-size: 17px;
+              font-weight: 600;
+              letter-spacing: -0.09px;
+              letter-spacing: -0.15px;
+              line-height: 22px;
+              flex: 1;
+            }
+            .addMore {
+              color: rgba(34, 34, 34, 0.5);
+              font-size: 12px;
+              letter-spacing: -0.07px;
+              margin-left: auto;
+              padding-left: 2px;
+            }
+          }
+          .sectionContent {
+            .deliveryInfo {
+              padding-right: 80px;
+              position: relative;
+
+              .addressInfo {
+                .infoList {
+                  display: block;
+
+                  .infoBox {
+                    margin-top: 6px;
+                    letter-spacing: -0.15px;
+                    line-height: 17px;
+                    overflow: hidden;
+
+                    .title {
+                      color: rgba(34, 34, 34, 0.5);
+                      float: left;
+                      font-size: 12px;
+                      letter-spacing: -1px;
+                      letter-spacing: -0.07px;
+                      min-width: 80px;
+                    }
+
+                    .desc {
+                      font-size: 14px;
+                      letter-spacing: -0.21px;
+                      overflow: hidden;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+        .sectionUnit:nth-child(2) {
+          border-top: 1px solid #ebebeb;
+        }
+
+        .deliveryService {
+          border-color: #222;
+          border: 1px solid #ebebeb;
+          border-radius: 10px;
+          cursor: pointer;
+          padding: 12px 15px;
+          margin-top: 5px;
+
+          .wayInfo {
+            align-items: center;
+            display: flex;
+            width: 100%;
+
+            .wayStatusThumb {
+              height: 40px;
+              width: 40px;
+              flex: none;
+              margin-right: 14px;
+
+              .wayImg {
+                height: 40px;
+                width: 40px;
+              }
+            }
+            .wayDesc {
+              flex: 1;
+
+              .company {
+                font-size: 13px;
+                letter-spacing: -0.21px;
+                line-height: 17px;
+
+                .badgeTitle {
+                  font-weight: 600;
+                  font-size: 13px;
+                  letter-spacing: -0.21px;
+                }
+                .title {
+                  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+                  box-sizing: border-box;
+                  font-size: 13px;
+                  letter-spacing: -0.21px;
+                  line-height: 17px;
+                  margin-left: 3px;
+                }
+              }
+              .subText {
+                color: rgba(34, 34, 34, 0.5);
+                font-size: 13px;
+                line-height: 16px;
+                margin-top: 3px;
+              }
+            }
+          }
+        }
+      }
+      .point {
+        .sectionTitle {
+          vertical-align: baseline;
+          .titleTxt {
+            font-size: 18px;
+            font-weight: 600;
+            letter-spacing: -0.09px;
+            letter-spacing: -0.15px;
+            line-height: 22px;
+          }
+        }
+        .sectionContent {
+          .sectionInput {
+            margin-top: 12px;
+
+            .inputCredit {
+              border: 1px solid #ebebeb;
+              border-radius: 10px;
+              box-sizing: border-box;
+              font-size: 13px;
+              line-height: 100%;
+              margin-right: 8px;
+              padding: 17px 12px;
+              width: calc(100% - 80px);
+              outline: none;
+            }
+            input:focus::-webkit-input-placeholder,
+            textarea:focus::-webkit-input-placeholder {
+              /* WebKit browsers */
+              color: transparent;
+            }
+
+            input:focus:-moz-placeholder,
+            textarea:focus:-moz-placeholder {
+              /* Mozilla Firefox 4 to 18 */
+              color: transparent;
+            }
+
+            input:focus::-moz-placeholder,
+            textarea:focus::-moz-placeholder {
+              /* Mozilla Firefox 19+ */
+              color: transparent;
+            }
+
+            input:focus:-ms-input-placeholder,
+            textarea:focus:-ms-input-placeholder {
+              /* Internet Explorer 10+ */
+              color: transparent;
+            }
+
+            .btnInputCredit {
+              background: rgba(34, 34, 34, 0.2);
+              border: 0;
+              cursor: not-allowed;
+              font-size: 13px;
+              margin-top: 11px;
+              position: relative;
+              border-radius: 12px;
+              color: #fff;
+              cursor: pointer;
+              font-size: 12px;
+              letter-spacing: -0.06px;
+              line-height: 14px;
+              padding: 5px 10px;
+            }
+          }
+          .infoPoint {
+            font-size: 14px;
+            margin-top: 11px;
+            position: relative;
+
+            .textCurrent {
+              color: rgba(34, 34, 34, 0.5);
+              line-height: 17px;
+            }
+            .valueCurrent {
+              color: rgba(34, 34, 34, 0.8);
+              display: inline-block;
+              margin-left: 25px;
+
+              span {
+                color: rgba(34, 34, 34, 0.8);
+              }
+            }
+          }
+        }
+      }
+      .final {
+        .sectionTitle {
+          align-items: center;
+          display: flex;
+
+          .tltleTxt {
+            font-size: 18px;
+            font-weight: 600;
+            letter-spacing: -0.09px;
+            letter-spacing: -0.15px;
+            line-height: 22px;
+            flex: 1;
+          }
+        }
+        .sectionContent {
+          .instantGroup {
+            padding-top: 22px;
+
+            .priceTotal {
+              padding-bottom: 12px;
+
+              .priceBox {
+                display: block;
+
+                .priceTitle {
+                  font-size: 14px;
+                  width: 100%;
+                  font-weight: 700;
+                }
+                .price {
+                  display: block;
+                  text-align: right;
+                  width: 100%;
+                  color: #f15746;
+
+                  .amount {
+                    font-size: 20px;
+                    font-style: italic;
+                    font-weight: 600;
+                    letter-spacing: normal;
+                    line-height: 26px;
+                    margin-right: 1px;
+                  }
+                  .unit {
+                    font-size: 20px;
+                    font-weight: 700;
+                    letter-spacing: -0.3px;
+                    line-height: 26px;
+                  }
+                }
+              }
+            }
+
+            .priceBind {
+              border-top: 2px solid #ebebeb;
+              margin-top: 15px;
+              font-size: 13px;
+              letter-spacing: -0.07px;
+              padding: 16px 0;
+
+              .priceAddition {
+                align-items: center;
+                display: flex;
+                font-size: 14px;
+                justify-content: space-between;
+                letter-spacing: -0.07px;
+                min-height: 26px;
+                color: rgba(34, 34, 34, 0.5);
+              }
+
+              .dark {
+                color: #222;
+                dd {
+                  font-weight: 700;
+                }
+              }
+            }
+          }
+        }
+      }
+      .tradeTotal {
+        padding: 0 32px 32px;
+
+        .priceTotal {
+          padding-bottom: 12px;
+          padding-top: 16px;
+
+          .priceBox {
+            align-items: center;
+            display: flex;
+            justify-content: space-between;
+
+            .priceTitle {
+              font-size: 15px;
+              letter-spacing: -0.01px;
+              line-height: 18px;
+              font-weight: 700;
+            }
+            .price {
+              align-items: center;
+              color: #f15746;
+              display: flex;
+
+              .amount {
+                font-size: 20px;
+                font-style: italic;
+                font-weight: 600;
+                letter-spacing: normal;
+                line-height: 26px;
+              }
+              .unit {
+                font-size: 20px;
+                font-weight: 700;
+                letter-spacing: -0.15px;
+                line-height: 26px;
+              }
+            }
+          }
+        }
+
+        .btnConfirm {
+          .btnTotal {
+            background-color: #ebebeb;
+            color: #fff;
+            cursor: default;
+            font-weight: 600;
+            border-radius: 12px;
+            font-size: 16px;
+            height: 52px;
+            letter-spacing: -0.16px;
+            width: 100%;
+            border: 0;
+          }
+        }
+      }
+    }
+  }
+}

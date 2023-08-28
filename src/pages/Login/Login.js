@@ -6,19 +6,18 @@ import login from '../../API/login';
 import './Login.scss';
 
 const Login = () => {
-  const [isLoggedIn, setisLoggedIn] = useState(false);
+  const navigate = useNavigate();
+
   const [userDataValue, setUserDataValue] = useState({
     email: '',
     password: '',
   });
   const { email, password } = userDataValue;
 
-  const navigate = useNavigate();
-
   const onClickLoginButton = () => {
     login(email, password, () => {
+      localStorage.setItem('accessToken');
       navigate('/product-list');
-      setisLoggedIn(prev => !prev);
     });
   };
 
@@ -26,7 +25,6 @@ const Login = () => {
     const { name, value } = e.target;
     setUserDataValue({ ...userDataValue, [name]: value });
   };
-
   const isVaild =
     email.includes('@') &&
     email.endsWith('.com') &&
