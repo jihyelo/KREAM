@@ -1,5 +1,6 @@
+import DataTable from '../DataTable/DataTable';
 import './ProductBids.scss';
-// import '../DataTable/DataTable';
+
 const ProductBids = () => {
   return (
     <div className="ProductBids">
@@ -16,7 +17,12 @@ const ProductBids = () => {
           </div>
         </div>
         <div className="tabContent">
-          <div className="tableWrap">{/* <DataTable /> */}</div>
+          <div className="tableWrap">
+            <DataTable
+              askHeaders={askHeaders}
+              // items={}
+            />
+          </div>
           <button className="moreDataButton">체결 내역 더보기</button>
         </div>
       </div>
@@ -27,19 +33,19 @@ const ProductBids = () => {
 export default ProductBids;
 
 const askHeaders = [
-  { title: '사이즈', value: 'size' },
-  { title: '판매 희망가', value: 'sellTargetPrice' },
-  { title: '수량', value: 'amount' },
+  { text: '사이즈', value: 'size' },
+  { text: '판매 희망가', value: 'sellTargetPrice' },
+  { text: '수량', value: 'amount' },
 ];
 
 const tradeHeaders = [
-  { title: '사이즈', value: 'size' },
-  { title: '거래가', value: 'tradePrice' },
-  { title: '거래일', value: 'tradeDate' },
+  { text: '사이즈', value: 'size' },
+  { text: '거래가', value: 'tradePrice' },
+  { text: '거래일', value: 'tradeDate' },
 ];
 
 const bidHeaders = [
-  { title: '사이즈', value: 'size' },
-  { title: '구매 희망가', value: 'buyTargetPrice' },
-  { title: '수량', value: 'amount' },
+  { text: '사이즈', value: 'size' },
+  { text: '구매 희망가', value: 'buyTargetPrice' },
+  { text: '수량', value: 'amount' },
 ];
