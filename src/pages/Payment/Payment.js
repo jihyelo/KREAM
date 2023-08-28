@@ -99,11 +99,7 @@ const Payment = () => {
               </div>
               <div className="sectionContent">
                 <div className="sectionInput">
-                  <input
-                    className="inputCredit"
-                    disabled="disabled"
-                    placeholder="0"
-                  />
+                  <input className="inputCredit" placeholder="0" />
                   <button className="btnInputCredit" disabled="disablde">
                     모두 사용
                   </button>
