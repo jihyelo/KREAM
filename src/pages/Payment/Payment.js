@@ -1,14 +1,10 @@
 import React from 'react';
-import HeaderTop from '../../components/HeaderTop/HeaderTop';
-import HeaderMain from '../../components/HeaderMain/HeaderMain';
 import Footer from '../../components/Footer/Footer';
 import './Payment.scss';
 
 const Payment = () => {
   return (
     <div className="payment">
-      <HeaderTop />
-      <HeaderMain />
       <div className="container">
         <div className="content">
           <div className="tradeImmediate">
