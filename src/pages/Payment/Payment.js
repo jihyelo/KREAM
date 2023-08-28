@@ -1,5 +1,4 @@
 import React from 'react';
-import Footer from '../../components/Footer/Footer';
 import './Payment.scss';
 
 const Payment = () => {
@@ -186,7 +185,6 @@ const Payment = () => {
           </div>
         </div>
       </div>
-      <Footer />
     </div>
   );
 };
