@@ -1,6 +1,6 @@
 import './ProductInfo.scss';
 
-const ProductInfo = () => {
+const ProductInfo = ({ serialNum, releaseDate, color, releasePrice }) => {
   return (
     <div className="productInfo">
       <div className="infoTitle">상품정보</div>
@@ -9,22 +9,22 @@ const ProductInfo = () => {
         <div className="detailProduct">
           <div className="detailBox modelNum">
             <div className="productTitle ">모델번호</div>
-            <div className="productInfo modelNum">MR993GL</div>
+            <div className="productInfo modelNum">{serialNum}</div>
           </div>
           <div className="detailBox">
             {' '}
             <div className="productTitle">출시일</div>
-            <div className="productInfo">18/08/21</div>
+            <div className="productInfo">{releaseDate}</div>
           </div>
           <div className="detailBox">
             {' '}
             <div className="productTitle">컬러</div>
-            <div className="productInfo">GREY/WHITE</div>
+            <div className="productInfo">{color}</div>
           </div>
           <div className="detailBox">
             {' '}
             <div className="productTitle">발매가</div>
-            <div className="productInfo">259,000원</div>
+            <div className="productInfo">{releasePrice}원</div>
           </div>
         </div>
       </div>
