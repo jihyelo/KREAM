@@ -1,0 +1,59 @@
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  thead {
+    display: table-header-group;
+    vertical-align: middle;
+    border-color: inherit;
+    tr {
+      display: table-row;
+      vertical-align: inherit;
+      border-color: inherit;
+      .tableTh {
+        border-bottom: 1px solid #ebebeb;
+        color: rgba(34, 34, 34, 0.5);
+        font-size: 12px;
+        font-weight: 400;
+        letter-spacing: -0.06px;
+        line-height: 14px;
+        padding-bottom: 9px;
+        text-align: left;
+      }
+      .tableThRight {
+        text-align: right;
+        border-bottom: 1px solid #ebebeb;
+        color: rgba(34, 34, 34, 0.5);
+        font-size: 12px;
+        font-weight: 400;
+        letter-spacing: -0.06px;
+        line-height: 14px;
+        padding-bottom: 9px;
+      }
+    }
+  }
+  tbody {
+    display: table-row-group;
+    vertical-align: middle;
+    border-color: inherit;
+    width: 100%;
+    tr {
+      display: table-row;
+      vertical-align: inherit;
+      border-color: inherit;
+      td {
+        font-size: 14px;
+        line-height: 17px;
+        padding-top: 9px;
+      }
+    }
+  }
+}
+
+.textLeft {
+  text-align: left;
+}
+
+.textRight {
+  text-align: right;
+}

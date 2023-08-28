@@ -13,7 +13,7 @@ const detail = () => {
       }
     })
     .then(data => {
-      return data.data[0];
+      return data.data;
     })
     .catch(error => {
       console.error(error);
