@@ -5,6 +5,8 @@
   margin: 27px 0;
   width: 100%;
   position: fixed;
+  max-width: 1280px;
+  min-width: 560px;
   background-color: white;
   z-index: 999;
 
@@ -34,10 +36,18 @@
         float: left;
         font-weight: 500;
         font-size: 18px;
+        .shopText {
+          text-decoration: none;
+          color: black;
+        }
         a {
           font-family: 'Pretendard-Regular';
         }
       }
     }
   }
+}
+.centerTitle {
+  font-size: 23px;
+  font-weight: 700;
 }
