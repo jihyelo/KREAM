@@ -74,14 +74,22 @@ const SizeSelect = ({ isPurchaseSize }) => {
                           <button
                             className={isPurchaseSize ? 'tradeNow' : 'green'}
                             onClick={() => {
-                              navigate('/trade-option');
+                              navigate(
+                                isPurchaseSize
+                                  ? '/purchase-option'
+                                  : '/sell-option',
+                              );
                             }}
                           >
                             <p className="tradePrice">
-                              {selectedSizeInfo.price}
+                              {isPurchaseSize
+                                ? '{selectedSizeInfo.price}'
+                                : '보관신청'}
                             </p>
                             <p className="tradeExpress fast">
-                              빠른 배송(1-2일 소요)
+                              {isPurchaseSize
+                                ? '빠른 배송(1-2일 소요)'
+                                : '선불발송'}
                             </p>
                           </button>
                         </li>
@@ -89,14 +97,21 @@ const SizeSelect = ({ isPurchaseSize }) => {
                           <button
                             className="tradeBid"
                             onClick={() => {
-                              navigate('/trade-option', { state: productData });
+                              navigate(
+                                isPurchaseSize
+                                  ? '/purchase-option'
+                                  : '/sell-option',
+                                { state: productData },
+                              );
                             }}
                           >
                             <p className="tradePrice">
                               {selectedSizeInfo.price}
                             </p>
                             <p className="tradeExpress">
-                              일반 배송(5-7일 소요)
+                              {isPurchaseSize
+                                ? '일반 배송(5-7일 소요)'
+                                : '선불발송'}
                             </p>
                           </button>
                         </li>
@@ -107,14 +122,21 @@ const SizeSelect = ({ isPurchaseSize }) => {
                           <button
                             className="tradeBid"
                             onClick={() => {
-                              navigate('/trade-option', { state: productData });
+                              navigate(
+                                isPurchaseSize
+                                  ? '/purchase-option'
+                                  : '/sell-option',
+                                { state: productData },
+                              );
                             }}
                           >
                             <p className="tradePrice">
                               {isPurchaseSize ? '구매' : '판매'} 입찰
                             </p>
                             <p className="tradeExpress">
-                              일반 배송(5-7일 소요)
+                              {isPurchaseSize
+                                ? '일반 배송(5-7일 소요)'
+                                : '선불발송'}
                             </p>
                           </button>
                         </li>

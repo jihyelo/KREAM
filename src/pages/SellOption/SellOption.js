@@ -2,14 +2,14 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ProductInfo from '../../components/ProductInfo/ProductInfo';
 import BidDeadline from '../../components/BidDeadline/BidDeadline';
-import './TradeOption.scss';
+import './SellOption.scss';
 
-const TradeOption = ({ isPurchaseOption }) => {
+const SellOption = () => {
   const navigate = useNavigate();
   const [isToggled, setIsToggled] = useState(true);
 
   return (
-    <div className="tradeOption">
+    <div className="sellOption">
       <div className="container">
         <div className="contentArea">
           <div className="tradeBefore">
@@ -19,16 +19,12 @@ const TradeOption = ({ isPurchaseOption }) => {
             <div className="priceDescisionBox">
               <ul className="priceList">
                 <li className="listItem">
-                  <p className="title">
-                    즉시 {isPurchaseOption ? '구매' : '판매'}가
-                  </p>
+                  <p className="title">즉시 판매가</p>
                   <p className="price">100,000</p>
                   <p className="unit">원</p>
                 </li>
                 <li className="listItem">
-                  <p className="title">
-                    즉시 {isPurchaseOption ? '구매' : '판매'}가
-                  </p>
+                  <p className="title">즉시 판매가</p>
                   <p className="price">100,000</p>
                   <p className="unit">원</p>
                 </li>
@@ -42,9 +38,7 @@ const TradeOption = ({ isPurchaseOption }) => {
                       }}
                       className={!isToggled ? 'on item' : 'item'}
                     >
-                      <button className="itemLink">
-                        {isPurchaseOption ? '구매' : '판매'} 입찰
-                      </button>
+                      <button className="itemLink">판매 입찰</button>
                     </li>
 
                     <li
@@ -53,9 +47,7 @@ const TradeOption = ({ isPurchaseOption }) => {
                       }}
                       className={isToggled ? 'on item' : 'item'}
                     >
-                      <button className="itemLink ">
-                        즉시 {isPurchaseOption ? '구매' : '판매'}
-                      </button>
+                      <button className="itemLink ">즉시 판매</button>
                     </li>
                   </ul>
                 </div>
@@ -63,9 +55,7 @@ const TradeOption = ({ isPurchaseOption }) => {
                 {isToggled ? (
                   <div className="priceNow">
                     <dl className="priceNowBox">
-                      <dt className="priceNowTitle">
-                        즉시 {isPurchaseOption ? '구매' : '판매'}가
-                      </dt>
+                      <dt className="priceNowTitle">즉시 판매가</dt>
                       <dd className="price">
                         <span className="amount">100,000</span>
                         <span className="unit">원</span>
@@ -76,9 +66,7 @@ const TradeOption = ({ isPurchaseOption }) => {
                 ) : (
                   <div className="priceNow">
                     <dl className="priceNowBox">
-                      <dt className="priceNowTitle">
-                        {isPurchaseOption ? '구매' : '판매'} 희망가
-                      </dt>
+                      <dt className="priceNowTitle">판매 희망가</dt>
                       <dd className="price">
                         <input
                           className="inputAmount"
@@ -127,7 +115,7 @@ const TradeOption = ({ isPurchaseOption }) => {
                     }}
                     disabled
                   >
-                    {isPurchaseOption ? '구매' : '판매'} 입찰 계속
+                    판매 입찰 계속
                   </button>
                 </div>
               )}
@@ -138,4 +126,4 @@ const TradeOption = ({ isPurchaseOption }) => {
     </div>
   );
 };
-export default TradeOption;
+export default SellOption;

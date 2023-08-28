@@ -1,95 +1,91 @@
-.container {
-  background-color: #fafafa;
+.sizeSelect {
+  .container {
+    background-color: #fafafa;
 
-  .contentArea {
-    margin: 0 auto;
-    max-width: 780px;
-    min-height: 900px;
-    overflow: hidden;
-    padding: 20px 40px 160px;
+    .contentArea {
+      margin: 0 auto;
+      max-width: 780px;
+      min-height: 900px;
+      overflow: hidden;
+      padding: 20px 40px 160px;
 
-    .tradeBefore {
-      background-color: #fff;
-      box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.1);
-      padding: 32px 32px 28px;
+      .tradeBefore {
+        background-color: #fff;
+        box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.1);
+        padding: 32px 32px 28px;
 
-      .tradeBeforeCheck {
-        .tradeBeforeSelect {
-          border-top: 1px solid #ebebeb;
-          display: flex;
-          flex-direction: column;
-          justify-content: space-between;
-          min-height: 484px;
-          position: relative;
-
-          .selectAreaMd {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            align-items: flex-start;
-            width: 100%;
-            min-height: 488px;
-            padding: 20px 0;
-
-            .selectList {
-              font-size: 0;
-              line-height: 0;
-              margin: -4px;
-              display: flex;
-              justify-content: flex-start;
-              flex-wrap: wrap;
-              width: 100%;
-            }
-          }
-
-          .tradeBtnArea {
+        .tradeBeforeCheck {
+          .tradeBeforeSelect {
             border-top: 1px solid #ebebeb;
-            padding-top: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 484px;
+            position: relative;
 
-            .tradeButtons {
+            .selectAreaMd {
               display: flex;
               justify-content: space-between;
-              column-gap: 6px;
+              flex-wrap: wrap;
+              align-items: flex-start;
+              width: 100%;
+              min-height: 488px;
+              padding: 20px 0;
 
-              .tradeButton {
-                cursor: pointer;
+              .selectList {
+                font-size: 0;
+                line-height: 0;
+                margin: -4px;
+                display: flex;
+                justify-content: flex-start;
+                flex-wrap: wrap;
                 width: 100%;
+              }
+            }
 
-                button {
-                  border: 0;
-                  border-radius: 10px;
+            .tradeBtnArea {
+              border-top: 1px solid #ebebeb;
+              padding-top: 20px;
+
+              .tradeButtons {
+                display: flex;
+                justify-content: space-between;
+                column-gap: 6px;
+
+                .tradeButton {
+                  cursor: pointer;
                   width: 100%;
-                  color: #fff;
-                  padding: 10px;
-                  line-height: 1.4em;
 
-                  .tradePrice {
-                    font-size: 15px;
-                    font-weight: bold;
+                  button {
+                    border: 0;
+                    border-radius: 10px;
+                    width: 100%;
+                    color: #fff;
+                    padding: 10px;
+                    line-height: 1.4em;
+
+                    .tradePrice {
+                      font-size: 15px;
+                      font-weight: bold;
+                    }
+
+                    .tradeExpress {
+                      font-size: 11px;
+                      font-weight: 300;
+                    }
                   }
 
-                  .tradeExpress {
-                    font-size: 11px;
-                    font-weight: 300;
+                  .tradeNow {
+                    background-color: #ef6253;
                   }
 
-                  .fast {
-                    background: url('../../../public/images/thunder.png')
-                      no-repeat 30% 4px;
-                    background-size: 17px 14px;
+                  .tradeBid {
+                    background-color: #333;
                   }
-                }
 
-                .tradeNow {
-                  background-color: #ef6253;
-                }
-
-                .tradeBid {
-                  background-color: #333;
-                }
-
-                .green {
-                  background-color: #41b978;
+                  .green {
+                    background-color: #41b978;
+                  }
                 }
               }
             }
