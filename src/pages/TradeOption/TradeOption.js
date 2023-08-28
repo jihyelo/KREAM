@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import ProductInfo from '../../components/ProductInfo/ProductInfo';
 import BidDeadline from '../../components/BidDeadline/BidDeadline';
 import './TradeOption.scss';
 
-const TradeOption = () => {
+const TradeOption = ({ isPurchaseOption }) => {
   const navigate = useNavigate();
   const [isToggled, setIsToggled] = useState(true);
 
@@ -13,31 +14,21 @@ const TradeOption = () => {
         <div className="contentArea">
           <div className="tradeBefore">
             <div class="productInfoArea">
-              <div className="productInfo">
-                <div className="productThumb">
-                  <div className="product">
-                    <img src="../../images/shoe1.jpg" alt="shoes" />
-                  </div>
-                </div>
-                <div className="productDetail">
-                  <p className="code">CJ9179-200</p>
-                  <p className="name">Nike Air Force 1 '07 WB Flex</p>
-                  <p className="translatedName">
-                    나이키 에어포스 1 '07 WB 플렉스
-                  </p>
-                  <div className="size">240(7Y)</div>
-                </div>
-              </div>
+              <ProductInfo />
             </div>
             <div className="priceDescisionBox">
               <ul className="priceList">
                 <li className="listItem">
-                  <p className="title">즉시 구매가</p>
+                  <p className="title">
+                    즉시 {isPurchaseOption ? '구매' : '판매'}가
+                  </p>
                   <p className="price">100,000</p>
                   <p className="unit">원</p>
                 </li>
                 <li className="listItem">
-                  <p className="title">즉시 판매가</p>
+                  <p className="title">
+                    즉시 {isPurchaseOption ? '구매' : '판매'}가
+                  </p>
                   <p className="price">100,000</p>
                   <p className="unit">원</p>
                 </li>
@@ -49,9 +40,11 @@ const TradeOption = () => {
                       onClick={() => {
                         setIsToggled(false);
                       }}
-                      className={!isToggled ? ' on item' : 'item'}
+                      className={!isToggled ? 'on item' : 'item'}
                     >
-                      <button className="itemLink">구매 입찰</button>
+                      <button className="itemLink">
+                        {isPurchaseOption ? '구매' : '판매'} 입찰
+                      </button>
                     </li>
 
                     <li
@@ -60,7 +53,9 @@ const TradeOption = () => {
                       }}
                       className={isToggled ? 'on item' : 'item'}
                     >
-                      <button className="itemLink ">즉시 구매</button>
+                      <button className="itemLink ">
+                        즉시 {isPurchaseOption ? '구매' : '판매'}
+                      </button>
                     </li>
                   </ul>
                 </div>
@@ -68,7 +63,9 @@ const TradeOption = () => {
                 {isToggled ? (
                   <div className="priceNow">
                     <dl className="priceNowBox">
-                      <dt className="priceNowTitle">즉시 구매가</dt>
+                      <dt className="priceNowTitle">
+                        즉시 {isPurchaseOption ? '구매' : '판매'}가
+                      </dt>
                       <dd className="price">
                         <span className="amount">100,000</span>
                         <span className="unit">원</span>
@@ -79,7 +76,9 @@ const TradeOption = () => {
                 ) : (
                   <div className="priceNow">
                     <dl className="priceNowBox">
-                      <dt className="priceNowTitle">구매 희망가</dt>
+                      <dt className="priceNowTitle">
+                        {isPurchaseOption ? '구매' : '판매'} 희망가
+                      </dt>
                       <dd className="price">
                         <input
                           className="inputAmount"
@@ -128,7 +127,7 @@ const TradeOption = () => {
                     }}
                     disabled
                   >
-                    구매 입찰 계속
+                    {isPurchaseOption ? '구매' : '판매'} 입찰 계속
                   </button>
                 </div>
               )}

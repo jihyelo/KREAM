@@ -32,7 +32,11 @@ const Router = () => {
             element={<SizeSelect isPurchaseSize={true} />}
           />
           <Route path="/sell-size" element={<SizeSelect />} />
-          <Route path="/trade-option" element={<TradeOption />} />
+          <Route
+            path="/purchase-option"
+            element={<TradeOption isPurchaseOption={true} />}
+          />
+          <Route path="/sell-option" element={<TradeOption />} />
           <Route path="/payment" element={<Payment />} />
         </Routes>
       </BrowserRouter>
