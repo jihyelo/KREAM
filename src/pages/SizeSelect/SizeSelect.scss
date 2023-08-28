@@ -14,62 +14,6 @@
       padding: 32px 32px 28px;
 
       .tradeBeforeCheck {
-        .productInfo {
-          align-items: center;
-          display: flex;
-          margin-bottom: 20px;
-          position: relative;
-          width: 100%;
-
-          .productThumb {
-            .product img {
-              flex: none;
-              height: 80px;
-              width: 80px;
-              background-color: #ebf0f4;
-              border-radius: 10px;
-            }
-          }
-          .productDetail {
-            display: flex;
-            flex: 1;
-            flex-direction: column;
-            height: 80px;
-            justify-content: center;
-            overflow: hidden;
-            padding-left: 16px;
-
-            .code {
-              font-size: 14px;
-              font-weight: 700;
-              line-height: 17px;
-            }
-            .name {
-              font-size: 14px;
-              line-height: 17px;
-            }
-            .translatedName {
-              color: rgba(34, 34, 34, 0.5);
-              font-size: 13px;
-              letter-spacing: -0.07px;
-              letter-spacing: -0.05px;
-              line-height: 16px;
-            }
-            .shippingExpress {
-              width: 59px;
-              margin-top: 6px;
-              padding: 5px;
-              font-size: 8px;
-              color: #47b978;
-              background: url('../../../public/images/thunder.png') no-repeat
-                0px 4px;
-              background-size: 20px 14px;
-              background-color: #f1f9f6;
-              border-radius: 2px;
-              text-align: right;
-            }
-          }
-        }
         .tradeBeforeSelect {
           border-top: 1px solid #ebebeb;
           display: flex;

@@ -1,12 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import SizeSelectItem from '../../components/SelectButton/SelectButton';
+import ProductInfo from '../../components/ProductInfo/ProductInfo';
+import SelectItem from '../../components/SelectItem/SelectItem';
 import './SizeSelect.scss';
 
 const SizeSelect = () => {
-  const [isSizeSelect, setIsSizeSelect] = useState([]);
+  const [productData, setProductData] = useState({});
+  const [sizeSelectList, setSizeSelectList] = useState([]);
+  const [selectedSizeId, setSelectedSizeId] = useState();
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    fetch('/data/productData.json', {
+      method: 'GET',
+    })
+      .then(res => res.json())
+      .then(data => {
+        setProductData(data[0]);
+      });
+  }, []);
 
   useEffect(() => {
     fetch('/data/sizeSelectData.json', {
@@ -14,7 +27,7 @@ const SizeSelect = () => {
     })
       .then(res => res.json())
       .then(data => {
-        setIsSizeSelect(data);
+        setSizeSelectList(data);
       });
   }, []);
 
@@ -24,32 +37,24 @@ const SizeSelect = () => {
         <div className="contentArea">
           <div className="tradeBefore">
             <div className="tradeBeforeCheck">
-              <div className="productInfo">
-                <div className="productThumb">
-                  <div className="product">
-                    <img src="../../images/shoe1.jpg" alt="shoes" />
-                  </div>
-                </div>
-                <div className="productDetail">
-                  <p className="code">CJ9179-200</p>
-                  <p className="name">Nike Air Force 1 '07 WB Flex</p>
-                  <p className="translatedName">
-                    나이키 에어포스 1 '07 WB 플렉스
-                  </p>
-                  <div className="shippingExpress">빠른배송</div>
-                </div>
-              </div>
-
+              <ProductInfo
+                code={productData.code}
+                name={productData.name}
+                translatedName={productData.translatedName}
+                shippingExpress={productData.shippingExpress}
+              />
               <div className="tradeBeforeSelect">
                 <div className="selectAreaMd">
                   <ul className="selectList">
-                    {isSizeSelect.map(item => {
+                    {sizeSelectList.map(item => {
                       return (
-                        <SizeSelectItem
-                          key={item.key}
+                        <SelectItem
+                          key={item.id}
                           size={item.size}
                           price={item.price}
                           bid={item.bid}
+                          isSelected={item.id === selectedSizeId}
+                          handleClick={() => setSelectedSizeId(item.id)}
                         />
                       );
                     })}
