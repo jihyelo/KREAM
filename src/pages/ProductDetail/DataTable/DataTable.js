@@ -1,18 +1,18 @@
 import './DataTable.scss';
 
-const DataTable = ({ tradeHeaders, items = [] }) => {
-  if (!tradeHeaders || !tradeHeaders.length) {
+const DataTable = ({ Headers, items = [] }) => {
+  if (!Headers || !Headers.length) {
     throw new Error('<DataTable /> headers is required.');
   }
 
-  const headerKey = tradeHeaders.map(header => header.value);
+  const headerKey = Headers.map(header => header.value);
 
   return (
     <div className="dataTable">
       <table>
         <thead>
           <tr>
-            {tradeHeaders.map(header => (
+            {Headers.map(header => (
               <th key={header.text} className={header.className}>
                 {header.text}
               </th>
@@ -27,7 +27,11 @@ const DataTable = ({ tradeHeaders, items = [] }) => {
                   key={key + index}
                   className={key === 'size' ? 'textLeft' : 'textRight'}
                 >
-                  {key === 'tradePrice' ? `${item[key]}원` : item[key]}
+                  {key === 'tradePrice' ||
+                  key === 'sellTargetPrice' ||
+                  key === 'buyTargetPrice'
+                    ? `${item[key]}원`
+                    : item[key]}
                 </td>
               ))}
             </tr>

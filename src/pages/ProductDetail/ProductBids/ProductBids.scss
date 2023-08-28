@@ -10,9 +10,11 @@
       flex: 1;
       margin: 2px;
       cursor: pointer;
+
       .tabItemText {
         background-color: #f4f4f4;
-        border-radius: px;
+        margin: 1px;
+        border-radius: 10px;
         color: rgba(34, 34, 34, 0.8);
         display: block;
         font-size: 13px;
@@ -21,6 +23,10 @@
         line-height: 16px;
         padding: 7px 0 9px;
         text-align: center;
+      }
+      .on {
+        background-color: white;
+        font-weight: bold;
       }
     }
   }

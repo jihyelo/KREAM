@@ -16,7 +16,7 @@ const ProductDetail = () => {
       setSizePrice(data[2].sizePrice);
     });
   }, []);
-  console.log('size:', sizePrice, 'trade:', detailTrade);
+
   return (
     <div className="productDetail">
       <div className="content">
