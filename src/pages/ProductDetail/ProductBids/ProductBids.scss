@@ -1,0 +1,53 @@
+.bidsWrap {
+  position: relative;
+  .tabList {
+    background-color: #f4f4f4;
+    border-radius: 10px;
+    display: flex;
+    margin-top: 20px;
+
+    .tabItem {
+      flex: 1;
+      margin: 2px;
+      .tabItemText {
+        background-color: #f4f4f4;
+        border-radius: px;
+        color: rgba(34, 34, 34, 0.8);
+        display: block;
+        font-size: 13px;
+        letter-spacing: -0.07px;
+        letter-spacing: -0.05px;
+        line-height: 16px;
+        padding: 7px 0 9px;
+        text-align: center;
+      }
+    }
+  }
+  .tabContent {
+    display: block;
+    height: auto;
+    overflow: hidden;
+    .tableWrap {
+      padding: 21px 0 20px;
+    }
+    .moreDataButton {
+      border: 1px solid #d3d3d3;
+      color: rgba(34, 34, 34, 0.8);
+      font-weight: 400;
+      border-radius: 12px;
+      font-size: 14px;
+      height: 42px;
+      letter-spacing: -0.14px;
+      padding: 0 18px;
+      width: 100%;
+      align-items: center;
+      background-color: #fff;
+      color: rgba(34, 34, 34, 0.8);
+      cursor: pointer;
+      display: inline-flex;
+      justify-content: center;
+      text-align: center;
+      vertical-align: middle;
+    }
+  }
+}
