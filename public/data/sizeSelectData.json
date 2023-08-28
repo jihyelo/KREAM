@@ -4,55 +4,55 @@
     "name": "airporce",
     "serial_number": "a123b456",
     "url": "asdfvgfag",
-    "type": "220(3Y)",
-    "buyPrice": 100000
+    "size": "220(3Y)",
+    "price": 120000
   },
   {
     "id": 2,
     "name": "airporce",
     "serial_number": "a123b456",
     "url": "asdfvgfag",
-    "type": "220(3Y)",
-    "buyPrice": null
+    "size": "230(4Y)",
+    "price": null
   },
   {
     "id": 3,
     "name": "airporce",
     "serial_number": "a123b456",
     "url": "asdfvgfag",
-    "type": "220(3Y)",
-    "buyPrice": 100000
+    "size": "240(5Y)",
+    "price": 130000
   },
   {
     "id": 4,
     "name": "airporce",
     "serial_number": "a123b456",
     "url": "asdfvgfag",
-    "type": "220(3Y)",
-    "buyPrice": 100000
+    "size": "250(6Y)",
+    "price": 100000
   },
   {
     "id": 5,
     "name": "airporce",
     "serial_number": "a123b456",
     "url": "asdfvgfag",
-    "type": "220(3Y)",
-    "buyPrice": 100000
+    "size": "260(7Y)",
+    "price": 101000
   },
   {
     "id": 6,
     "name": "airporce",
     "serial_number": "a123b456",
     "url": "asdfvgfag",
-    "type": "220(3Y)",
-    "buyPrice": 100000
+    "size": "270(8Y)",
+    "price": 100500
   },
   {
     "id": 7,
     "name": "airporce",
     "serial_number": "a123b456",
     "url": "asdfvgfag",
-    "type": "220(3Y)",
-    "buyPrice": 100000
+    "size": "280(9Y)",
+    "price": 120000
   }
 ]

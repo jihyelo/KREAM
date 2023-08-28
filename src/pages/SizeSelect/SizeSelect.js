@@ -4,7 +4,7 @@ import ProductInfo from '../../components/ProductInfo/ProductInfo';
 import SelectItem from '../../components/SelectItem/SelectItem';
 import './SizeSelect.scss';
 
-const SizeSelect = () => {
+const SizeSelect = ({ isPurchaseSize }) => {
   const [productData, setProductData] = useState({});
   const [sizeSelectList, setSizeSelectList] = useState([]);
   const [selectedSizeInfo, setSelectedSizeInfo] = useState({});
@@ -43,7 +43,7 @@ const SizeSelect = () => {
                 code={productData.code}
                 name={productData.name}
                 translatedName={productData.translatedName}
-                shippingExpress={productData.shippingExpress}
+                shippingExpress="빠른배송"
               />
               <div className="tradeBeforeSelect">
                 <div className="selectAreaMd">
@@ -54,7 +54,6 @@ const SizeSelect = () => {
                           key={item.id}
                           size={item.size}
                           price={item.price}
-                          bid={item.bid}
                           isSelected={item.size === selectedSizeInfo.size}
                           handleClick={() =>
                             setSelectedSizeInfo({
@@ -69,30 +68,58 @@ const SizeSelect = () => {
                 </div>
                 {Object.keys(selectedSizeInfo).length !== 0 && (
                   <div className="tradeBtnArea">
-                    <ul className="tradeButtons">
-                      <li className="tradeButton">
-                        <button
-                          className="tradeNow"
-                          onClick={() => {
-                            navigate('/trade-option');
-                          }}
-                        >
-                          <p className="tradePrice">{selectedSizeInfo.price}</p>
-                          <p className="tradeEspress fast">빠른 배송</p>
-                        </button>
-                      </li>
-                      <li className="tradeButton">
-                        <button
-                          className="tradeBid"
-                          onClick={() => {
-                            navigate('/trade-option', { state: productData });
-                          }}
-                        >
-                          <p className="tradePrice">100000</p>
-                          <p className="tradeEspress">일반 배송</p>
-                        </button>
-                      </li>
-                    </ul>
+                    {selectedSizeInfo.price !== null ? (
+                      <ul className="tradeButtons">
+                        <li className="tradeButton">
+                          <button
+                            className={isPurchaseSize ? 'tradeNow' : 'green'}
+                            onClick={() => {
+                              navigate('/trade-option');
+                            }}
+                          >
+                            <p className="tradePrice">
+                              {selectedSizeInfo.price}
+                            </p>
+                            <p className="tradeExpress fast">
+                              빠른 배송(1-2일 소요)
+                            </p>
+                          </button>
+                        </li>
+                        <li className="tradeButton">
+                          <button
+                            className="tradeBid"
+                            onClick={() => {
+                              navigate('/trade-option', { state: productData });
+                            }}
+                          >
+                            <p className="tradePrice">
+                              {selectedSizeInfo.price}
+                            </p>
+                            <p className="tradeExpress">
+                              일반 배송(5-7일 소요)
+                            </p>
+                          </button>
+                        </li>
+                      </ul>
+                    ) : (
+                      <ul className="tradeButtons">
+                        <li className="tradeButton">
+                          <button
+                            className="tradeBid"
+                            onClick={() => {
+                              navigate('/trade-option', { state: productData });
+                            }}
+                          >
+                            <p className="tradePrice">
+                              {isPurchaseSize ? '구매' : '판매'} 입찰
+                            </p>
+                            <p className="tradeExpress">
+                              일반 배송(5-7일 소요)
+                            </p>
+                          </button>
+                        </li>
+                      </ul>
+                    )}
                   </div>
                 )}
               </div>

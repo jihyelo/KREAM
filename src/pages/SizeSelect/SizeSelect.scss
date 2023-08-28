@@ -54,39 +54,43 @@
               .tradeButton {
                 cursor: pointer;
                 width: 100%;
-              }
 
-              button {
-                border: 0;
-                border-radius: 10px;
-                width: 100%;
-                color: #fff;
-                padding: 10px;
-                line-height: 1.4em;
+                button {
+                  border: 0;
+                  border-radius: 10px;
+                  width: 100%;
+                  color: #fff;
+                  padding: 10px;
+                  line-height: 1.4em;
 
-                .tradePrice {
-                  font-size: 15px;
-                  font-weight: bold;
+                  .tradePrice {
+                    font-size: 15px;
+                    font-weight: bold;
+                  }
+
+                  .tradeExpress {
+                    font-size: 11px;
+                    font-weight: 300;
+                  }
+
+                  .fast {
+                    background: url('../../../public/images/thunder.png')
+                      no-repeat 30% 4px;
+                    background-size: 17px 14px;
+                  }
                 }
 
-                .tradeEspress {
-                  font-size: 11px;
-                  font-weight: 300;
+                .tradeNow {
+                  background-color: #ef6253;
                 }
 
-                .fast {
-                  background: url('../../../public/images/thunder.png')
-                    no-repeat 40% 4px;
-                  background-size: 17px 14px;
+                .tradeBid {
+                  background-color: #333;
                 }
-              }
 
-              .tradeNow {
-                background-color: #ef6253;
-              }
-
-              .tradeBid {
-                background-color: #333;
+                .green {
+                  background-color: #41b978;
+                }
               }
             }
           }
