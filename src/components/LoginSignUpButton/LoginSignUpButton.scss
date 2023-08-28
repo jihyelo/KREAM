@@ -1,0 +1,14 @@
+.LoginButton {
+  cursor: default;
+  background-color: #2d2d2d;
+  color: #fff;
+  border: none;
+  border-radius: 13px;
+  font-size: 16px;
+  font-weight: 700;
+  height: 53px;
+  width: 100%;
+}
+button:disabled {
+  background-color: #ebebeb;
+}

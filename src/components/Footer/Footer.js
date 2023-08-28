@@ -13,7 +13,6 @@ const CUSTOMER_INFO = [
   '스토어 안내',
   '판매자 방문접수',
 ];
-
 const Footer = () => {
   return (
     <div className="footer">
