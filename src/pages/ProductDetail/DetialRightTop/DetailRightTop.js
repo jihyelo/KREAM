@@ -15,8 +15,8 @@ const DetailRightTop = ({
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedSize, setSelectedSize] = useState(null);
-  const sizePriceObject = sizePrice[0];
-  // const sizes = [220, 230, 240, 250, 260, 270, 280];
+  const sizePriceObject = sizePrice[0] || {};
+
   const handleCloseModal = () => {
     setIsModalOpen(false);
   };
@@ -28,25 +28,38 @@ const DetailRightTop = ({
   const handleOpenModal = () => {
     setIsModalOpen(true);
   };
+
   const SELL_BUY_BUTTON_DATA = [
     {
       title: '구매',
-      num: buyPrice,
+      num: selectedSize
+        ? `${sizePriceObject[selectedSize]?.즉시구매가 || '0'}`
+        : sellPrice,
       won: '원',
       nowPrice: '즉시 구매가',
       className: 'redButton',
-      //TODO onClick:
     },
     {
       title: '판매',
-      num: sellPrice,
+      num: selectedSize
+        ? `${sizePriceObject[selectedSize]?.즉시판매가 || '0'}`
+        : buyPrice,
       won: '원',
       nowPrice: '즉시 판매가',
       className: 'greenButton',
-      //TODO onClick:
     },
   ];
-  console.log(sizePriceObject);
+
+  const recentPrice = sizePriceObject
+    ? Object.values(sizePriceObject).map(price => price.최근거래가)
+    : [];
+  // const nowBuyPrice = sizePriceObject
+  //   ? Object.values(sizePriceObject).map(price => price.즉시구매가)
+  //   : [];
+  // const nowSellPrice = sizePriceObject
+  //   ? Object.values(sizePriceObject).map(price => price.즉시판매가)
+  //   : [];
+  // console.log(sizePriceObject);
   return (
     <div className="detailRightTop">
       <div className="detailMainTitleBox">
@@ -63,21 +76,27 @@ const DetailRightTop = ({
             </div>
             <IoMdArrowDropdownCircle className="dropDownIcon" />
           </div>
+
           {/*TODO 모달창 외부영역 클릭시 모달창 닫히기*/}
         </div>
         <SizeSelectModal
           isOpen={isModalOpen}
           onClose={handleCloseModal}
           onSelectSize={handleSelectSize}
+          recentPrice={recentPrice}
           sizes={sizePriceObject ? Object.keys(sizePriceObject) : []}
-
-          // recentPrice={sizePriceObject ? Object.keys(sizePriceObject) : []}
+          sizePriceObject={sizePriceObject}
         />
+
         <div className="detailPrice">
           <div className="title">최근 거래가</div>
           <div className="price">
             <div className="recentPrice">
-              <div className="num">{recentTrade}</div>
+              <div className="num">
+                {selectedSize
+                  ? `${sizePriceObject[selectedSize]?.최근거래가 || '0'}`
+                  : recentTrade}
+              </div>
               <div className="won">원</div>
             </div>
             <div className="functionIncrease">

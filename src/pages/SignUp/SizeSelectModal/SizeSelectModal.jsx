@@ -7,15 +7,11 @@ const SizeSelectModal = ({
   onSelectSize,
   recentPrice,
   sizes,
+  sizePriceObject,
 }) => {
-  const priceToShow = recentPrice ? recentPrice : null;
   if (!isOpen) {
     return null;
   }
-
-  // for (const [key, value] of Object.entries(object1)) {
-  //   console.log(`${key}: ${value}`);
-  // }
 
   return (
     <div className="modalLayout">
@@ -24,17 +20,24 @@ const SizeSelectModal = ({
       </div>
       <div className="modalContent">
         <div className="sizeList">
-          {sizes.map(size => (
-            <div
-              className="sizeButton"
-              key={size}
-              onClick={() => onSelectSize(size)}
-            >
-              {size}
-              {recentPrice}
-            </div>
-            // <div></div>
-          ))}
+          {sizes.length > 0 ? (
+            sizes.map(size => (
+              <div
+                className="sizeButton"
+                key={size}
+                onClick={() => onSelectSize(size)}
+              >
+                <div className="sizeText">{size}</div>
+                {sizePriceObject && sizePriceObject[size] && (
+                  <div className="recentPrice">
+                    {sizePriceObject[size].최근거래가}
+                  </div>
+                )}
+              </div>
+            ))
+          ) : (
+            <p>No sizes available</p>
+          )}
         </div>
         <div className="modalFooter">
           <div className="closeButton" onClick={onClose}>
