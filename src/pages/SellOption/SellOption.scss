@@ -272,11 +272,11 @@
 
         .btnConfirm {
           .nextBtn {
-            background-color: #222;
+            background-color: #ebebeb;
             color: #fff;
             align-items: center;
             //color: rgba(34, 34, 34, 0.8);
-            cursor: pointer;
+            cursor: default;
             display: inline-flex;
             justify-content: center;
             text-align: center;
@@ -290,10 +290,9 @@
             width: 100%;
             margin-top: 10px;
           }
-          .disabled {
-            background-color: #ebebeb;
-            color: #fff;
-            cursor: default;
+          .black {
+            background-color: #222;
+            cursor: pointer;
           }
         }
       }

@@ -7,6 +7,7 @@ import './PurchaseOption.scss';
 const PurchaseOption = () => {
   const navigate = useNavigate();
   const [isToggled, setIsToggled] = useState(true);
+  const [isInputText, setIsInputText] = useState(false);
 
   return (
     <div className="purchaseOption">
@@ -72,6 +73,8 @@ const PurchaseOption = () => {
                           className="inputAmount"
                           type="number"
                           placeholder="희망가 입력"
+                          value={isInputText}
+                          onChange={e => setIsInputText(e.target.value)}
                         />
                         <span className="unit">원</span>
                       </dd>
@@ -98,7 +101,7 @@ const PurchaseOption = () => {
               {isToggled ? (
                 <div className="btnConfirm">
                   <button
-                    className="nextBtn"
+                    className="nextBtn black"
                     onClick={() => {
                       navigate('/payment');
                     }}
@@ -109,11 +112,11 @@ const PurchaseOption = () => {
               ) : (
                 <div className="btnConfirm">
                   <button
-                    className="nextBtn disabled"
+                    className={`nextBtn 
+                    ${isInputText ? 'black' : ''}`}
                     onClick={() => {
                       navigate('/payment');
                     }}
-                    disabled
                   >
                     구매 입찰 계속
                   </button>

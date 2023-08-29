@@ -7,6 +7,7 @@ import './SellOption.scss';
 const SellOption = () => {
   const navigate = useNavigate();
   const [isToggled, setIsToggled] = useState(true);
+  const [isInputText, setIsInputText] = useState(false);
 
   return (
     <div className="sellOption">
@@ -72,6 +73,8 @@ const SellOption = () => {
                           className="inputAmount"
                           type="number"
                           placeholder="희망가 입력"
+                          value={isInputText}
+                          onChange={e => setIsInputText(e.target.value)}
                         />
                         <span className="unit">원</span>
                       </dd>
@@ -109,11 +112,10 @@ const SellOption = () => {
               ) : (
                 <div className="btnConfirm">
                   <button
-                    className="nextBtn disabled"
+                    className={`nextBtn ${isInputText ? 'black' : ''}`}
                     onClick={() => {
                       navigate('/payment');
                     }}
-                    disabled
                   >
                     판매 입찰 계속
                   </button>

@@ -83,7 +83,7 @@ const SizeSelect = ({ isPurchaseSize }) => {
                           >
                             <p className="tradePrice">
                               {isPurchaseSize
-                                ? '{selectedSizeInfo.price}'
+                                ? selectedSizeInfo.price
                                 : '보관신청'}
                             </p>
                             <p className="tradeExpress fast">
