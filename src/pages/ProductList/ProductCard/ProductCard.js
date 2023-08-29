@@ -13,7 +13,7 @@ const ProductCard = ({ image, brand, engName, byNowPrice }) => {
           <div className="brand">{brand}</div>
           <div className="engName">{engName}</div>
           <div className="priceArea">
-            <div className="byNowPrice">{byNowPrice}</div>
+            <div className="byNowPrice">{byNowPrice}원</div>
             <div className="byNowPriceText">즉시구매가</div>
           </div>
         </div>
