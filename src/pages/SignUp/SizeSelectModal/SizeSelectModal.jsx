@@ -1,12 +1,21 @@
 import React from 'react';
 import './SizeSelectModal.scss';
 
-const SizeSelectModal = ({ isOpen, onClose, onSelectSize }) => {
-  const sizes = [220, 230, 240, 250, 260, 270, 280];
-
+const SizeSelectModal = ({
+  isOpen,
+  onClose,
+  onSelectSize,
+  recentPrice,
+  sizes,
+}) => {
+  const priceToShow = recentPrice ? recentPrice : null;
   if (!isOpen) {
     return null;
   }
+
+  // for (const [key, value] of Object.entries(object1)) {
+  //   console.log(`${key}: ${value}`);
+  // }
 
   return (
     <div className="modalLayout">
@@ -22,7 +31,9 @@ const SizeSelectModal = ({ isOpen, onClose, onSelectSize }) => {
               onClick={() => onSelectSize(size)}
             >
               {size}
+              {recentPrice}
             </div>
+            // <div></div>
           ))}
         </div>
         <div className="modalFooter">

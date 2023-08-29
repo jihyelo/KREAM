@@ -1,3 +1,5 @@
+import { useState } from 'react';
+import SizeSelectModal from '../../SignUp/SizeSelectModal/SizeSelectModal';
 import { IoMdArrowDropdownCircle } from 'react-icons/io';
 import { RxBookmark } from 'react-icons/rx';
 import { BiSolidUpArrow } from 'react-icons/bi';
@@ -5,11 +7,27 @@ import './DetailRightTop.scss';
 
 const DetailRightTop = ({
   brand,
-  engName,
+  name,
   recentTrade,
   sellPrice,
   buyPrice,
+  sizePrice,
 }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedSize, setSelectedSize] = useState(null);
+  const sizePriceObject = sizePrice[0];
+  // const sizes = [220, 230, 240, 250, 260, 270, 280];
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleSelectSize = size => {
+    setSelectedSize(size);
+    handleCloseModal();
+  };
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
+  };
   const SELL_BUY_BUTTON_DATA = [
     {
       title: '구매',
@@ -28,21 +46,33 @@ const DetailRightTop = ({
       //TODO onClick:
     },
   ];
-
+  console.log(sizePriceObject);
   return (
     <div className="detailRightTop">
       <div className="detailMainTitleBox">
         <div className="brand">{brand}</div>
-        <div className="engName">{engName}</div>
+        <div className="name">{name}</div>
       </div>
       <div className="productFigureWrap">
         <div className="detailSize">
           <div className="title">사이즈</div>
-          <div className="sizeButton">
-            <div className="sizeButtonText">모든사이즈</div>
+          <div className="sizeButton" onClick={handleOpenModal}>
+            <div className="sizeButtonText">
+              {' '}
+              {selectedSize ? selectedSize : '모든 사이즈'}
+            </div>
             <IoMdArrowDropdownCircle className="dropDownIcon" />
           </div>
+          {/*TODO 모달창 외부영역 클릭시 모달창 닫히기*/}
         </div>
+        <SizeSelectModal
+          isOpen={isModalOpen}
+          onClose={handleCloseModal}
+          onSelectSize={handleSelectSize}
+          sizes={sizePriceObject ? Object.keys(sizePriceObject) : []}
+
+          // recentPrice={sizePriceObject ? Object.keys(sizePriceObject) : []}
+        />
         <div className="detailPrice">
           <div className="title">최근 거래가</div>
           <div className="price">

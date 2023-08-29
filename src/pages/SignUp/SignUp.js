@@ -24,7 +24,7 @@ const SignUp = () => {
     문자메시지: false,
     이메일: false,
   });
-
+  const sizes = [220, 230, 240, 250, 260, 270, 280];
   const { email, password, 앱푸시, 문자메시지, 이메일 } = userDataValue;
 
   const ServiceList = [
@@ -194,6 +194,7 @@ const SignUp = () => {
                 isOpen={isModalOpen}
                 onClose={handleCloseModal}
                 onSelectSize={handleSelectSize}
+                sizes={sizes}
               />
             </div>
 

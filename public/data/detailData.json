@@ -3,16 +3,15 @@
     {
       "productId": 1,
       "brand": "Adidas",
-      "engName": "(J) Adidas Superstar Black White",
-      "image": "/images/shoes.PNG",
+      "name": "(J) Adidas Superstar Black White",
+      "productImage": "/images/samba.PNG",
       "buyPrice": 94000,
       "recentTrade": 90000,
       "sellPrice": 98000,
-      "serialNum": "EF5398",
+      "serialNumber": "EF5398",
       "color": "black",
       "releasePrice": 102000,
-      "releaseDate": "22/03/21",
-      "createdAt": "22/04/21"
+      "releaseDate": "22/03/21"
     },
     {
       "trade": [
@@ -26,6 +25,11 @@
     {
       "sizePrice": [
         {
+          "220": {
+            "최근거래가": 240000,
+            "즉시구매가": 250000,
+            "즉시판매가": 235000
+          },
           "230": {
             "최근거래가": 240000,
             "즉시구매가": 250000,

@@ -3,20 +3,21 @@ import ProductInfo from '../ProductInfo/ProductInfo';
 import ProductBids from '../ProductBids/ProductBids';
 import './DetailRightBox.scss';
 
-const DetailRightBox = ({ detailData, detailTrade }) => {
+const DetailRightBox = ({ detailData, detailTrade, sizePrice }) => {
   return (
     <div className="detailRightBox">
       <div className="columnBox">
         <DetailRightTop
           brand={detailData.brand}
-          engName={detailData.engName}
+          name={detailData.name}
           recentTrade={detailData.recentTrade}
           sellPrice={detailData.sellPrice}
           buyPrice={detailData.buyPrice}
+          sizePrice={sizePrice}
         />
 
         <ProductInfo
-          serialNum={detailData.serialNum}
+          serialNumber={detailData.serialNumber}
           releaseDate={detailData.releaseDate}
           color={detailData.color}
           releasePrice={detailData.releasePrice}

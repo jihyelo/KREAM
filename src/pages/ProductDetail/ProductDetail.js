@@ -21,8 +21,15 @@ const ProductDetail = () => {
     <div className="productDetail">
       <div className="content">
         <div className="columnBind">
-          <DetailRightBox detailData={detailData} detailTrade={detailTrade} />
-          <DetailLeftBox detailData={detailData} />
+          <DetailRightBox
+            detailData={detailData}
+            detailTrade={detailTrade}
+            sizePrice={sizePrice}
+          />
+          <DetailLeftBox
+            productImage={detailData.productImage}
+            name={detailData.name}
+          />
         </div>
       </div>
     </div>

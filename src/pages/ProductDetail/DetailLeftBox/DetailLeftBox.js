@@ -1,11 +1,13 @@
 import { HiArrowRight } from 'react-icons/hi';
 import './DetailLeftBox.scss';
 
-const DetailLeftBox = () => {
+const DetailLeftBox = ({ productImage, name }) => {
   return (
     <div className="detailLeftBox">
       <div className="columnBox">
-        <img src="/images/samba.PNG" />
+        {/* <img src="/images/samba.PNG" /> */}
+        <img src={`${productImage}`} alt={`${name}`} />
+
         <div className="bannerAlert">
           <div className="alertWrap">
             <div className="bannerAlertContent">
