@@ -12,24 +12,41 @@ const SizeSelect = ({ isPurchaseSize }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch('/data/productData.json', {
+    fetch('http://10.58.52.69:3000/sell/1?size=', {
       method: 'GET',
     })
       .then(res => res.json())
       .then(data => {
-        setProductData(data[0]);
+        setProductData(data.data);
+        setSizeSelectList(data.data);
       });
   }, []);
 
-  useEffect(() => {
-    fetch('/data/sizeSelectData.json', {
-      method: 'GET',
+  const handleTradeNowClick = () => {
+    const requestData = {
+      productId: productData.id,
+      size: selectedSizeInfo.size,
+      price: selectedSizeInfo.price,
+    };
+
+    fetch('http://10.58.52.69:3000/sell/1?size=', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset-utf8',
+      },
+      body: JSON.stringify(requestData),
     })
-      .then(res => res.json())
+      .then(response => response.json())
       .then(data => {
-        setSizeSelectList(data);
+        // 요청이 성공하면 받은 데이터를 처리
+        console.log(data.data);
+      })
+      .catch(error => {
+        // 에러 처리
+        console.error('Error:', error);
       });
-  }, []);
+    navigate(isPurchaseSize ? '/purchase-option' : '/sell-option');
+  };
 
   return (
     <div className="sizeSelect">
@@ -39,11 +56,11 @@ const SizeSelect = ({ isPurchaseSize }) => {
             <div className="tradeBeforeCheck">
               <ProductInfo
                 key={productData.id}
-                src={productData.src}
-                code={productData.code}
+                url={productData.url}
+                serialNumber={productData.serialNumber}
                 name={productData.name}
-                translatedName={productData.translatedName}
-                shippingExpress="빠른배송"
+                size={productData.size}
+                price={productData.price}
               />
               <div className="tradeBeforeSelect">
                 <div className="selectAreaMd">
@@ -73,13 +90,7 @@ const SizeSelect = ({ isPurchaseSize }) => {
                         <li className="tradeButton">
                           <button
                             className={isPurchaseSize ? 'tradeNow' : 'green'}
-                            onClick={() => {
-                              navigate(
-                                isPurchaseSize
-                                  ? '/purchase-option'
-                                  : '/sell-option',
-                              );
-                            }}
+                            onClick={handleTradeNowClick}
                           >
                             <p className="tradePrice">
                               {isPurchaseSize
@@ -96,14 +107,7 @@ const SizeSelect = ({ isPurchaseSize }) => {
                         <li className="tradeButton">
                           <button
                             className="tradeBid"
-                            onClick={() => {
-                              navigate(
-                                isPurchaseSize
-                                  ? '/purchase-option'
-                                  : '/sell-option',
-                                { state: productData },
-                              );
-                            }}
+                            onClick={handleTradeNowClick}
                           >
                             <p className="tradePrice">
                               {selectedSizeInfo.price}
@@ -126,7 +130,7 @@ const SizeSelect = ({ isPurchaseSize }) => {
                                 isPurchaseSize
                                   ? '/purchase-option'
                                   : '/sell-option',
-                                { state: productData },
+                                //{ state: productData },
                               );
                             }}
                           >
