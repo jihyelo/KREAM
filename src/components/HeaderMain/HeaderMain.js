@@ -20,7 +20,9 @@ const HeaderMain = () => {
               <li className="gnbItem">HOME</li>
               <li className="gnbItem">STYLE</li>
               <li className="gnbItem">
-                <Link to="/product-list">SHOP</Link>
+                <Link to="/product-list" className="shopText">
+                  SHOP
+                </Link>
               </li>
             </ul>
             <div className="searchBtnBox">
@@ -38,7 +40,7 @@ export default HeaderMain;
 const TRADE_PATH = ['/size-select', '/trade-option', '/payment'];
 
 const centerTitle = {
-  '/size-select': <div>구매하기</div>,
-  '/trade-option': <div>구매 입찰하기</div>,
-  '/payment': <div>배송/결제</div>,
+  '/size-select': <div className="centerTitle">구매하기</div>,
+  '/trade-option': <div className="centerTitle">구매 입찰하기</div>,
+  '/payment': <div className="centerTitle">배송/결제</div>,
 };

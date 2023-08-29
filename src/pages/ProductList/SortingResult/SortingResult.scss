@@ -1,0 +1,59 @@
+.sortingResult {
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  .sortingTitleButton {
+    color: #222;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  .downUpIcon {
+    margin-left: 5px;
+  }
+  .sortingList {
+    background-color: #fff;
+    border: 1px solid #ebebeb;
+    box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    position: absolute;
+    right: 0;
+    top: 28px;
+    width: 278px;
+    z-index: 1;
+
+    .sortingItem {
+      list-style: none;
+      cursor: pointer;
+
+      .sortingLink {
+        display: block;
+        padding: 15px 36px 15px 16px;
+        position: relative;
+
+        .mainDesc {
+          font-size: 13px;
+          color: rgba(34, 34, 34, 0.8);
+          letter-spacing: -0.21px;
+        }
+        .itemOn {
+          color: #111111;
+          font-weight: 900;
+        }
+        .subDesc {
+          color: rgba(34, 34, 34, 0.5);
+          font-size: 11px;
+          letter-spacing: -0.06px;
+          padding-top: 7px;
+        }
+
+        .checkIcon {
+          margin-top: -12px;
+          position: absolute;
+          right: 12px;
+          top: 50%;
+        }
+      }
+    }
+  }
+}
