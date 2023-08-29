@@ -103,7 +103,7 @@ const SellOption = () => {
                       navigate('/payment');
                     }}
                   >
-                    즉시 구매 계속
+                    즉시 판매 계속
                   </button>
                 </div>
               ) : (

@@ -11,7 +11,7 @@ const Payment = () => {
             <section className="address">
               <div className="sectionUnit">
                 <dic className="sectionTitle">
-                  <h3 className="titleTxt">배송 주소</h3>
+                  <h1 className="titleTxt">배송 주소</h1>
                   <div className="addMore">+ 새 주소 추가</div>
                 </dic>
                 <div className="sectionContent">
@@ -39,7 +39,7 @@ const Payment = () => {
               </div>
               <div className="sectionUnit">
                 <div className="sectionTitle">
-                  <h3 className="titleTxt">배송 방법</h3>
+                  <h1 className="titleTxt">배송 방법</h1>
                 </div>
                 <div className="sectionContent">
                   <div
@@ -94,7 +94,7 @@ const Payment = () => {
             </section>
             <section className="point">
               <div className="sectionTitle">
-                <h3 className="titleTxt">포인트</h3>
+                <h1 className="titleTxt">포인트</h1>
               </div>
               <div className="sectionContent">
                 <div className="sectionInput">
@@ -116,7 +116,7 @@ const Payment = () => {
             </section>
             <section className="final">
               <div className="sectionTitle">
-                <h3 className="titleTxt">최종 주문 정보</h3>
+                <h1 className="titleTxt">최종 주문 정보</h1>
               </div>
               <div className="sectionContent">
                 <div className="instantGroup">
