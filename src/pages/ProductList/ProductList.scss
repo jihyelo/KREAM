@@ -1,0 +1,114 @@
+.productList {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 97px;
+  margin: 0 auto;
+  height: auto;
+  max-width: 1280px;
+  min-width: 560px;
+  position: relative;
+
+  .searchTitle {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    padding: 16px 0;
+    width: 100%;
+
+    .titleText {
+      color: #000;
+      cursor: pointer;
+      font-size: 28px;
+      font-weight: 600;
+      letter-spacing: -0.12px;
+    }
+  }
+
+  .category {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    padding: 0 40px;
+    border-bottom: solid rgb(240, 240, 240) 0.3px;
+    position: sticky;
+    top: 100px;
+    background-color: white;
+    z-index: 999;
+    max-width: 1700px;
+
+    .categoryItem {
+      display: inline-flex;
+      height: 100%;
+      padding-bottom: 15px;
+      padding-top: 15px;
+      font-size: 16px;
+      margin-left: 30px;
+      background-color: white;
+      cursor: pointer;
+    }
+  }
+  .trendContainer {
+    padding-left: 40px;
+    padding-right: 40px;
+    width: 100%;
+    img {
+      width: 100%;
+    }
+  }
+  .content {
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1280px;
+    padding: 0 40px 80px;
+
+    .searchFilterBox {
+      box-sizing: border-box;
+    }
+
+    .searchContent {
+      overflow: hidden;
+      height: auto;
+      padding: 0 10px;
+
+      img {
+        width: 100%;
+      }
+
+      .shopCount {
+        margin-top: 20px;
+        margin-bottom: 24px;
+        align-items: center;
+        display: flex;
+        justify-content: space-between;
+
+        .filterResult {
+          align-items: center;
+          color: rgba(34, 34, 34, 0.8);
+          display: flex;
+          font-size: 13px;
+        }
+
+        button {
+          appearance: none;
+          background: none;
+          background-color: transparent;
+          border: 0;
+          border-radius: 0;
+          outline: none;
+          padding: 0;
+        }
+      }
+    }
+  }
+}
+
+.scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.scroll {
+  -ms-overflow-style: none; /* 인터넷 익스플로러 */
+  scrollbar-width: none; /* 파이어폭스 */
+}
