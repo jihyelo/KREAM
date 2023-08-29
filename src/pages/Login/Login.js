@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { useState } from 'react';
 import LoginSignUpButton from '../../components/LoginSignUpButton/LoginSignUpButton';
 import InputBox from '../../components/InputBox/InputBox';
@@ -49,7 +49,7 @@ const Login = () => {
               placeholder="예) kream@kream.com"
               errorMessage="이메일 주소를 정확히 입력해주세요"
               inputTitle="이메일 주소"
-              value={email}
+              email={email}
             />
             <InputBox
               type="password"
@@ -57,14 +57,25 @@ const Login = () => {
               name="password"
               errorMessage="영문, 숫자, 특수문자를 조합해서 입력해주세요. (8-16자)"
               inputTitle="비밀번호"
-              value={password}
+              password={password}
             />
+
             <LoginSignUpButton
               className="LoginButton"
               children="로그인"
               onClick={onClickLoginButton}
               disabled={!isVaild}
             />
+
+            <div className="accountActionsBox">
+              <Link to="/sign-up" className="accountAction">
+                <div>이메일 가입</div>
+              </Link>
+              <div className="line" />
+              <div className="accountAction">이메일 찾기</div>
+              <div className="line" />
+              <div className="accountAction">비밀번호 찾기</div>
+            </div>
           </div>
         </div>
       </div>
