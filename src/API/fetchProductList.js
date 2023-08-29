@@ -2,6 +2,12 @@ const fetchProductList = () => {
   return fetch(
     '/data/data.json',
 
+    // `http://32423:3000/product/search?shop_category_id=${
+    //   '스니커즈','샌들/슬리퍼',
+    // }
+    // &brand_name=${{ brand: 'Adidas', brand: 'Nike' }}
+    // &sort=${{ sort: 'lowest_price' }}`,
+
     {
       method: 'GET',
       headers: {
