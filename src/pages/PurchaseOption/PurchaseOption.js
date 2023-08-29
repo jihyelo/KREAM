@@ -20,7 +20,7 @@ const PurchaseOption = () => {
             <div className="priceDescisionBox">
               <ul className="priceList">
                 <li className="listItem">
-                  <p className="title">즉시 구매가</p>
+                  <p className="title">즉시 판매가</p>
                   <p className="price">100,000</p>
                   <p className="unit">원</p>
                 </li>
