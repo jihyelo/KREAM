@@ -1,9 +1,19 @@
+import { useNavigate } from 'react-router-dom';
 import DetailRightTop from '../DetialRightTop/DetailRightTop';
 import ProductInfo from '../ProductInfo/ProductInfo';
 import ProductBids from '../ProductBids/ProductBids';
 import './DetailRightBox.scss';
 
 const DetailRightBox = ({ detailData, detailTrade, sizePrice, productId }) => {
+  const navigate = useNavigate();
+  const handleTokenNotFound = () => {
+    alert('로그인을 해주세요');
+    navigate('/login');
+  };
+  const checkTokenExists = () => {
+    return !localStorage.getItem('TOKEN') ? handleTokenNotFound() : null;
+  };
+
   return (
     <div className="detailRightBox">
       <div className="columnBox">
@@ -15,6 +25,8 @@ const DetailRightBox = ({ detailData, detailTrade, sizePrice, productId }) => {
           buyPrice={detailData.buyPrice}
           sizePrice={sizePrice}
           productId={productId}
+          handleTokenNotFound={handleTokenNotFound}
+          checkTokenExists={checkTokenExists}
         />
 
         <ProductInfo
@@ -23,7 +35,9 @@ const DetailRightBox = ({ detailData, detailTrade, sizePrice, productId }) => {
           color={detailData.color}
           releasePrice={detailData.releasePrice}
         />
+
         <ProductBids detailTrade={detailTrade} />
+
         <div className="displaySections"></div>
         <div className="deliveryWayWrap"></div>
         <div className="bannerBox"></div>

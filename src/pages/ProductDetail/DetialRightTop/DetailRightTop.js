@@ -14,6 +14,8 @@ const DetailRightTop = ({
   buyPrice,
   sizePrice,
   productId,
+  checkTokenExists,
+  handleTokenNotFound,
 }) => {
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -71,7 +73,7 @@ const DetailRightTop = ({
         <div className="detailSize">
           <div className="title">사이즈</div>
           <div className="sizeButton" onClick={handleOpenModal}>
-            <div className="sizeButtonText">
+            <div className="sizeButtonText" onClick={checkTokenExists}>
               {' '}
               {selectedSize ? selectedSize : '모든 사이즈'}
             </div>
@@ -117,7 +119,11 @@ const DetailRightTop = ({
               nowPrice={data.nowPrice}
               className={data.className}
               productId={productId}
-              onClick={data.onClickBuySell}
+              onClick={
+                localStorage.getItem('TOKEN')
+                  ? data.onClickBuySell
+                  : handleTokenNotFound
+              }
             />
           ))}
         </div>

@@ -1,4 +1,4 @@
-const detail = ({ productId }) => {
+const detail = () => {
   return fetch(
     '/data/detailData.json',
     //'http://10.58.52.179:3000/product-list/${productId}'

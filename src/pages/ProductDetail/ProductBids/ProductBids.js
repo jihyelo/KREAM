@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import DataTable from '../DataTable/DataTable';
 import buyBidsHistoryData from '../../../API/buyBidsHistoryData';
 import sellBidsHistoryData from '../../../API/sellBidsHistoryData';
@@ -25,6 +26,19 @@ const ProductBids = ({ detailTrade }) => {
   return (
     <div className="ProductBids">
       <div className="bidsWrap">
+        {localStorage.getItem('TOKEN') ? null : (
+          <div className="layerAlertLogin">
+            <div className="alertContent">
+              <div className="notice">
+                모든 체결 거래는 {<br />}로그인 후 확인 가능합니다
+              </div>
+              <Link to="/login" className="loginButton">
+                로그인
+              </Link>
+            </div>
+          </div>
+        )}
+        <div className="tradeTitle">시세</div>
         <div className="tabList">
           <div className="tabItem" onClick={() => handlertabItem(1)}>
             <div
