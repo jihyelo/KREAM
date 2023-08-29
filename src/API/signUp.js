@@ -8,7 +8,7 @@ const signUp = (
   이메일,
   onSuccessSignUp,
 ) => {
-  fetch('http://10.58.52.133:3000/user/signup', {
+  fetch('http://10.58.52.179:3000/user/signup', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json;charset=utf-8',
@@ -29,11 +29,11 @@ const signUp = (
       }
     })
     .then(data => {
-      if (data.message === 'user is created') {
-        localStorage.setItem('TOKEN', data.accessToken);
-        if (onSuccessSignUp) {
-          onSuccessSignUp();
-        }
+      // if (data.message === 'user is created') {
+      //   localStorage.setItem('TOKEN', data.accessToken);
+      // }
+      if (onSuccessSignUp) {
+        onSuccessSignUp();
       }
     })
     .catch(error => {

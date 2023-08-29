@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router';
 
 //TODO async, await 사용하기
 const login = (email, password, onSuccessLogin) => {
-  fetch('https://10.58.52.172:3000/users/signup', {
+  fetch('http://10.58.52.179:3000/user/signin', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json;charset=utf-8',
@@ -16,16 +16,27 @@ const login = (email, password, onSuccessLogin) => {
       if (res.ok) {
         return res.json();
       }
+      throw new Error('Network response was not ok.');
     })
     .then(data => {
-      if (data.message === 'success login') {
-        localStorage.setItem('TOKEN', data.token);
-        onSuccessLogin && onSuccessLogin();
+      if (true) {
+        localStorage.setItem('TOKEN', data.accessToken);
+        if (onSuccessLogin) {
+          onSuccessLogin();
+        } else {
+          alert('로그인 실패+++++');
+        }
       }
     })
-    .catch(alert('로그인 실패'));
+    .catch(error => {
+      console.error(error);
+      alert('로그인 실패');
+    });
+  // }
+  // else {
+  //   alert('로그인 실패');
+  // }
 };
-
 // const login = (userDataValue, setisLoggedIn) => {
 //   const navigate = useNavigate;
 //   fetch('https://10.58.52.172:3000/users/signup', {
