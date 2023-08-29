@@ -12,7 +12,7 @@ const ProductDetail = () => {
 
   const params = useParams();
   const productId = params.id;
-  // productList 컴포넌트
+  // productList 컴포넌트, or productCard 컴포넌트
   // <Link key={productId} to={`/detail/${productId}`}>
   //</Link>
   // navigate(/product-detail/${productId})
@@ -45,6 +45,7 @@ const ProductDetail = () => {
             detailData={detailData}
             detailTrade={detailTrade}
             sizePrice={sizePrice}
+            productId={productId}
           />
           <DetailLeftBox
             productImage={detailData.productImage}

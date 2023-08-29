@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import SizeSelectModal from '../../SignUp/SizeSelectModal/SizeSelectModal';
 import { IoMdArrowDropdownCircle } from 'react-icons/io';
 import { RxBookmark } from 'react-icons/rx';
@@ -12,7 +13,9 @@ const DetailRightTop = ({
   sellPrice,
   buyPrice,
   sizePrice,
+  productId,
 }) => {
+  const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedSize, setSelectedSize] = useState(null);
   const sizePriceObject = sizePrice[0] || {};
@@ -38,6 +41,7 @@ const DetailRightTop = ({
       won: '원',
       nowPrice: '즉시 구매가',
       className: 'redButton',
+      onClickBuySell: () => navigate(`/purchase-trade/${productId}`),
     },
     {
       title: '판매',
@@ -47,19 +51,16 @@ const DetailRightTop = ({
       won: '원',
       nowPrice: '즉시 판매가',
       className: 'greenButton',
+      onClickBuySell: () => {
+        return navigate(`/sell-trade/${productId}`);
+      },
     },
   ];
 
   const recentPrice = sizePriceObject
     ? Object.values(sizePriceObject).map(price => price.최근거래가)
     : [];
-  // const nowBuyPrice = sizePriceObject
-  //   ? Object.values(sizePriceObject).map(price => price.즉시구매가)
-  //   : [];
-  // const nowSellPrice = sizePriceObject
-  //   ? Object.values(sizePriceObject).map(price => price.즉시판매가)
-  //   : [];
-  // console.log(sizePriceObject);
+
   return (
     <div className="detailRightTop">
       <div className="detailMainTitleBox">
@@ -115,7 +116,8 @@ const DetailRightTop = ({
               won={data.won}
               nowPrice={data.nowPrice}
               className={data.className}
-              //TODO onClick={}
+              productId={productId}
+              onClick={data.onClickBuySell}
             />
           ))}
         </div>
@@ -129,9 +131,9 @@ const DetailRightTop = ({
   );
 };
 
-const SellBuyButton = ({ title, num, won, nowPrice, className }) => {
+const SellBuyButton = ({ title, num, won, nowPrice, className, onClick }) => {
   return (
-    <button className={`sellBuyButton ${className}`}>
+    <button className={`sellBuyButton ${className}`} onClick={onClick}>
       <div className="title">{title}</div>
       <div className="priceWrap">
         <div className="price">
