@@ -1,5 +1,7 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import DataTable from '../DataTable/DataTable';
+import buyBidsHistoryData from '../../../API/buyBidsHistoryData';
+import sellBidsHistoryData from '../../../API/sellBidsHistoryData';
 import './ProductBids.scss';
 
 const ProductBids = ({ detailTrade }) => {
@@ -9,58 +11,16 @@ const ProductBids = ({ detailTrade }) => {
 
   const handlertabItem = num => {
     setSelectedTableTab(num);
-    if (selectedTableTab === 2) {
-      sellBidsData();
-    }
-    if (selectedTableTab === 3) {
-      buyBidsData();
-    }
   };
 
-  const buyBidsData = () => {
-    return fetch('/data/bidTableData.json', {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-      },
-    })
-      .then(response => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          throw new Error('데이터 불러오기 실패');
-        }
-      })
-      .then(data => {
-        return setBuyBidsHistory(data.data);
-      })
-      .catch(error => {
-        console.error(error);
-        alert('데이터 불러오기 실패');
-      });
-  };
-  const sellBidsData = () => {
-    return fetch('/data/askTableData.json', {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-      },
-    })
-      .then(response => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          throw new Error('데이터 불러오기 실패');
-        }
-      })
-      .then(data => {
-        return setSellBidsHistory(data.data);
-      })
-      .catch(error => {
-        console.error(error);
-        alert('데이터 불러오기 실패');
-      });
-  };
+  useEffect(() => {
+    buyBidsHistoryData().then(data => {
+      setBuyBidsHistory(data);
+    });
+    sellBidsHistoryData().then(data => {
+      setSellBidsHistory(data);
+    });
+  }, []);
 
   return (
     <div className="ProductBids">
