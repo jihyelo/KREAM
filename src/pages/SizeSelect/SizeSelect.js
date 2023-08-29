@@ -5,7 +5,7 @@ import SelectItem from '../../components/SelectItem/SelectItem';
 import './SizeSelect.scss';
 
 const SizeSelect = ({ isPurchaseSize }) => {
-  const [productData, setProductData] = useState({});
+  const [productData, setProductData] = useState([]);
   const [sizeSelectList, setSizeSelectList] = useState([]);
   const [selectedSizeInfo, setSelectedSizeInfo] = useState({});
 
@@ -17,35 +17,21 @@ const SizeSelect = ({ isPurchaseSize }) => {
     })
       .then(res => res.json())
       .then(data => {
-        setProductData(data.data);
+        setProductData(data.data[0]);
         setSizeSelectList(data.data);
       });
   }, []);
 
-  const handleTradeNowClick = () => {
-    const requestData = {
-      productId: productData.id,
-      size: selectedSizeInfo.size,
-      price: selectedSizeInfo.price,
-    };
+  const requestData = {
+    size: selectedSizeInfo.size,
+  };
 
-    fetch('http://10.58.52.69:3000/sell/1?size=', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json;charset-utf8',
-      },
-      body: JSON.stringify(requestData),
-    })
-      .then(response => response.json())
-      .then(data => {
-        // 요청이 성공하면 받은 데이터를 처리
-        console.log(data.data);
-      })
-      .catch(error => {
-        // 에러 처리
-        console.error('Error:', error);
-      });
-    navigate(isPurchaseSize ? '/purchase-option' : '/sell-option');
+  const sizeSelectedClick = () => {
+    navigate(
+      isPurchaseSize
+        ? `/purchase-option${requestData.size}`
+        : `/sell-option${requestData.size}`,
+    );
   };
 
   return (
@@ -90,7 +76,7 @@ const SizeSelect = ({ isPurchaseSize }) => {
                         <li className="tradeButton">
                           <button
                             className={isPurchaseSize ? 'tradeNow' : 'green'}
-                            onClick={handleTradeNowClick}
+                            onClick={sizeSelectedClick}
                           >
                             <p className="tradePrice">
                               {isPurchaseSize
@@ -107,7 +93,7 @@ const SizeSelect = ({ isPurchaseSize }) => {
                         <li className="tradeButton">
                           <button
                             className="tradeBid"
-                            onClick={handleTradeNowClick}
+                            onClick={sizeSelectedClick}
                           >
                             <p className="tradePrice">
                               {selectedSizeInfo.price}
@@ -125,14 +111,7 @@ const SizeSelect = ({ isPurchaseSize }) => {
                         <li className="tradeButton">
                           <button
                             className="tradeBid"
-                            onClick={() => {
-                              navigate(
-                                isPurchaseSize
-                                  ? '/purchase-option'
-                                  : '/sell-option',
-                                //{ state: productData },
-                              );
-                            }}
+                            onClick={sizeSelectedClick}
                           >
                             <p className="tradePrice">
                               {isPurchaseSize ? '구매' : '판매'} 입찰
