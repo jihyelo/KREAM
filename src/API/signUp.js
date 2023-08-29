@@ -16,9 +16,9 @@ const signUp = (
     body: JSON.stringify({
       email: email,
       password: password,
-      agree_app: Number(앱푸시),
-      agree_sms: Number(문자메시지),
-      agree_email: Number(이메일),
+      agreeApp: Number(앱푸시),
+      agreeSms: Number(문자메시지),
+      agreeEmail: Number(이메일),
     }),
   })
     .then(response => {
