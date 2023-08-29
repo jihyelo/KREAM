@@ -1,0 +1,53 @@
+.deadlineInfoArea {
+  border-top: 8px solid #f4f4f4;
+  padding: 32px;
+
+  .sectionTitle {
+    padding-bottom: 20px;
+
+    .titleTxt {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: -0.21px;
+    }
+  }
+
+  .sectionContent {
+    .bidDeadline {
+      margin-top: -3px;
+
+      .deadlindTxt {
+        font-size: 14px;
+        color: rgba(34, 34, 34, 0.8);
+        letter-spacing: -0.15px;
+      }
+
+      .deadlineTab {
+        margin-top: 10px;
+        display: flex;
+        justify-content: space-between;
+
+        .btnOutlinegrey {
+          border-radius: 10px;
+          font-size: 13px;
+          height: 35px;
+          letter-spacing: -0.06px;
+          line-height: 33px;
+          flex: 1;
+          white-space: nowrap;
+          border: 1px solid #d3d3d3;
+          color: rgba(34, 34, 34, 0.8);
+          align-items: center;
+          background-color: #fff;
+          cursor: pointer;
+          display: inline-flex;
+          justify-content: center;
+          text-align: center;
+          vertical-align: middle;
+          margin-left: 4px;
+          padding: 20px 0;
+        }
+      }
+    }
+  }
+}
