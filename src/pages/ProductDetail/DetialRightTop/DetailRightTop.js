@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import {useParams} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
 import SizeSelectModal from '../../SignUp/SizeSelectModal/SizeSelectModal';
 import { IoMdArrowDropdownCircle } from 'react-icons/io';
 import { RxBookmark } from 'react-icons/rx';
@@ -13,7 +13,11 @@ const DetailRightTop = ({
   sellPrice,
   buyPrice,
   sizePrice,
+  productId,
+  checkTokenExists,
+  handleTokenNotFound,
 }) => {
+  const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedSize, setSelectedSize] = useState(null);
   const sizePriceObject = sizePrice[0] || {};
@@ -39,7 +43,7 @@ const DetailRightTop = ({
       won: '원',
       nowPrice: '즉시 구매가',
       className: 'redButton',
-      onClick : navigate()
+      onClickBuySell: () => navigate(`/purchase-trade/${productId}`),
     },
     {
       title: '판매',
@@ -49,6 +53,9 @@ const DetailRightTop = ({
       won: '원',
       nowPrice: '즉시 판매가',
       className: 'greenButton',
+      onClickBuySell: () => {
+        return navigate(`/sell-trade/${productId}`);
+      },
     },
   ];
 
@@ -66,7 +73,7 @@ const DetailRightTop = ({
         <div className="detailSize">
           <div className="title">사이즈</div>
           <div className="sizeButton" onClick={handleOpenModal}>
-            <div className="sizeButtonText">
+            <div className="sizeButtonText" onClick={checkTokenExists}>
               {' '}
               {selectedSize ? selectedSize : '모든 사이즈'}
             </div>
@@ -111,7 +118,12 @@ const DetailRightTop = ({
               won={data.won}
               nowPrice={data.nowPrice}
               className={data.className}
-              onClick={}
+              productId={productId}
+              onClick={
+                localStorage.getItem('TOKEN')
+                  ? data.onClickBuySell
+                  : handleTokenNotFound
+              }
             />
           ))}
         </div>
@@ -125,9 +137,9 @@ const DetailRightTop = ({
   );
 };
 
-const SellBuyButton = ({ title, num, won, nowPrice, className }) => {
+const SellBuyButton = ({ title, num, won, nowPrice, className, onClick }) => {
   return (
-    <button className={`sellBuyButton ${className}`}>
+    <button className={`sellBuyButton ${className}`} onClick={onClick}>
       <div className="title">{title}</div>
       <div className="priceWrap">
         <div className="price">

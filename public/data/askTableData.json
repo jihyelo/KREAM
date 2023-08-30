@@ -1,0 +1,29 @@
+{
+  "data": [
+    {
+      "size": 270,
+      "sellTargetPrice": 95000,
+      "amount": 1
+    },
+    {
+      "size": 240,
+      "sellTargetPrice": 99000,
+      "amount": 1
+    },
+    {
+      "size": 260,
+      "sellTargetPrice": 102000,
+      "amount": 1
+    },
+    {
+      "size": 240,
+      "sellTargetPrice": 121000,
+      "amount": 5
+    },
+    {
+      "size": 260,
+      "sellTargetPrice": 130000,
+      "amount": 3
+    }
+  ]
+}
