@@ -26,11 +26,13 @@ const SizeSelect = ({ isPurchaseSize }) => {
     size: selectedSizeInfo.size,
   };
 
+  const requestSize = requestData.size;
+
   const sizeSelectedClick = () => {
     navigate(
       isPurchaseSize
-        ? `/purchase-option${requestData.size}`
-        : `/sell-option${requestData.size}`,
+        ? `/purchase-option/${requestSize}`
+        : `/sell-option/${requestSize}`,
     );
   };
 

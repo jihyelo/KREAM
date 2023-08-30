@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import ProductInfo from '../../components/ProductInfo/ProductInfo';
 import BidDeadline from '../../components/BidDeadline/BidDeadline';
 import './SellOption.scss';
@@ -8,6 +8,22 @@ const SellOption = () => {
   const navigate = useNavigate();
   const [isToggled, setIsToggled] = useState(true);
   const [isInputText, setIsInputText] = useState(false);
+  const [sellSizeSelect, setSellSizeSelect] = useState({});
+  const Params = useParams();
+  const seletedSize = Params.id;
+
+  useEffect(() => {
+    fetch(`http://10.58.52.69:3000/sell/1?size=${seletedSize}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json;charset-utf8',
+      },
+    })
+      .then(res => res.json())
+      .then(data => {
+        setSellSizeSelect(data.data);
+      });
+  }, []);
 
   return (
     <div className="sellOption">
@@ -21,12 +37,12 @@ const SellOption = () => {
               <ul className="priceList">
                 <li className="listItem">
                   <p className="title">즉시 구매가</p>
-                  <p className="price">100,000</p>
+                  <p className="price">{sellSizeSelect.buyprice}</p>
                   <p className="unit">원</p>
                 </li>
                 <li className="listItem">
                   <p className="title">즉시 판매가</p>
-                  <p className="price">100,000</p>
+                  <p className="price">{sellSizeSelect.sellPrice}</p>
                   <p className="unit">원</p>
                 </li>
               </ul>
@@ -58,7 +74,7 @@ const SellOption = () => {
                     <dl className="priceNowBox">
                       <dt className="priceNowTitle">즉시 판매가</dt>
                       <dd className="price">
-                        <span className="amount">100,000</span>
+                        <span className="amount">{sellSizeSelect.price}</span>
                         <span className="unit">원</span>
                       </dd>
                     </dl>
