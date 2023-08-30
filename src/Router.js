@@ -26,7 +26,10 @@ const Router = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/sign-up" element={<SignUp />} />
           <Route path="/product-list" element={<ProductList />} />
-          <Route path="/product-detail" element={<ProductDetail />} />
+          <Route
+            path="/product-detail/:productId"
+            element={<ProductDetail />}
+          />
           <Route path="/bookmark" element={<Bookmark />} />
           <Route
             path="/purchase-size/:productId"
@@ -38,6 +41,7 @@ const Router = () => {
             element={<PurchaseOption />}
           />
           <Route path="/sell-option/:requestSize" element={<SellOption />} />
+          <Route path="/size-select/:productId" element={<SizeSelect />} />
           <Route path="/payment" element={<Payment />} />
         </Routes>
       </BrowserRouter>

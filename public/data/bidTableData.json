@@ -1,0 +1,29 @@
+{
+  "data": [
+    {
+      "size": 270,
+      "buyTargetPrice": 125000,
+      "amount": 1
+    },
+    {
+      "size": 240,
+      "buyTargetPrice": 127000,
+      "amount": 2
+    },
+    {
+      "size": 260,
+      "buyTargetPrice": 130000,
+      "amount": 4
+    },
+    {
+      "size": 240,
+      "buyTargetPrice": 127000,
+      "amount": 2
+    },
+    {
+      "size": 260,
+      "buyTargetPrice": 130000,
+      "amount": 4
+    }
+  ]
+}

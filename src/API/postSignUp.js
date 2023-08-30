@@ -1,5 +1,5 @@
 //TODO async, await 사용하기
-const signUp = (
+const postSignUp = (
   userDataValue,
   email,
   password,
@@ -8,7 +8,7 @@ const signUp = (
   이메일,
   onSuccessSignUp,
 ) => {
-  fetch('http://10.58.52.133:3000/user/signup', {
+  fetch('http://10.58.52.179:3000/user/signup', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json;charset=utf-8',
@@ -16,9 +16,9 @@ const signUp = (
     body: JSON.stringify({
       email: email,
       password: password,
-      agree_app: Number(앱푸시),
-      agree_sms: Number(문자메시지),
-      agree_email: Number(이메일),
+      agreeApp: Number(앱푸시),
+      agreeSms: Number(문자메시지),
+      agreeEmail: Number(이메일),
     }),
   })
     .then(response => {
@@ -29,11 +29,11 @@ const signUp = (
       }
     })
     .then(data => {
-      if (data.message === 'user is created') {
-        localStorage.setItem('TOKEN', data.accessToken);
-        if (onSuccessSignUp) {
-          onSuccessSignUp();
-        }
+      // if (data.message === 'user is created') {
+      //   localStorage.setItem('TOKEN', data.accessToken);
+      // }
+      if (onSuccessSignUp) {
+        onSuccessSignUp();
       }
     })
     .catch(error => {
@@ -42,4 +42,4 @@ const signUp = (
     });
 };
 
-export default signUp;
+export default postSignUp;

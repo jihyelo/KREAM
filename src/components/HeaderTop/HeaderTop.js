@@ -5,11 +5,11 @@ const HeaderTop = () => {
   const navigate = useNavigate();
 
   const onClickHeaderLogin = () => {
-    if (localStorage.getItem('token')) {
-      localStorage.removeItem('token');
+    if (localStorage.getItem('TOKEN')) {
+      localStorage.removeItem('TOKEN');
       alert('로그아웃 되었습니다');
     }
-    if (!localStorage.getItem('token')) {
+    if (!localStorage.getItem('TOKEN')) {
       navigate('/login');
     }
   };
@@ -21,7 +21,7 @@ const HeaderTop = () => {
         <li className="headerTopItem">관심상품</li>
         <li className="headerTopItem">알림</li>
         <li className="headerTopItem" onClick={onClickHeaderLogin}>
-          {localStorage.getItem('token') ? '로그아웃' : '로그인'}
+          {localStorage.getItem('TOKEN') ? '로그아웃' : '로그인'}
         </li>
       </ul>
     </div>

@@ -1,8 +1,13 @@
 .headerMain {
   display: flex;
   justify-content: space-between;
-  padding: 20px 40px;
+  padding: 23px 50px;
+  margin: 27px 0;
   width: 100%;
+  position: fixed;
+  min-width: 560px;
+  background-color: white;
+  z-index: 999;
 
   .logo {
     font-family: 'Russo One', sans-serif;
@@ -41,10 +46,18 @@
         float: left;
         font-weight: 500;
         font-size: 18px;
+        .shopText {
+          text-decoration: none;
+          color: black;
+        }
         a {
           font-family: 'Pretendard-Regular';
         }
       }
     }
   }
+}
+.centerTitle {
+  font-size: 23px;
+  font-weight: 700;
 }
