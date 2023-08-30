@@ -10,25 +10,30 @@ const ProductList = () => {
   const [productDataList, setProductDataList] = useState([]);
   const [checkedFilterItem, setCheckedFilterItem] = useState([]);
   const [brandFilterItem, setBrandFilterItem] = useState([]);
-  const [totalProductCount, setTotalProductCount] = useState(0);
   const [moreButtonClickCount, setMoreButtonClickCount] = useState(1);
   // const [loading, setLoding] = useState(false);
 
-  useEffect(() => {
-    // const categoryQuery = `&category=${checkedFilterItem.join(',')}`;
-    getProductList().then(data => {
-      setProductDataList(data.data);
-      setTotalProductCount(data.length);
-    });
-  }, []);
+  // useEffect(() => {
+  //   // const categoryQuery = `&category=${checkedFilterItem.join(',')}`;
+  //   getProductList().then(data => {
+  //     setProductDataList(data.data);
+  //     setTotalProductCount(data.length);
+  //   });
+  // }, []);
+
+  const categoryQuery =
+    checkedFilterItem.length !== 0
+      ? `&category=${checkedFilterItem.map(x => `"${x}"`).join(',')}`
+      : '';
+  const brandQuery =
+    brandFilterItem.length !== 0
+      ? `&brand=${brandFilterItem.map(x => `"${x}"`).join(',')}`
+      : '';
 
   useEffect(() => {
-    const categoryQuery = checkedFilterItem.map(x => `"${x}"`).join(',');
-    // const brandQuery = checkedFilterItem.map(x => `"${x}"`).join(',');
-
-    console.log(categoryQuery);
+    console.log('more');
     fetch(
-      `http://10.58.52.69:3000/product/list?limit=8&offset=1&category=${categoryQuery}`,
+      `http://10.58.52.69:3000/product/list?limit=8&offset=${moreButtonClickCount}${categoryQuery}${brandQuery}`,
       {
         method: 'GET',
         headers: {
@@ -39,23 +44,46 @@ const ProductList = () => {
       .then(response => {
         if (response.ok) {
           return response.json();
+        } else {
+          throw new Error('데이터를 불러오는 데 실패했습니다.');
+        }
+      })
+      .then(data => {
+        setProductDataList([...productDataList, ...data.data]);
+      })
+      .catch(error => {
+        alert('데이터를 불러오는 데 실패했습니다');
+      });
+  }, [moreButtonClickCount]);
 
-          // setLoding(false);
+  useEffect(() => {
+    console.log('filtered');
+    fetch(
+      `http://10.58.52.69:3000/product/list?limit=8&offset=1${categoryQuery}${brandQuery}`,
+      {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8',
+        },
+      },
+    )
+      .then(response => {
+        if (response.ok) {
+          return response.json();
         } else {
           throw new Error('데이터를 불러오는 데 실패했습니다.');
         }
       })
       .then(data => {
         setProductDataList(data.data);
-        setTotalProductCount(data.length);
       })
       .catch(error => {
         alert('데이터를 불러오는 데 실패했습니다');
       });
-  }, [moreButtonClickCount, checkedFilterItem]);
+  }, [checkedFilterItem, brandFilterItem]);
 
   // const onClickMoreButton = () => setLoding(true);
-  const onCliktMoreProduct = () => setMoreButtonClickCount(prev => (prev += 1));
+  const onCliktMoreProduct = () => setMoreButtonClickCount(prev => prev + 1);
   const MoreButton = () => {
     return <button onClick={onCliktMoreProduct}>더보기</button>;
   };
@@ -64,6 +92,9 @@ const ProductList = () => {
   // };
   // const categoryQuery = checkedFilterItem.join(',');
   // console.log(categoryQuery);
+  console.log('상품데이터', productDataList);
+  console.log('클릭수', moreButtonClickCount);
+
   return (
     <div className="productList">
       <div className="searchTitle">
@@ -92,7 +123,7 @@ const ProductList = () => {
 
         <div className="searchContent scroll">
           <div className="shopCount">
-            <div className="filterResult">상품{totalProductCount}</div>
+            <div className="filterResult">상품{productDataList.length}</div>
             <SortingResult />
           </div>
 

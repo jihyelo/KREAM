@@ -35,8 +35,21 @@ const FilteringCategory = ({
     }
   };
 
+  const onClickBrand = filterItem => {
+    if (brandFilterItem.includes(filterItem)) {
+      setBrandFilterItem(prevBrandFilterItem =>
+        prevBrandFilterItem.filter(item => filterItem !== item),
+      );
+    } else {
+      setBrandFilterItem(prevBrandFilterItem => [
+        ...prevBrandFilterItem,
+        filterItem,
+      ]);
+    }
+  };
   const deleteFilter = () => {
     setCheckedFilterItem([]);
+    setBrandFilterItem([]);
   };
 
   return (
@@ -44,8 +57,10 @@ const FilteringCategory = ({
       <div className="filterStatus">
         <div className="statusBox">
           <div className="statusText">필터</div>
-          {checkedFilterItem.length ? (
-            <div className="statusNum">{checkedFilterItem.length}</div>
+          {checkedFilterItem.length || brandFilterItem.length ? (
+            <div className="statusNum">
+              {checkedFilterItem.length + brandFilterItem.length}
+            </div>
           ) : null}
         </div>
         <div className="deleteFilterButton" onClick={deleteFilter}>
@@ -65,8 +80,10 @@ const FilteringCategory = ({
           filterItems={data['filterItems']}
           openCategoryList={openCategoryList.includes(index)}
           handlerFilterTitle={() => handlerFilterTitle(index)}
+          brandFilterItem={brandFilterItem}
           checkedFilterItem={checkedFilterItem}
           onClickMenu={onClickMenu}
+          onClickBrand={onClickBrand}
         />
       ))}
     </div>
@@ -82,7 +99,9 @@ const FilterList = ({
   openCategoryList,
   handlerFilterTitle,
   checkedFilterItem,
+  brandFilterItem,
   onClickMenu,
+  onClickBrand,
 }) => {
   return (
     <div className="filterList">
@@ -100,8 +119,19 @@ const FilterList = ({
       {openCategoryList && (
         <div className="filterMenu">
           {filterItems.map((item, index) => (
-            <div key={index} className="menu" onClick={() => onClickMenu(item)}>
-              {checkedFilterItem.includes(item) ? (
+            <div
+              key={index}
+              className="menu"
+              onClick={() => {
+                mainTitle === '신발' ? onClickMenu(item) : onClickBrand(item);
+              }}
+            >
+              {mainTitle === '신발' && checkedFilterItem.includes(item) ? (
+                <MdCheckBox className={'CheckedFalse'} />
+              ) : (
+                <MdCheckBoxOutlineBlank className={'CheckedTrue'} />
+              )}
+              {mainTitle === '브랜드' && brandFilterItem.includes(item) ? (
                 <MdCheckBox className={'CheckedFalse'} />
               ) : (
                 <MdCheckBoxOutlineBlank className={'CheckedTrue'} />
@@ -124,7 +154,7 @@ const filterListData = [
   {
     mainTitle: '브랜드',
     placeholder: '모든 브랜드',
-    filterItems: ['Adidas', 'Nike', 'New Balance'],
+    filterItems: ['아디다스', '나이키', '뉴발란스'],
   },
   {
     mainTitle: '성별',
