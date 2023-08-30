@@ -7,17 +7,63 @@ import './ProductList.scss';
 import SearchResultList from './SearchResultList/SearchResultList';
 
 const ProductList = () => {
-  const [productDataList, setProductDataList] = useState();
+  const [productDataList, setProductDataList] = useState([]);
   const [checkedFilterItem, setCheckedFilterItem] = useState([]);
-  const [totalProductCount, setTotalProductCount] = useState();
+  const [brandFilterItem, setBrandFilterItem] = useState([]);
+  const [totalProductCount, setTotalProductCount] = useState(0);
+  const [moreButtonClickCount, setMoreButtonClickCount] = useState(1);
+  // const [loading, setLoding] = useState(false);
 
   useEffect(() => {
+    // const categoryQuery = `&category=${checkedFilterItem.join(',')}`;
     getProductList().then(data => {
       setProductDataList(data.data);
       setTotalProductCount(data.length);
     });
   }, []);
 
+  useEffect(() => {
+    const categoryQuery = checkedFilterItem.map(x => `"${x}"`).join(',');
+    // const brandQuery = checkedFilterItem.map(x => `"${x}"`).join(',');
+
+    console.log(categoryQuery);
+    fetch(
+      `http://10.58.52.69:3000/product/list?limit=8&offset=1&category=${categoryQuery}`,
+      {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8',
+        },
+      },
+    )
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+
+          // setLoding(false);
+        } else {
+          throw new Error('데이터를 불러오는 데 실패했습니다.');
+        }
+      })
+      .then(data => {
+        setProductDataList(data.data);
+        setTotalProductCount(data.length);
+      })
+      .catch(error => {
+        alert('데이터를 불러오는 데 실패했습니다');
+      });
+  }, [moreButtonClickCount, checkedFilterItem]);
+
+  // const onClickMoreButton = () => setLoding(true);
+  const onCliktMoreProduct = () => setMoreButtonClickCount(prev => (prev += 1));
+  const MoreButton = () => {
+    return <button onClick={onCliktMoreProduct}>더보기</button>;
+  };
+  // const LoadingText = () => {
+  //   return <div>로딩중입니다..!!</div>;
+  // };
+  // const categoryQuery = checkedFilterItem.join(',');
+  // console.log(categoryQuery);
   return (
     <div className="productList">
       <div className="searchTitle">
@@ -39,6 +85,8 @@ const ProductList = () => {
           <FilteringCategory
             checkedFilterItem={checkedFilterItem}
             setCheckedFilterItem={setCheckedFilterItem}
+            brandFilterItem={brandFilterItem}
+            setBrandFilterItem={setBrandFilterItem}
           />
         </div>
 
@@ -47,12 +95,13 @@ const ProductList = () => {
             <div className="filterResult">상품{totalProductCount}</div>
             <SortingResult />
           </div>
+
           <SearchResultList
             productDataList={productDataList}
             setProductDataList={setProductDataList}
           />
-          {/* <MoreButton onCilck={onClickMoreButton} />
-          {loading && <LoadingText />} */}
+          <MoreButton />
+          {/* {loading == true ? <LoadingText /> : null} */}
         </div>
       </div>
     </div>

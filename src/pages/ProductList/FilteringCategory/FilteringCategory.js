@@ -4,7 +4,12 @@ import { BsPlusLg } from 'react-icons/bs';
 import { MdCheckBoxOutlineBlank, MdCheckBox } from 'react-icons/md';
 import './FilteringCategory.scss';
 
-const FilteringCategory = ({ checkedFilterItem, setCheckedFilterItem }) => {
+const FilteringCategory = ({
+  checkedFilterItem,
+  setCheckedFilterItem,
+  brandFilterItem,
+  setBrandFilterItem,
+}) => {
   const [openCategoryList, setOpenCategoryList] = useState([]);
 
   const handlerFilterTitle = index => {
@@ -114,7 +119,7 @@ const filterListData = [
   {
     mainTitle: '신발',
     placeholder: '모든 신발',
-    filterItems: ['스니커즈', '슬리퍼/샌달'],
+    filterItems: ['스니커즈', '샌들/슬리퍼'],
   },
   {
     mainTitle: '브랜드',
