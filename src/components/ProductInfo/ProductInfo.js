@@ -1,7 +1,7 @@
 import React from 'react';
 import './ProductInfo.scss';
 
-const ProductInfo = ({ url, serialNumber, name }) => {
+const ProductInfo = ({ url, serialNumber, name, size }) => {
   return (
     <div className="productInfo">
       <div className="productThumb">
@@ -12,7 +12,7 @@ const ProductInfo = ({ url, serialNumber, name }) => {
       <div className="productDetail">
         <p className="code">{serialNumber}</p>
         <p className="name">{name}</p>
-        <p className="translatedName">나이키 에어포스 1 '07 WB 플렉스</p>
+        <p className="size">{size}</p>
         <div className="shippingExpress">빠른 배송</div>
       </div>
     </div>
