@@ -1,7 +1,10 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Payment.scss';
 
 const Payment = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="payment">
       <div className="container">
@@ -27,10 +30,8 @@ const Payment = () => {
                           <dd className="desc">010-3***-*352</dd>
                         </div>
                         <div className="infoBox">
-                          <dt className="title">배송주소</dt>
-                          <dd className="desc">
-                            경기도 서울특별시 서초구 삼성동 위코드
-                          </dd>
+                          <dt className="title">배송 주소</dt>
+                          <input className="desc" type="text" />
                         </div>
                       </div>
                     </div>
@@ -153,7 +154,7 @@ const Payment = () => {
                       <dt className="priceTitle">
                         <span>수수료</span>
                       </dt>
-                      <dd className="priceText">5,700원</dd>
+                      <dd className="priceText">무료</dd>
                     </dl>
                     <dl className="priceAddition">
                       <dt className="priceTitle">
@@ -177,7 +178,13 @@ const Payment = () => {
                 <span className="priceWarning" />
               </div>
               <div className="btnConfirm">
-                <button className="btnTotal" disabled="disabled">
+                <button
+                  className="btnTotal"
+                  disabled="disabled"
+                  onClick={() => {
+                    navigate('/payment');
+                  }}
+                >
                   결제하기
                 </button>
               </div>
