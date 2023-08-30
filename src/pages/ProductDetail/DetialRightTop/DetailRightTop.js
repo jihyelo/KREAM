@@ -54,7 +54,7 @@ const DetailRightTop = ({
       nowPrice: '즉시 판매가',
       className: 'greenButton',
       onClickBuySell: () => {
-        return navigate(`/sell-trade/${productId}`);
+        return navigate(`/sell-size/${productId}`);
       },
     },
   ];

@@ -15,14 +15,18 @@ const SizeSelect = ({ isPurchaseSize }) => {
   useEffect(() => {
     fetch(`http://10.58.52.69:3000/sell/${productId}?size=`, {
       method: 'GET',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        Authorization: localStorage.getItem('TOKEN'),
+      },
     })
       .then(res => res.json())
       .then(data => {
-        if (data.message === 'NEED_ACCESS_TOKEN') {
-          alert('로그인이 필요합니다.');
+        // if (data.message === 'NEED_ACCESS_TOKEN') {
+        // alert('로그인이 필요합니다.');
 
-          return;
-        }
+        // return;
+        // }
 
         setProductData(data.data[0]);
         setSizeSelectList(data.data);

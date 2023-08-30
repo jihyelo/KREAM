@@ -11,7 +11,7 @@ const DetailRightBox = ({ detailData, detailTrade, sizePrice, productId }) => {
     navigate('/login');
   };
   const checkTokenExists = () => {
-    return !localStorage.getItem('TOKEN') ? handleTokenNotFound() : null;
+    return localStorage.getItem('TOKEN') ? '' : handleTokenNotFound;
   };
 
   return (
@@ -38,11 +38,11 @@ const DetailRightBox = ({ detailData, detailTrade, sizePrice, productId }) => {
 
         <ProductBids detailTrade={detailTrade} />
 
-        <div className="displaySections"></div>
-        <div className="deliveryWayWrap"></div>
-        <div className="bannerBox"></div>
+        <div className="displaySections" />
+        <div className="deliveryWayWrap" />
+        <div className="bannerBox" />
         <div className="detailWrap">
-          <div className="productSalesGraph"></div>
+          <div className="productSalesGraph" />
         </div>
       </div>
     </div>
