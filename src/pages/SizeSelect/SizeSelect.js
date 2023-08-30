@@ -18,16 +18,18 @@ const SizeSelect = ({ isPurchaseSize }) => {
     })
       .then(res => res.json())
       .then(data => {
+        if (data.message === 'NEED_ACCESS_TOKEN') {
+          alert('로그인이 필요합니다.');
+
+          return;
+        }
+
         setProductData(data.data[0]);
         setSizeSelectList(data.data);
       });
   }, []);
 
-  const requestData = {
-    size: selectedSizeInfo.size,
-  };
-
-  const requestSize = requestData.size;
+  const requestSize = selectedSizeInfo.size;
 
   const sizeSelectedClick = () => {
     navigate(

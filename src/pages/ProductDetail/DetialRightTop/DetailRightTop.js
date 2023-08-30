@@ -43,7 +43,7 @@ const DetailRightTop = ({
       won: '원',
       nowPrice: '즉시 구매가',
       className: 'redButton',
-      onClickBuySell: () => navigate(`/purchase-trade/${productId}`),
+      onClickBuySell: () => navigate(`/purchase-size/${productId}`),
     },
     {
       title: '판매',
@@ -148,7 +148,7 @@ const SellBuyButton = ({ title, num, won, nowPrice, className, onClick }) => {
             <div className="won">{won}</div>
           </div>
         </div>
-        <div className="line"></div>
+        <div className="line" />
         <div className="nowPrice">{nowPrice}</div>
       </div>
     </button>
