@@ -1,16 +1,31 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import ProductInfo from '../../components/ProductInfo/ProductInfo';
 import './Payment.scss';
 
 const Payment = () => {
   const navigate = useNavigate();
+  const [paymentData, setPaymentData] = useState([]);
+
+  useEffect(() => {
+    fetch(`http://10.58.52.69:3000/payment`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json;charset-utf8',
+      },
+    })
+      .then(res => res.json())
+      .then(data => {
+        setPaymentData(data.data);
+      });
+  }, []);
 
   return (
     <div className="payment">
       <div className="container">
         <div className="content">
           <div className="tradeImmediate">
-            {/*상품정보 컴포넌트*/}
+            <ProductInfo />
             <section className="address">
               <div className="sectionUnit">
                 <dic className="sectionTitle">
@@ -23,15 +38,17 @@ const Payment = () => {
                       <div className="infoList">
                         <div className="infoBox">
                           <dt className="title">받는 분</dt>
-                          <dd className="desc">이**</dd>
+                          <dd className="desc">{paymentData.name}</dd>
                         </div>
                         <div className="infoBox">
                           <dt className="title">연락처</dt>
-                          <dd className="desc">010-3***-*352</dd>
+                          <dd className="desc">010-1234-5678</dd>
                         </div>
                         <div className="infoBox">
                           <dt className="title">배송 주소</dt>
-                          <input className="desc" type="text" />
+                          <dd className="desc" type="text">
+                            서울특별시 강남구 삼성동 위코드 10층
+                          </dd>
                         </div>
                       </div>
                     </div>
@@ -108,7 +125,7 @@ const Payment = () => {
                   <div>
                     <span className="textCurrent">보유 포인트</span>
                     <div className="valueCurrent">
-                      <span className="point">0</span>
+                      <span className="point">{setPaymentData.point}</span>
                       <span className="unit">p</span>
                     </div>
                   </div>
@@ -121,22 +138,12 @@ const Payment = () => {
               </div>
               <div className="sectionContent">
                 <div className="instantGroup">
-                  <div className="priceTotal">
-                    <dl className="priceBox">
-                      <dt className="priceTitle">총 결제금액</dt>
-                      <dd className="price">
-                        <span className="amount">198,700</span>
-                        <span className="unit">원</span>
-                      </dd>
-                    </dl>
-                    <span className="priceWarning" />
-                  </div>
                   <div className="priceBind">
                     <dl className="priceAddition dark">
                       <dt className="priceTitle">
                         <span>즉시 구매가</span>
                       </dt>
-                      <dd className="priceText">100,000원</dd>
+                      <dd className="priceText">{setPaymentData.price}원</dd>
                     </dl>
                     <dl className="priceAddition">
                       <dt className="priceTitle">
@@ -160,7 +167,7 @@ const Payment = () => {
                       <dt className="priceTitle">
                         <span>배송비</span>
                       </dt>
-                      <dd className="priceText">3000원</dd>
+                      <dd className="priceText">3,000원</dd>
                     </dl>
                   </div>
                 </div>
@@ -171,7 +178,9 @@ const Payment = () => {
                 <dl className="priceBox">
                   <dt className="priceTitle">총 결제금액</dt>
                   <dd className="price">
-                    <span className="amount">100,000</span>
+                    <span className="amount">
+                      {setPaymentData.price + 3000}
+                    </span>
                     <span className="unit">원</span>
                   </dd>
                 </dl>

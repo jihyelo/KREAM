@@ -1,8 +1,9 @@
 .productInfo {
   align-items: center;
-  margin-bottom: 20px;
   position: relative;
+  display: flex;
   width: 100%;
+  padding: 32px;
 
   .productThumb {
     .product img {
