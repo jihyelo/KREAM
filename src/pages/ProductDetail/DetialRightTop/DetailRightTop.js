@@ -38,7 +38,7 @@ const DetailRightTop = ({
     {
       title: '구매',
       num: selectedSize
-        ? `${sizePriceObject[selectedSize]?.즉시구매가 || '0'}`
+        ? `${sizePriceObject[selectedSize]?.buyNowPrice || '0'}`
         : sellPrice,
       won: '원',
       nowPrice: '즉시 구매가',
@@ -48,7 +48,7 @@ const DetailRightTop = ({
     {
       title: '판매',
       num: selectedSize
-        ? `${sizePriceObject[selectedSize]?.즉시판매가 || '0'}`
+        ? `${sizePriceObject[selectedSize]?.sellNowPrice || '0'}`
         : buyPrice,
       won: '원',
       nowPrice: '즉시 판매가',
@@ -60,7 +60,7 @@ const DetailRightTop = ({
   ];
 
   const recentPrice = sizePriceObject
-    ? Object.values(sizePriceObject).map(price => price.최근거래가)
+    ? Object.values(sizePriceObject).map(price => price.latestPrice)
     : [];
 
   return (
@@ -97,7 +97,7 @@ const DetailRightTop = ({
             <div className="recentPrice">
               <div className="num">
                 {selectedSize
-                  ? `${sizePriceObject[selectedSize]?.최근거래가 || '0'}`
+                  ? `${sizePriceObject[selectedSize]?.latestPrice || '0'}`
                   : recentTrade}
               </div>
               <div className="won">원</div>
