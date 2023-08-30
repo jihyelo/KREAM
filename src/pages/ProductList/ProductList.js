@@ -14,7 +14,7 @@ const ProductList = () => {
   useEffect(() => {
     getProductList().then(data => {
       setProductDataList(data.data);
-      setTotalProductCount(data.totalProductCount);
+      setTotalProductCount(data.length);
     });
   }, []);
 
@@ -47,11 +47,12 @@ const ProductList = () => {
             <div className="filterResult">상품{totalProductCount}</div>
             <SortingResult />
           </div>
-
           <SearchResultList
             productDataList={productDataList}
             setProductDataList={setProductDataList}
           />
+          {/* <MoreButton onCilck={onClickMoreButton} />
+          {loading && <LoadingText />} */}
         </div>
       </div>
     </div>

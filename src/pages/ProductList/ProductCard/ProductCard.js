@@ -2,7 +2,7 @@ import { LiaBookmarkSolid } from 'react-icons/lia';
 import { VscPreview } from 'react-icons/vsc';
 import './ProductCard.scss';
 
-const ProductCard = ({ image, brand, engName, byNowPrice }) => {
+const ProductCard = ({ image, brand, engName, price }) => {
   return (
     <div className="productCard">
       <div className="itemInner">
@@ -13,7 +13,7 @@ const ProductCard = ({ image, brand, engName, byNowPrice }) => {
           <div className="brand">{brand}</div>
           <div className="engName">{engName}</div>
           <div className="priceArea">
-            <div className="byNowPrice">{byNowPrice}원</div>
+            <div className="byNowPrice">{price}원</div>
             <div className="byNowPriceText">즉시구매가</div>
           </div>
         </div>

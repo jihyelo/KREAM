@@ -32,7 +32,7 @@ const SortingResult = () => {
   const SortingButtonOnClick = () => {
     return setToggleSortingList(prev => !prev);
   };
-
+  console.log('+++++++++++');
   return (
     <div className="sortingResult">
       <button className="sortingTitleButton" onClick={SortingButtonOnClick}>

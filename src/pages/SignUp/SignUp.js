@@ -14,7 +14,6 @@ const SignUp = () => {
   const [selectedSize, setSelectedSize] = useState(null);
   const [ServiceItems, setServiceItems] = useState([]);
   const [requiredItems, setRequiredItems] = useState([]);
-
   const [userDataValue, setUserDataValue] = useState({
     email: '',
     password: '',
