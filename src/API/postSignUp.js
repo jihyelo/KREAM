@@ -1,5 +1,5 @@
 //TODO async, await 사용하기
-const signUp = (
+const postSignUp = (
   userDataValue,
   email,
   password,
@@ -42,4 +42,4 @@ const signUp = (
     });
 };
 
-export default signUp;
+export default postSignUp;

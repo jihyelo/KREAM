@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import DataTable from '../DataTable/DataTable';
-import buyBidsHistoryData from '../../../API/buyBidsHistoryData';
-import sellBidsHistoryData from '../../../API/sellBidsHistoryData';
+import getBuyBidsHistory from '../../../API/getBuyBidsHistory';
+import getSellBidsHistory from '../../../API/getSellBidsHistory';
 import './ProductBids.scss';
 
 const ProductBids = ({ detailTrade }) => {
@@ -15,10 +15,10 @@ const ProductBids = ({ detailTrade }) => {
   };
 
   useEffect(() => {
-    buyBidsHistoryData().then(data => {
+    getBuyBidsHistory().then(data => {
       setBuyBidsHistory(data);
     });
-    sellBidsHistoryData().then(data => {
+    getSellBidsHistory().then(data => {
       setSellBidsHistory(data);
     });
   }, []);

@@ -1,4 +1,4 @@
-const fetchProductList = () => {
+const getProductList = () => {
   return fetch(
     '/data/data.json',
 
@@ -30,4 +30,4 @@ const fetchProductList = () => {
     });
 };
 
-export default fetchProductList;
+export default getProductList;

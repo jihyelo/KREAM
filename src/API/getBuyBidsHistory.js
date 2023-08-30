@@ -1,14 +1,10 @@
-const detail = () => {
-  return fetch(
-    '/data/detailData.json',
-    //'http://10.58.52.179:3000/product-list/${productId}'
-    {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-      },
+const getBuyBidsHistory = () => {
+  return fetch('/data/bidTableData.json', {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json;charset=utf-8',
     },
-  )
+  })
     .then(response => {
       if (response.ok) {
         return response.json();
@@ -25,4 +21,4 @@ const detail = () => {
     });
 };
 
-export default detail;
+export default getBuyBidsHistory;

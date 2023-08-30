@@ -1,6 +1,6 @@
 import SortingResult from './SortingResult/SortingResult';
 import FilteringCategory from './FilteringCategory/FilteringCategory';
-import fetchProductList from '../../API/fetchProductList';
+import getProductList from '../../API/getProductList';
 import { useEffect, useState } from 'react';
 
 import './ProductList.scss';
@@ -12,7 +12,7 @@ const ProductList = () => {
   const [totalProductCount, setTotalProductCount] = useState();
 
   useEffect(() => {
-    fetchProductList().then(data => {
+    getProductList().then(data => {
       setProductDataList(data.data);
       setTotalProductCount(data.totalProductCount);
     });

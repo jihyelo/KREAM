@@ -2,7 +2,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { useState } from 'react';
 import LoginSignUpButton from '../../components/LoginSignUpButton/LoginSignUpButton';
 import InputBox from '../../components/InputBox/InputBox';
-import login from '../../API/login';
+import postLogin from '../../API/postLogin';
 import './Login.scss';
 
 const Login = () => {
@@ -15,7 +15,7 @@ const Login = () => {
   const { email, password } = userDataValue;
 
   const onClickLoginButton = () => {
-    login(email, password, () => {
+    postLogin(email, password, () => {
       localStorage.setItem('accessToken');
       navigate('/product-list');
     });

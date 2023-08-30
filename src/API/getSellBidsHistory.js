@@ -1,4 +1,4 @@
-const sellBidsHistoryData = () => {
+const getSellBidsHistory = () => {
   return fetch('/data/askTableData.json', {
     method: 'GET',
     headers: {
@@ -21,4 +21,4 @@ const sellBidsHistoryData = () => {
     });
 };
 
-export default sellBidsHistoryData;
+export default getSellBidsHistory;

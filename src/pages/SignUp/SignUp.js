@@ -3,9 +3,9 @@ import { useState } from 'react';
 import LoginSignUpButton from '../../components/LoginSignUpButton/LoginSignUpButton';
 import InputBox from '../../components/InputBox/InputBox';
 import CheckBox from '../../components/CheckBox/CheckBox';
-import signUp from '../../API/signUp';
+import postSignUp from '../../API/postSignUp';
 import SizeSelectModal from './SizeSelectModal/SizeSelectModal';
-import '../../API/signUp';
+import '../../API/postSignUp';
 import './SignUp.scss';
 
 const SignUp = () => {
@@ -130,9 +130,17 @@ const SignUp = () => {
   };
 
   const onClickSignUpButton = () => {
-    signUp(userDataValue, email, password, 앱푸시, 문자메시지, 이메일, () => {
-      navigate('/login');
-    });
+    postSignUp(
+      userDataValue,
+      email,
+      password,
+      앱푸시,
+      문자메시지,
+      이메일,
+      () => {
+        navigate('/login');
+      },
+    );
   };
 
   const isVaild =

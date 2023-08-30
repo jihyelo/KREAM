@@ -8,7 +8,7 @@ const SearchResultList = ({ productDataList, setProductDataList }) => {
       {productDataList?.map(data => (
         <Link
           key={data.productId}
-          to={`/propduct-detail/${data.productId}`}
+          to={`/product-detail/${data.productId}`}
           className="linkTag"
         >
           <ProductCard
