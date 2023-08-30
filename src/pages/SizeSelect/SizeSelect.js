@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import ProductInfo from '../../components/ProductInfo/ProductInfo';
 import SelectItem from '../../components/SelectItem/SelectItem';
 import './SizeSelect.scss';
@@ -8,11 +8,12 @@ const SizeSelect = ({ isPurchaseSize }) => {
   const [productData, setProductData] = useState([]);
   const [sizeSelectList, setSizeSelectList] = useState([]);
   const [selectedSizeInfo, setSelectedSizeInfo] = useState({});
-
   const navigate = useNavigate();
+  const params = useParams();
+  const productId = params.productId;
 
   useEffect(() => {
-    fetch('http://10.58.52.69:3000/sell/1?size=', {
+    fetch(`http://10.58.52.69:3000/sell/${productId}?size=`, {
       method: 'GET',
     })
       .then(res => res.json())

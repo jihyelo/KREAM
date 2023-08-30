@@ -29,10 +29,10 @@ const Router = () => {
           <Route path="/product-detail" element={<ProductDetail />} />
           <Route path="/bookmark" element={<Bookmark />} />
           <Route
-            path="/purchase-size"
+            path="/purchase-size:productId"
             element={<SizeSelect isPurchaseSize={true} />}
           />
-          <Route path="/sell-size" element={<SizeSelect />} />
+          <Route path="/sell-size:productId" element={<SizeSelect />} />
           <Route
             path="/purchase-option/:requestSize"
             element={<PurchaseOption />}
