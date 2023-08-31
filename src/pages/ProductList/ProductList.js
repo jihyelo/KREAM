@@ -8,32 +8,25 @@ import SearchResultList from './SearchResultList/SearchResultList';
 
 const ProductList = () => {
   const [productDataList, setProductDataList] = useState([]);
-  const [checkedFilterItem, setCheckedFilterItem] = useState([]);
+  const [categoryFilterItem, setcategoryFilterItem] = useState([]);
   const [brandFilterItem, setBrandFilterItem] = useState([]);
   const [moreButtonClickCount, setMoreButtonClickCount] = useState(1);
-  // const [loading, setLoding] = useState(false);
 
-  // useEffect(() => {
-  //   // const categoryQuery = `&category=${checkedFilterItem.join(',')}`;
-  //   getProductList().then(data => {
-  //     setProductDataList(data.data);
-  //     setTotalProductCount(data.length);
-  //   });
-  // }, []);
+  const [sortingItem, setSortingItem] = useState();
 
   const categoryQuery =
-    checkedFilterItem.length !== 0
-      ? `&category=${checkedFilterItem.map(x => `"${x}"`).join(',')}`
+    categoryFilterItem.length !== 0
+      ? `&category=${categoryFilterItem.map(x => `"${x}"`).join(',')}`
       : '';
   const brandQuery =
     brandFilterItem.length !== 0
       ? `&brand=${brandFilterItem.map(x => `"${x}"`).join(',')}`
       : '';
+  const countIndexQuery = sortingItem !== 0 ? `&sortBy=${sortingItem}` : '';
 
   useEffect(() => {
-    console.log('more');
     fetch(
-      `http://10.58.52.69:3000/product/list?limit=8&offset=${moreButtonClickCount}${categoryQuery}${brandQuery}`,
+      `http://10.58.52.69:3000/product/list?limit=8&offset=${moreButtonClickCount}${categoryQuery}${brandQuery}${countIndexQuery}`,
       {
         method: 'GET',
         headers: {
@@ -57,9 +50,8 @@ const ProductList = () => {
   }, [moreButtonClickCount]);
 
   useEffect(() => {
-    console.log('filtered');
     fetch(
-      `http://10.58.52.69:3000/product/list?limit=8&offset=1${categoryQuery}${brandQuery}`,
+      `http://10.58.52.69:3000/product/list?limit=8&offset=1${categoryQuery}${brandQuery}${countIndexQuery}`,
       {
         method: 'GET',
         headers: {
@@ -80,21 +72,16 @@ const ProductList = () => {
       .catch(error => {
         alert('데이터를 불러오는 데 실패했습니다');
       });
-  }, [checkedFilterItem, brandFilterItem]);
+  }, [categoryFilterItem, brandFilterItem, countIndexQuery]);
 
-  // const onClickMoreButton = () => setLoding(true);
   const onCliktMoreProduct = () => setMoreButtonClickCount(prev => prev + 1);
   const MoreButton = () => {
     return <button onClick={onCliktMoreProduct}>더보기</button>;
   };
-  // const LoadingText = () => {
-  //   return <div>로딩중입니다..!!</div>;
-  // };
-  // const categoryQuery = checkedFilterItem.join(',');
-  // console.log(categoryQuery);
-  console.log('상품데이터', productDataList);
-  console.log('클릭수', moreButtonClickCount);
-
+  // console.log('데이터', productDataList);
+  // console.log('브랜드', brandFilterItem);
+  // console.log('카테고리', categoryFilterItem);
+  // console.log(countIndex);
   return (
     <div className="productList">
       <div className="searchTitle">
@@ -114,8 +101,8 @@ const ProductList = () => {
       <div className="content">
         <div className="searchFilterBox">
           <FilteringCategory
-            checkedFilterItem={checkedFilterItem}
-            setCheckedFilterItem={setCheckedFilterItem}
+            categoryFilterItem={categoryFilterItem}
+            setcategoryFilterItem={setcategoryFilterItem}
             brandFilterItem={brandFilterItem}
             setBrandFilterItem={setBrandFilterItem}
           />
@@ -124,7 +111,10 @@ const ProductList = () => {
         <div className="searchContent scroll">
           <div className="shopCount">
             <div className="filterResult">상품{productDataList.length}</div>
-            <SortingResult />
+            <SortingResult
+              sortingItem={sortingItem}
+              setSortingItem={setSortingItem}
+            />
           </div>
 
           <SearchResultList

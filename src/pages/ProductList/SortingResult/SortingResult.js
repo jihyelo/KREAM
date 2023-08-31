@@ -1,12 +1,11 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState } from 'react';
 import { LuArrowDownUp } from 'react-icons/lu';
 import { AiOutlineCheck } from 'react-icons/ai';
 import './SortingResult.scss';
 
-const SortingResult = () => {
-  const [countIndex, setCountIndex] = useState(0);
+const SortingResult = ({ sortingItem, setSortingItem }) => {
   const [toggleSortingList, setToggleSortingList] = useState(false);
-
+  const [countIndex, setCountIndex] = useState(0);
   //TODO sortingList 외부영역 클릭시 sortingList 닫히기
 
   // const sortingListRef = useRef(null);
@@ -27,6 +26,13 @@ const SortingResult = () => {
 
   const handleOnclick = (e, index) => {
     setCountIndex(index);
+    if (index === 0) {
+      setSortingItem('');
+    }
+    if (index === 1) {
+      setSortingItem('price');
+    }
+
     setToggleSortingList(prev => !prev);
   };
   const SortingButtonOnClick = () => {
@@ -65,7 +71,7 @@ const SortingItem = ({
   itemSubDesc,
 }) => {
   return (
-    <li className={'sortingItem'} onClick={handleOnclick}>
+    <li className="sortingItem" onClick={handleOnclick}>
       <div className="sortingLink">
         <div className={`${itemOn} mainDesc`}>{itemMainDesc}</div>
         <div className="subDesc">{itemSubDesc}</div>
