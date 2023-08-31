@@ -78,10 +78,7 @@ const ProductList = () => {
   const MoreButton = () => {
     return <button onClick={onCliktMoreProduct}>더보기</button>;
   };
-  // console.log('데이터', productDataList);
-  // console.log('브랜드', brandFilterItem);
-  // console.log('카테고리', categoryFilterItem);
-  // console.log(countIndex);
+
   return (
     <div className="productList">
       <div className="searchTitle">

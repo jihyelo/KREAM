@@ -36,8 +36,6 @@ const DetailRightTop = ({
 
   const sizePriceObject = sizePriceData[0] || {};
 
-  // sizePrice.map(object => Object.values(object));
-
   const handleCloseModal = () => {
     setIsModalOpen(false);
   };

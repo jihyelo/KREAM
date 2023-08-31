@@ -8,8 +8,6 @@ const getProductList = () => {
     .then(response => {
       if (response.ok) {
         return response.json();
-
-        // setLoding(false);
       } else {
         throw new Error('데이터를 불러오는 데 실패했습니다.');
       }

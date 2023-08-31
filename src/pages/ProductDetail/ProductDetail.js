@@ -16,7 +16,7 @@ const ProductDetail = () => {
   useEffect(() => {
     const getData = async () => {
       const { result } = await getProductDetail(productId);
-      console.log('>>>>>>>>>', result);
+
       setDetailData(result.data[0]);
       setDetailTrade(result.data[1].trade.allBidBuyData);
       setSizePrice(result.data[1].sizePrice);
@@ -24,14 +24,7 @@ const ProductDetail = () => {
 
     getData();
   }, [productId]);
-  console.log(
-    '디테일데이터',
-    detailData,
-    '디테일트레이드',
-    detailTrade,
-    '디테일사이즈',
-    sizePrice,
-  );
+
   return (
     <div className="productDetail">
       <div className="content">
@@ -52,63 +45,3 @@ const ProductDetail = () => {
   );
 };
 export default ProductDetail;
-
-// "sizePrice": [
-//   {
-//     "sizeType": "220",
-//     "priceData": {
-//       "latestPrice": 241000,
-//       "buyNowPrice": 210000,
-//       "sellNowPrice": 236000
-//     }
-//   },
-//   {
-//     "sizeType": "230",
-//     "priceData": {
-//       "latestPrice": 241000,
-//       "buyNowPrice": 210000,
-//       "sellNowPrice": 236000
-//     }
-//   },
-//   {
-//     "sizeType": "240",
-//     "priceData": {
-//       "latestPrice": 241000,
-//       "buyNowPrice": 210000,
-//       "sellNowPrice": 236000
-//     }
-//   },
-//   {
-//     "sizeType": "250",
-//     "priceData": {
-//       "latestPrice": 241000,
-//       "buyNowPrice": 210000,
-//       "sellNowPrice": 236000
-//     }
-//   },
-//   {
-//     "sizeType": "260",
-//     "priceData": {
-//       "latestPrice": 241000,
-//       "buyNowPrice": 210000,
-//       "sellNowPrice": 236000
-//     }
-//   },
-//   {
-//     "sizeType": "270",
-//     "priceData": {
-//       "latestPrice": 241000,
-//       "buyNowPrice": 210000,
-//       "sellNowPrice": 236000
-//     }
-//   },
-//   {
-//     "sizeType": "280",
-//     "priceData": {
-//       "latestPrice": 241000,
-//       "buyNowPrice": 210000,
-//       "sellNowPrice": 236000
-//     }
-//   }
-
-// ]

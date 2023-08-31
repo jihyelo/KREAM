@@ -29,9 +29,6 @@ const postSignUp = (
       }
     })
     .then(data => {
-      // if (data.message === 'user is created') {
-      //   localStorage.setItem('TOKEN', data.accessToken);
-      // }
       if (onSuccessSignUp) {
         onSuccessSignUp();
       }

@@ -1,7 +1,6 @@
 const getProductDetail = async productId => {
   try {
     const response = await fetch(
-      // '/data/detailData.json',
       `http:///10.58.52.110:3000/product/productdata/${productId}`,
 
       {
