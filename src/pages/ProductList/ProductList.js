@@ -67,6 +67,7 @@ const ProductList = () => {
       })
       .then(data => {
         setProductDataList(data.data);
+        setMoreButtonClickCount(1);
       })
       .catch(error => {
         alert('데이터를 불러오는 데 실패했습니다');
