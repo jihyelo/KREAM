@@ -18,7 +18,7 @@ const ProductDetail = () => {
       const { result } = await getProductDetail(productId);
 
       setDetailData(result.data[0]);
-      setDetailTrade(result.data[1].trade.allBidBuyData);
+      setDetailTrade(result.data[1].trade.allTradeData);
       setSizePrice(result.data[1].sizePrice);
     };
 
