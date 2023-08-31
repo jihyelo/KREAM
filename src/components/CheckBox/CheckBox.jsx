@@ -12,6 +12,7 @@ const CheckBox = ({ name, disabled, checked, onChange, checkItemHandler }) => {
         disabled={disabled}
         checked={checked}
         onChange={checkHandled}
+        className="checkBox"
       />
       {name}
     </label>

@@ -24,7 +24,7 @@ const ProductInfo = ({ serialNumber, releaseDate, color, releasePrice }) => {
           <div className="detailBox">
             {' '}
             <div className="productTitle">발매가</div>
-            <div className="productInfoText">{releasePrice}원</div>
+            <div className="productInfoText">{parseInt(releasePrice)}원</div>
           </div>
         </div>
       </div>

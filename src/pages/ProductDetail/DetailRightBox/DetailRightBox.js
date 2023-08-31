@@ -4,7 +4,14 @@ import ProductInfo from '../ProductInfo/ProductInfo';
 import ProductBids from '../ProductBids/ProductBids';
 import './DetailRightBox.scss';
 
-const DetailRightBox = ({ detailData, detailTrade, sizePrice, productId }) => {
+const DetailRightBox = ({
+  detailBuyPrice,
+  detailSellPrice,
+  detailData,
+  detailTrade,
+  sizePrice,
+  productId,
+}) => {
   const navigate = useNavigate();
   const handleTokenNotFound = () => {
     alert('로그인을 해주세요');
@@ -36,7 +43,11 @@ const DetailRightBox = ({ detailData, detailTrade, sizePrice, productId }) => {
           releasePrice={detailData.releasePrice}
         />
 
-        <ProductBids detailTrade={detailTrade} />
+        <ProductBids
+          detailTrade={detailTrade}
+          detailBuyPrice={detailBuyPrice}
+          detailSellPrice={detailSellPrice}
+        />
 
         <div className="displaySections" />
         <div className="deliveryWayWrap" />

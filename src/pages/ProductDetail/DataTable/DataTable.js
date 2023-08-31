@@ -30,7 +30,7 @@ const DataTable = ({ Headers, items = [] }) => {
                   {key === 'tradePrice' ||
                   key === 'sellTargetPrice' ||
                   key === 'buyTargetPrice'
-                    ? `${item[key]}원`
+                    ? `${parseInt(item[key])}원`
                     : item[key]}
                 </td>
               ))}

@@ -1,6 +1,5 @@
 import SortingResult from './SortingResult/SortingResult';
 import FilteringCategory from './FilteringCategory/FilteringCategory';
-import getProductList from '../../API/getProductList';
 import { useEffect, useState } from 'react';
 
 import './ProductList.scss';

@@ -21,20 +21,16 @@ const DetailRightTop = ({
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedSize, setSelectedSize] = useState(null);
 
-  const sizePriceData = [];
+  const sizePriceData = {};
 
   sizePrice.forEach(item => {
     const sizeType = item.sizeType;
     const priceData = item.priceData;
 
-    const transformedItem = {
-      [sizeType]: priceData,
-    };
-
-    sizePriceData.push(transformedItem);
+    sizePriceData[sizeType] = priceData;
   });
 
-  const sizePriceObject = sizePriceData[0] || {};
+  console.log(sizePriceData);
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
@@ -52,7 +48,7 @@ const DetailRightTop = ({
     {
       title: '구매',
       num: selectedSize
-        ? `${sizePriceObject[selectedSize]?.buyNowPrice || '0'}`
+        ? `${sizePriceData[selectedSize]?.buyNowPrice || '0'}`
         : sellPrice,
       won: '원',
       nowPrice: '즉시 구매가',
@@ -62,7 +58,7 @@ const DetailRightTop = ({
     {
       title: '판매',
       num: selectedSize
-        ? `${sizePriceObject[selectedSize]?.sellNowPrice || '0'}`
+        ? `${sizePriceData[selectedSize]?.sellNowPrice || '0'}`
         : buyPrice,
       won: '원',
       nowPrice: '즉시 판매가',
@@ -73,8 +69,8 @@ const DetailRightTop = ({
     },
   ];
 
-  const recentPrice = sizePriceObject
-    ? Object.values(sizePriceObject).map(price => price.latestPrice)
+  const recentPrice = sizePriceData
+    ? Object.values(sizePriceData).map(price => price.latestPrice)
     : [];
 
   return (
@@ -100,9 +96,9 @@ const DetailRightTop = ({
           isOpen={isModalOpen}
           onClose={handleCloseModal}
           onSelectSize={handleSelectSize}
-          recentPrice={recentPrice}
-          sizes={sizePriceObject ? Object.keys(sizePriceObject) : []}
-          sizePriceObject={sizePriceObject}
+          latestPrice={recentPrice}
+          sizes={sizePriceData ? Object.keys(sizePriceData) : []}
+          sizePriceData={sizePriceData}
         />
 
         <div className="detailPrice">
@@ -111,7 +107,7 @@ const DetailRightTop = ({
             <div className="recentPrice">
               <div className="num">
                 {selectedSize
-                  ? `${sizePriceObject[selectedSize]?.latestPrice || '0'}`
+                  ? `${sizePriceData[selectedSize]?.latestPrice || '0'}`
                   : recentTrade}
               </div>
               <div className="won">원</div>

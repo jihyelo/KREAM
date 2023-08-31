@@ -9,6 +9,8 @@ const ProductDetail = () => {
   const [detailData, setDetailData] = useState({});
   const [detailTrade, setDetailTrade] = useState([]);
   const [sizePrice, setSizePrice] = useState([]);
+  const [detailSellPrice, setDetailSellPrice] = useState([]);
+  const [detailBuyPrice, setDetailBuyPrice] = useState([]);
 
   const params = useParams();
   const productId = params.productId;
@@ -18,7 +20,9 @@ const ProductDetail = () => {
       const { result } = await getProductDetail(productId);
 
       setDetailData(result.data[0]);
-      setDetailTrade(result.data[1].trade.allTradeData);
+      setDetailTrade(result.data[1].trade[0].allTradeData);
+      setDetailSellPrice(result.data[1].trade[0].allBidSellData);
+      setDetailBuyPrice(result.data[1].trade[0].allBidBuyData);
       setSizePrice(result.data[1].sizePrice);
     };
 
@@ -34,6 +38,8 @@ const ProductDetail = () => {
             detailTrade={detailTrade}
             sizePrice={sizePrice}
             productId={productId}
+            detailSellPrice={detailSellPrice}
+            detailBuyPrice={detailBuyPrice}
           />
           <DetailLeftBox
             productImage={detailData.productImage}

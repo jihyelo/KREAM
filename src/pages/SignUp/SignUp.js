@@ -231,7 +231,11 @@ const SignUp = () => {
                     [필수] 만 14세 이상이며 모두 동의합니다.
                   </label>
                   <div className="plusIcon">
-                    ? <BsPlusLg onClick={openRequiredCheckMain} /> : <BiMinus />
+                    {selectedRequiredCheckMain ? (
+                      <BiMinus onClick={openRequiredCheckMain} />
+                    ) : (
+                      <BsPlusLg onClick={openRequiredCheckMain} />
+                    )}
                   </div>
                 </div>
                 {selectedRequiredCheckMain && (
@@ -244,24 +248,36 @@ const SignUp = () => {
                         checked={
                           requiredItems.includes(item.name) ? true : false
                         }
+                        className="checkSubText"
                       />
                     ))}
                   </div>
                 )}
               </div>
               <div className="termsBox">
-                <label className="checkMain">
-                  <input
-                    type="checkbox"
-                    className="checkMain"
-                    onClick={openServiceCheckMain}
-                    onChange={allServiceCheckedHandler}
-                    checked={
-                      ServiceItems.length === ServiceList.length ? true : false
-                    }
-                  />
-                  [선택] 광고성 정보 수신에 모두 동의합니다.
-                </label>
+                <div className="requiredMainBox">
+                  <label className="checkMain">
+                    <input
+                      type="checkbox"
+                      className="checkMain"
+                      onClick={openServiceCheckMain}
+                      onChange={allServiceCheckedHandler}
+                      checked={
+                        ServiceItems.length === ServiceList.length
+                          ? true
+                          : false
+                      }
+                    />
+                    [선택] 광고성 정보 수신에 모두 동의합니다.
+                  </label>
+                  <div className="plusIcon">
+                    {selectedServiceCheckMain ? (
+                      <BiMinus onClick={openServiceCheckMain} />
+                    ) : (
+                      <BsPlusLg onClick={openServiceCheckMain} />
+                    )}
+                  </div>
+                </div>
                 {selectedServiceCheckMain && (
                   <div className="checkSub">
                     {ServiceList.map(item => (
