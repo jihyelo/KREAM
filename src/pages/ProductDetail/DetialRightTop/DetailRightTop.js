@@ -162,7 +162,7 @@ const SellBuyButton = ({ title, num, won, nowPrice, className, onClick }) => {
             <div className="won">{won}</div>
           </div>
         </div>
-        <div className="line"></div>
+        <div className="line" />
         <div className="nowPrice">{nowPrice}</div>
       </div>
     </button>

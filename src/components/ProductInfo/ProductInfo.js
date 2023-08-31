@@ -1,19 +1,19 @@
 import React from 'react';
 import './ProductInfo.scss';
 
-const ProductInfo = ({ src, code, name, translatedName, shippingExpress }) => {
+const ProductInfo = ({ url, serialNumber, name, size }) => {
   return (
     <div className="productInfo">
       <div className="productThumb">
         <div className="product">
-          <img src={src} alt="shoes" />
+          <img src={url} alt="shoes" />
         </div>
       </div>
       <div className="productDetail">
-        <p className="code">{code}</p>
+        <p className="code">{serialNumber}</p>
         <p className="name">{name}</p>
-        <p className="translatedName">{translatedName}</p>
-        <div className="shippingExpress">{shippingExpress}</div>
+        <p className="size">{size}</p>
+        <div className="shippingExpress">빠른 배송</div>
       </div>
     </div>
   );

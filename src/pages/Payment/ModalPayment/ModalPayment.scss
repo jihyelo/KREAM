@@ -1,0 +1,82 @@
+.modalPayment {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+
+  .modalContent {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+
+    .productInfo {
+      align-items: center;
+      position: relative;
+      display: flex;
+      width: 100%;
+      padding: 32px;
+
+      .productThumb {
+        .product img {
+          flex: none;
+          height: 80px;
+          width: 80px;
+          background-color: #ebf0f4;
+          border-radius: 10px;
+        }
+      }
+      .productDetail {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        height: 80px;
+        justify-content: center;
+        overflow: hidden;
+        padding-left: 16px;
+
+        .code {
+          font-size: 14px;
+          font-weight: 700;
+          line-height: 17px;
+        }
+        .name {
+          font-size: 14px;
+          line-height: 17px;
+        }
+        .size {
+          font-size: 13px;
+          letter-spacing: -0.07px;
+          letter-spacing: -0.05px;
+          line-height: 16px;
+          font-weight: 600;
+        }
+        .price {
+        }
+      }
+      .finalPrice {
+      }
+    }
+
+    .closeButton {
+      background-color: black;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-bottom: 10px;
+    }
+
+    .closeButton:hover {
+      background-color: #333;
+    }
+  }
+}
