@@ -10,12 +10,13 @@ const SizeSelect = ({ isPurchaseSize }) => {
   const navigate = useNavigate();
   const params = useParams();
   const productId = params.productId;
+
   useEffect(() => {
-    fetch(`http://10.58.52.69:3000/sell/${productId}?size=`, {
+    fetch(`http://10.58.52.66:3000/sell/${productId}?size=`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
-        Authorization: localStorage.getItem('TOKEN'),
+        authorization: localStorage.getItem('TOKEN'),
       },
     })
       .then(res => res.json())
@@ -24,12 +25,13 @@ const SizeSelect = ({ isPurchaseSize }) => {
         setSizeSelectList(data.data);
       });
   }, []);
+
   const requestSize = selectedSizeInfo.size;
   const sizeSelectedClick = () => {
     navigate(
       isPurchaseSize
         ? `/purchase-option/${requestSize}`
-        : `/sell-option/${requestSize}`,
+        : `/sell-option/${productId}/${requestSize}`,
     );
   };
 
@@ -44,7 +46,6 @@ const SizeSelect = ({ isPurchaseSize }) => {
                 url={productData.url}
                 serialNumber={productData.serialNumber}
                 name={productData.name}
-                size={productData.size}
                 price={productData.price}
               />
               <div className="tradeBeforeSelect">
@@ -56,6 +57,7 @@ const SizeSelect = ({ isPurchaseSize }) => {
                           key={item.id}
                           size={item.size}
                           price={item.price}
+                          isPurchaseSize={isPurchaseSize}
                           isSelected={item.size === selectedSizeInfo.size}
                           handleClick={() =>
                             setSelectedSizeInfo({
@@ -79,7 +81,9 @@ const SizeSelect = ({ isPurchaseSize }) => {
                           >
                             <p className="tradePrice">
                               {isPurchaseSize
-                                ? selectedSizeInfo.price
+                                ? Number(
+                                    selectedSizeInfo.price,
+                                  ).toLocaleString()
                                 : '보관신청'}
                             </p>
                             <p className="tradeExpress fast">
@@ -95,7 +99,7 @@ const SizeSelect = ({ isPurchaseSize }) => {
                             onClick={sizeSelectedClick}
                           >
                             <p className="tradePrice">
-                              {selectedSizeInfo.price}
+                              {Number(selectedSizeInfo.price).toLocaleString()}
                             </p>
                             <p className="tradeExpress">
                               {isPurchaseSize

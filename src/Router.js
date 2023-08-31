@@ -37,12 +37,15 @@ const Router = () => {
           />
           <Route path="/sell-size/:productId" element={<SizeSelect />} />
           <Route
-            path="/purchase-option/:requestSize"
+            path="/purchase-option/:productId/:requestSize"
             element={<PurchaseOption />}
           />
-          <Route path="/sell-option/:requestSize" element={<SellOption />} />
+          <Route
+            path="/sell-option/:productId/:requestSize"
+            element={<SellOption />}
+          />
           <Route path="/size-select/:productId" element={<SizeSelect />} />
-          <Route path="/payment/:productId" element={<Payment />} />
+          <Route path="/payment/:id" element={<Payment />} />
         </Routes>
       </BrowserRouter>
       <Footer />

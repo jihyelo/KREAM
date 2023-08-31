@@ -4,25 +4,25 @@ import './ModalPayment.scss';
 const ModalPayment = ({ open, close, name, price, orderPrice, point }) => {
   const [modallData, setModalData] = useState({});
 
-  useEffect(() => {
-    fetch('http://10:58:52:69:3000/payment', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json;charset-utf8',
-      },
-      body: JSON.stringify({
-        productId: modallData.postId,
-        size: modallData.size,
-        price: price,
-        orderPrice: orderPrice,
-        point: point,
-      }),
-    })
-      .then(res => res.json())
-      .then(data => {
-        setModalData(data.data);
-      });
-  });
+  // useEffect(() => {
+  //   fetch('http://10:58:52:69:3000/payment', {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json;charset-utf8',
+  //     },
+  //     body: JSON.stringify({
+  //       productId: modallData.postId,
+  //       size: modallData.size,
+  //       price: price,
+  //       orderPrice: orderPrice,
+  //       point: point,
+  //     }),
+  //   })
+  //     .then(res => res.json())
+  //     .then(data => {
+  //       setModalData(data.data);
+  //     });
+  // });
 
   if (!open) {
     return null;

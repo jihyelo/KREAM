@@ -10,7 +10,7 @@ const Payment = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const navigate = useNavigate();
   const Params = useParams();
-  const productId = Params.productId;
+  const id = Params.id;
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -27,10 +27,11 @@ const Payment = () => {
   };
 
   useEffect(() => {
-    fetch(`http://10.58.52.69:3000/payment/${productId}`, {
+    fetch(`http://10.58.52.66:3000/bidsell/${id}`, {
       method: 'GET',
       headers: {
-        'Content-Type': 'application/json;charset-utf8',
+        'Content-Type': 'application/json;charset=utf-8',
+        authorization: localStorage.getItem('TOKEN'),
       },
     })
       .then(res => res.json())
@@ -44,7 +45,14 @@ const Payment = () => {
       <div className="container">
         <div className="content">
           <div className="tradeImmediate">
-            <ProductInfo />
+            <ProductInfo
+              key={paymentData.id}
+              url={paymentData.url}
+              serialNumber={paymentData.serialNumber}
+              name={paymentData.product}
+              price={paymentData.price}
+              size={paymentData.type}
+            />
             <section className="address">
               <div className="sectionUnit">
                 <dic className="sectionTitle">
@@ -57,7 +65,7 @@ const Payment = () => {
                       <div className="infoList">
                         <div className="infoBox">
                           <dt className="title">받는 분</dt>
-                          <dd className="desc">{paymentData.name}</dd>
+                          <dd className="desc">{paymentData.sellerName}</dd>
                         </div>
                         <div className="infoBox">
                           <dt className="title">연락처</dt>
@@ -141,7 +149,7 @@ const Payment = () => {
                     value={usePoint}
                     // value={usePoint && usePoint <= setPaymentData.point}
                     onChange={e => {
-                      if (e.target.value > paymentData.point) {
+                      if (e.target.value > parseInt(paymentData.point)) {
                         alert('잔여 포인트를 초과했습니다.');
 
                         return;
@@ -159,9 +167,9 @@ const Payment = () => {
                     <span className="textCurrent">보유 포인트</span>
                     <div className="valueCurrent">
                       <span className="point">
-                        {setPaymentData.point && setPaymentData.point === 0
+                        {paymentData.point === 0
                           ? 0
-                          : setPaymentData.point}
+                          : Number(paymentData.point).toLocaleString()}
                       </span>
                       <span className="unit">p</span>
                     </div>
@@ -180,13 +188,15 @@ const Payment = () => {
                       <dt className="priceTitle">
                         <span>즉시 구매가</span>
                       </dt>
-                      <dd className="priceText">{setPaymentData.price}원</dd>
+                      <dd className="priceText">
+                        {Number(paymentData.price).toLocaleString()}원
+                      </dd>
                     </dl>
                     <dl className="priceAddition">
                       <dt className="priceTitle">
                         <span>포인트</span>
                       </dt>
-                      <dd className="priceText">{usePoint}</dd>
+                      <dd className="priceText">{usePoint}p</dd>
                     </dl>
                     <dl className="priceAddition">
                       <dt className="priceTitle">
@@ -216,7 +226,7 @@ const Payment = () => {
                   <dt className="priceTitle">총 결제금액</dt>
                   <dd className="price">
                     <span className="amount">
-                      {setPaymentData.price + 3000 - usePoint}
+                      {parseInt(paymentData.price) - 3000 - usePoint}
                     </span>
                     <span className="unit">원</span>
                   </dd>
@@ -232,8 +242,8 @@ const Payment = () => {
                   close={endModalNavigate}
                   name={paymentData.name}
                   price={paymentData.price}
-                  orderPrice={setPaymentData.price + 3000 - usePoint}
-                  point={setPaymentData.point - usePoint}
+                  orderPrice={paymentData.price - 3000 - usePoint}
+                  point={paymentData.point - usePoint}
                 />
               </div>
             </div>

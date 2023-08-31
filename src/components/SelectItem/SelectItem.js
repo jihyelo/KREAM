@@ -1,7 +1,13 @@
 import React from 'react';
 import './SelectItem.scss';
 
-const SelectItem = ({ size, price, isSelected, handleClick }) => {
+const SelectItem = ({
+  size,
+  price,
+  isSelected,
+  isPurchaseSize,
+  handleClick,
+}) => {
   return (
     <li className="selectItem">
       <button
@@ -12,7 +18,7 @@ const SelectItem = ({ size, price, isSelected, handleClick }) => {
         {price !== null ? (
           <p className="price small">{Number(price).toLocaleString()}</p>
         ) : (
-          <p className="bid small">구매 입찰</p>
+          <p className="bid small">{isPurchaseSize ? '구매' : '판매'} 입찰</p>
         )}
       </button>
     </li>
