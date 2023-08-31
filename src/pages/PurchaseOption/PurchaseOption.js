@@ -9,19 +9,39 @@ const PurchaseOption = () => {
   const [isToggled, setIsToggled] = useState(true);
   const [isInputText, setIsInputText] = useState(false);
   const [purchaseSizeSelect, setPurchaseSizeSelect] = useState({});
-  const Params = useParams();
-  const seletedSize = Params.id;
+  const params = useParams();
+  const requestSize = params.requestSize;
+
+  const postPrePayment = () => {
+    fetch('http://10:58:52:69:3000/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset-utf8',
+      },
+      body: JSON.stringify({
+        token: purchaseSizeSelect.token,
+        productId: purchaseSizeSelect.postId,
+        size: purchaseSizeSelect.size,
+        price: purchaseSizeSelect.price,
+      }),
+    })
+      .then(res => res.json())
+      .then(data => {
+        navigate(`/payment/${data.data[0].id}`);
+      });
+  };
 
   useEffect(() => {
-    fetch(`http://10.58.52.69:3000/buy/1?size=${seletedSize}`, {
+    fetch(`http://10.58.52.69:3000/buy/1?size=${requestSize}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json;charset-utf8',
+        authorization: localStorage.getItem('TOKEN'),
       },
     })
       .then(res => res.json())
       .then(data => {
-        setPurchaseSizeSelect(data.data);
+        setPurchaseSizeSelect(data.data[0]);
       });
   }, []);
 
@@ -118,12 +138,7 @@ const PurchaseOption = () => {
               </div>
               {isToggled ? (
                 <div className="btnConfirm">
-                  <button
-                    className="nextBtn black"
-                    onClick={() => {
-                      navigate('/payment');
-                    }}
-                  >
+                  <button className="nextBtn black" onClick={postPrePayment}>
                     즉시 구매 계속
                   </button>
                 </div>
@@ -132,9 +147,7 @@ const PurchaseOption = () => {
                   <button
                     className={`nextBtn 
                     ${isInputText ? 'black' : ''}`}
-                    onClick={() => {
-                      navigate('/payment');
-                    }}
+                    onClick={postPrePayment}
                   >
                     구매 입찰 계속
                   </button>

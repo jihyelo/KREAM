@@ -9,19 +9,20 @@ const SellOption = () => {
   const [isToggled, setIsToggled] = useState(true);
   const [isInputText, setIsInputText] = useState(false);
   const [sellSizeSelect, setSellSizeSelect] = useState({});
-  const Params = useParams();
-  const seletedSize = Params.id;
+  const params = useParams();
+  const requestSize = params.requestSize;
 
   useEffect(() => {
-    fetch(`http://10.58.52.69:3000/sell/1?size=${seletedSize}`, {
+    fetch(`http://10.58.52.69:3000/sell/1?size=${requestSize}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json;charset-utf8',
+        authorization: localStorage.getItem('TOKEN'),
       },
     })
       .then(res => res.json())
       .then(data => {
-        setSellSizeSelect(data.data);
+        setSellSizeSelect(data.data[0]);
       });
   }, []);
 

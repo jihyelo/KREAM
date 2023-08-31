@@ -42,7 +42,7 @@ const Router = () => {
           />
           <Route path="/sell-option/:requestSize" element={<SellOption />} />
           <Route path="/size-select/:productId" element={<SizeSelect />} />
-          <Route path="/payment" element={<Payment />} />
+          <Route path="/payment/:productId" element={<Payment />} />
         </Routes>
       </BrowserRouter>
       <Footer />

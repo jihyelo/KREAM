@@ -10,7 +10,7 @@ const SelectItem = ({ size, price, isSelected, handleClick }) => {
       >
         <p className="size">{size}</p>
         {price !== null ? (
-          <p className="price small">{price}</p>
+          <p className="price small">{Number(price).toLocaleString()}</p>
         ) : (
           <p className="bid small">구매 입찰</p>
         )}

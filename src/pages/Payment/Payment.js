@@ -1,14 +1,33 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import ProductInfo from '../../components/ProductInfo/ProductInfo';
+import ModalPayment from './ModalPayment/ModalPayment';
 import './Payment.scss';
 
 const Payment = () => {
+  const [paymentData, setPaymentData] = useState({});
+  const [usePoint, setUsePoint] = useState();
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const navigate = useNavigate();
-  const [paymentData, setPaymentData] = useState([]);
+  const Params = useParams();
+  const productId = Params.productId;
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+  const handleModal = () => {
+    openModal();
+  };
+  const endModalNavigate = () => {
+    closeModal();
+    navigate('/product-list');
+  };
 
   useEffect(() => {
-    fetch(`http://10.58.52.69:3000/payment`, {
+    fetch(`http://10.58.52.69:3000/payment/${productId}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json;charset-utf8',
@@ -16,7 +35,7 @@ const Payment = () => {
     })
       .then(res => res.json())
       .then(data => {
-        setPaymentData(data.data);
+        setPaymentData(data.data[0]);
       });
   }, []);
 
@@ -116,16 +135,34 @@ const Payment = () => {
               </div>
               <div className="sectionContent">
                 <div className="sectionInput">
-                  <input className="inputCredit" placeholder="0" />
-                  <button className="btnInputCredit" disabled="disablde">
-                    모두 사용
+                  <input
+                    className="inputCredit"
+                    placeholder="0"
+                    value={usePoint}
+                    // value={usePoint && usePoint <= setPaymentData.point}
+                    onChange={e => {
+                      if (e.target.value > paymentData.point) {
+                        alert('잔여 포인트를 초과했습니다.');
+
+                        return;
+                      }
+
+                      setUsePoint(e.target.value);
+                    }}
+                  />
+                  <button className="btnInputCredit" disabled={usePoint === 0}>
+                    사용
                   </button>
                 </div>
                 <div className="infoPoint">
                   <div>
                     <span className="textCurrent">보유 포인트</span>
                     <div className="valueCurrent">
-                      <span className="point">{setPaymentData.point}</span>
+                      <span className="point">
+                        {setPaymentData.point && setPaymentData.point === 0
+                          ? 0
+                          : setPaymentData.point}
+                      </span>
                       <span className="unit">p</span>
                     </div>
                   </div>
@@ -149,7 +186,7 @@ const Payment = () => {
                       <dt className="priceTitle">
                         <span>포인트</span>
                       </dt>
-                      <dd className="priceText">-</dd>
+                      <dd className="priceText">{usePoint}</dd>
                     </dl>
                     <dl className="priceAddition">
                       <dt className="priceTitle">
@@ -179,7 +216,7 @@ const Payment = () => {
                   <dt className="priceTitle">총 결제금액</dt>
                   <dd className="price">
                     <span className="amount">
-                      {setPaymentData.price + 3000}
+                      {setPaymentData.price + 3000 - usePoint}
                     </span>
                     <span className="unit">원</span>
                   </dd>
@@ -187,15 +224,17 @@ const Payment = () => {
                 <span className="priceWarning" />
               </div>
               <div className="btnConfirm">
-                <button
-                  className="btnTotal"
-                  disabled="disabled"
-                  onClick={() => {
-                    navigate('/payment');
-                  }}
-                >
+                <button className="btnTotal" onClick={handleModal}>
                   결제하기
                 </button>
+                <ModalPayment
+                  open={isModalOpen}
+                  close={endModalNavigate}
+                  name={paymentData.name}
+                  price={paymentData.price}
+                  orderPrice={setPaymentData.price + 3000 - usePoint}
+                  point={setPaymentData.point - usePoint}
+                />
               </div>
             </div>
           </div>

@@ -189,19 +189,23 @@
               }
 
               .btnInputCredit {
-                background: rgba(34, 34, 34, 0.2);
                 border: 0;
-                cursor: not-allowed;
                 font-size: 13px;
                 margin-top: 11px;
                 position: relative;
                 border-radius: 12px;
                 color: #fff;
+                background: #222;
                 cursor: pointer;
                 font-size: 12px;
                 letter-spacing: -0.06px;
                 line-height: 14px;
                 padding: 5px 10px;
+
+                &:disabled {
+                  background: rgba(34, 34, 34, 0.2);
+                  cursor: not-allowed;
+                }
               }
             }
             .infoPoint {
@@ -226,6 +230,8 @@
           }
         }
         .final {
+          padding-top: 20px;
+
           .sectionTitle {
             align-items: center;
             display: flex;
@@ -312,7 +318,7 @@
 
           .btnConfirm {
             .btnTotal {
-              background-color: #ebebeb;
+              background-color: #222;
               color: #fff;
               cursor: default;
               font-weight: 600;
