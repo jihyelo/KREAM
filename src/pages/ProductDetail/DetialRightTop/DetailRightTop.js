@@ -20,7 +20,23 @@ const DetailRightTop = ({
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedSize, setSelectedSize] = useState(null);
-  const sizePriceObject = sizePrice[0] || {};
+
+  const sizePriceData = [];
+
+  sizePrice.forEach(item => {
+    const sizeType = item.sizeType;
+    const priceData = item.priceData;
+
+    const transformedItem = {
+      [sizeType]: priceData,
+    };
+
+    sizePriceData.push(transformedItem);
+  });
+
+  const sizePriceObject = sizePriceData[0] || {};
+
+  // sizePrice.map(object => Object.values(object));
 
   const handleCloseModal = () => {
     setIsModalOpen(false);

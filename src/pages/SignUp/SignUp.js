@@ -5,6 +5,8 @@ import InputBox from '../../components/InputBox/InputBox';
 import CheckBox from '../../components/CheckBox/CheckBox';
 import postSignUp from '../../API/postSignUp';
 import SizeSelectModal from './SizeSelectModal/SizeSelectModal';
+import { BiMinus } from 'react-icons/bi';
+import { BsPlusLg } from 'react-icons/bs';
 import '../../API/postSignUp';
 import './SignUp.scss';
 
@@ -23,6 +25,11 @@ const SignUp = () => {
     문자메시지: false,
     이메일: false,
   });
+  const [selectedRequiredCheckMain, setSelectedRequiredCheckMain] =
+    useState(false);
+  const [selectedServiceCheckMain, setSelectedServiceCheckMain] =
+    useState(false);
+
   const sizes = [220, 230, 240, 250, 260, 270, 280];
   const { email, password, 앱푸시, 문자메시지, 이메일 } = userDataValue;
 
@@ -149,6 +156,10 @@ const SignUp = () => {
     password.length <= 16 &&
     requiredItems.length == 2;
 
+  const openRequiredCheckMain = () =>
+    setSelectedRequiredCheckMain(prev => !prev);
+  const openServiceCheckMain = () => setSelectedServiceCheckMain(prev => !prev);
+
   return (
     <div className="signUp">
       <div className="layout">
@@ -204,49 +215,69 @@ const SignUp = () => {
                 sizes={sizes}
               />
             </div>
-
-            <label>
-              <input
-                type="checkbox"
-                onChange={allRequiredCheckedHandler}
-                checked={
-                  requiredItems.length === requiredList.length ? true : false
-                }
-              />
-              [필수] 만 14세 이상이며 모두 동의합니다.
-            </label>
-            <div>
-              {requiredList.map(item => (
-                <CheckBox
-                  key={item.name}
-                  name={item.name}
-                  checkItemHandler={checkItemHandler}
-                  checked={requiredItems.includes(item.name) ? true : false}
-                />
-              ))}
+            <div className="joinTerms">
+              <div className="termsBox">
+                <div className="requiredMainBox">
+                  <label className="checkMain">
+                    <input
+                      type="checkbox"
+                      onChange={allRequiredCheckedHandler}
+                      checked={
+                        requiredItems.length === requiredList.length
+                          ? true
+                          : false
+                      }
+                    />
+                    [필수] 만 14세 이상이며 모두 동의합니다.
+                  </label>
+                  <div className="plusIcon">
+                    ? <BsPlusLg onClick={openRequiredCheckMain} /> : <BiMinus />
+                  </div>
+                </div>
+                {selectedRequiredCheckMain && (
+                  <div className="checkSub">
+                    {requiredList.map(item => (
+                      <CheckBox
+                        key={item.name}
+                        name={item.name}
+                        checkItemHandler={checkItemHandler}
+                        checked={
+                          requiredItems.includes(item.name) ? true : false
+                        }
+                      />
+                    ))}
+                  </div>
+                )}
+              </div>
+              <div className="termsBox">
+                <label className="checkMain">
+                  <input
+                    type="checkbox"
+                    className="checkMain"
+                    onClick={openServiceCheckMain}
+                    onChange={allServiceCheckedHandler}
+                    checked={
+                      ServiceItems.length === ServiceList.length ? true : false
+                    }
+                  />
+                  [선택] 광고성 정보 수신에 모두 동의합니다.
+                </label>
+                {selectedServiceCheckMain && (
+                  <div className="checkSub">
+                    {ServiceList.map(item => (
+                      <CheckBox
+                        key={item.name}
+                        name={item.name}
+                        checkItemHandler={checkItemHandler}
+                        checked={
+                          ServiceItems.includes(item.name) ? true : false
+                        }
+                      />
+                    ))}
+                  </div>
+                )}
+              </div>
             </div>
-
-            <label>
-              <input
-                type="checkbox"
-                onChange={allServiceCheckedHandler}
-                checked={
-                  ServiceItems.length === ServiceList.length ? true : false
-                }
-              />
-              [선택] 광고성 정보 수신에 모두 동의합니다.
-            </label>
-            <div>
-              {ServiceList.map(item => (
-                <CheckBox
-                  key={item.name}
-                  name={item.name}
-                  checkItemHandler={checkItemHandler}
-                  checked={ServiceItems.includes(item.name) ? true : false}
-                />
-              ))}
-            </div>
-
             <LoginSignUpButton
               className="LoginButton"
               children="회원가입"
