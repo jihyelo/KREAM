@@ -25,40 +25,59 @@
     {
       "sizePrice": [
         {
-          "220": {
+          "sizeType": "220",
+          "priceData": {
             "latestPrice": 241000,
             "buyNowPrice": 210000,
             "sellNowPrice": 236000
-          },
-          "230": {
-            "latestPrice": 242000,
-            "buyNowPrice": 110000,
-            "sellNowPrice": 335000
-          },
-          "240": {
-            "latestPrice": 243000,
-            "buyNowPrice": 200000,
-            "sellNowPrice": 225000
-          },
-          "250": {
-            "latestPrice": 244000,
-            "buyNowPrice": 252300,
-            "sellNowPrice": 235000
-          },
-          "260": {
-            "latestPrice": 245000,
-            "buyNowPrice": 150000,
-            "sellNowPrice": 335000
-          },
-          "270": {
-            "latestPrice": 246000,
-            "buyNowPrice": 550000,
-            "sellNowPrice": 125000
-          },
-          "280": {
-            "latestPrice": 247000,
-            "buyNowPrice": 250000,
-            "sellNowPrice": 235000
+          }
+        },
+        {
+          "sizeType": "230",
+          "priceData": {
+            "latestPrice": 241000,
+            "buyNowPrice": 210000,
+            "sellNowPrice": 236000
+          }
+        },
+        {
+          "sizeType": "240",
+          "priceData": {
+            "latestPrice": 241000,
+            "buyNowPrice": 210000,
+            "sellNowPrice": 236000
+          }
+        },
+        {
+          "sizeType": "250",
+          "priceData": {
+            "latestPrice": 241000,
+            "buyNowPrice": 210000,
+            "sellNowPrice": 236000
+          }
+        },
+        {
+          "sizeType": "260",
+          "priceData": {
+            "latestPrice": 241000,
+            "buyNowPrice": 210000,
+            "sellNowPrice": 236000
+          }
+        },
+        {
+          "sizeType": "270",
+          "priceData": {
+            "latestPrice": 241000,
+            "buyNowPrice": 210000,
+            "sellNowPrice": 236000
+          }
+        },
+        {
+          "sizeType": "280",
+          "priceData": {
+            "latestPrice": 241000,
+            "buyNowPrice": 210000,
+            "sellNowPrice": 236000
           }
         }
       ]
