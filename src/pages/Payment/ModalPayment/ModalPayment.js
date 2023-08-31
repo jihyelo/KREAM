@@ -32,20 +32,25 @@ const ModalPayment = ({ open, close, name, price, orderPrice, point }) => {
     <div className="modalPayment">
       <div className="modalContent">
         <h1>결제주문확인서</h1>
-        <div className="productThumb">
-          <div className="product">
-            <img src={modallData.url} alt="shoes" />
+        <div className="productInfo">
+          <div className="productThumb">
+            <div className="product">
+              <img src={modallData.url} alt="shoes" />
+            </div>
+          </div>
+          <div className="productDetail">
+            <p className="code">{modallData.serialNumber}</p>
+            <p className="name">{name}</p>
+            <p className="size">{modallData.size}</p>
+            <p className="price">{price}</p>
+          </div>
+          <div className="finalPrice">
+            <p>최종 결제 금액</p>
+            <p>{orderPrice}</p>
           </div>
         </div>
-        <div className="productDetail">
-          <p className="code">{modallData.serialNumber}</p>
-          <p className="name">{name}</p>
-          <p className="size">{modallData.size}</p>
-          <p className="price">{price}</p>
-          <p className="orderPrice">{orderPrice}</p>
-        </div>
         <button className="closeButton" onClick={close}>
-          닫기
+          확인
         </button>
       </div>
     </div>
