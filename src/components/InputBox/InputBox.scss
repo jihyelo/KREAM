@@ -1,5 +1,5 @@
 .inputBox {
-  padding: 10px 0 20px;
+  padding: 25px 0 5px;
   width: 400px;
 
   .inputTitle {
@@ -34,4 +34,7 @@
     margin-top: 3px;
     font-size: 8px;
   }
+}
+input::placeholder {
+  color: rgb(214, 214, 214);
 }

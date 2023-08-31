@@ -1,20 +1,10 @@
 const getProductList = () => {
-  return fetch(
-    '/data/data.json',
-
-    // `http://32423:3000/product/search?shop_category_id=${
-    //   '스니커즈','샌들/슬리퍼',
-    // }
-    // &brand_name=${{ brand: 'Adidas', brand: 'Nike' }}
-    // &sort=${{ sort: 'lowest_price' }}`,
-
-    {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-      },
+  return fetch('http://10.58.52.69:3000/product/list?limit=8&offset=1', {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json;charset=utf-8',
     },
-  )
+  })
     .then(response => {
       if (response.ok) {
         return response.json();

@@ -30,7 +30,7 @@ const SizeSelectModal = ({
                 <div className="sizeText">{size}</div>
                 {sizePriceObject && sizePriceObject[size] && (
                   <div className="recentPrice">
-                    {sizePriceObject[size].최근거래가}
+                    {sizePriceObject[size].latestPrice}
                   </div>
                 )}
               </div>

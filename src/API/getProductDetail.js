@@ -1,8 +1,8 @@
 const getProductDetail = async productId => {
   try {
     const response = await fetch(
-      '/data/detailData.json',
-      //'http://10.58.52.179:3000/product-list/${productId}'
+      `http:///10.58.52.110:3000/product/productdata/${productId}`,
+
       {
         method: 'GET',
         headers: {
@@ -13,7 +13,7 @@ const getProductDetail = async productId => {
 
     const result = await response.json();
 
-    return result;
+    return { result };
   } catch (err) {
     console.error(err);
     alert('데이터 불러오기 실패');

@@ -3,7 +3,6 @@ import { useNavigate, useParams } from 'react-router-dom';
 import ProductInfo from '../../components/ProductInfo/ProductInfo';
 import SelectItem from '../../components/SelectItem/SelectItem';
 import './SizeSelect.scss';
-
 const SizeSelect = ({ isPurchaseSize }) => {
   const [productData, setProductData] = useState([]);
   const [sizeSelectList, setSizeSelectList] = useState([]);
@@ -11,7 +10,6 @@ const SizeSelect = ({ isPurchaseSize }) => {
   const navigate = useNavigate();
   const params = useParams();
   const productId = params.productId;
-
   useEffect(() => {
     fetch(`http://10.58.52.69:3000/sell/${productId}?size=`, {
       method: 'GET',
@@ -22,19 +20,11 @@ const SizeSelect = ({ isPurchaseSize }) => {
     })
       .then(res => res.json())
       .then(data => {
-        // if (data.message === 'NEED_ACCESS_TOKEN') {
-        // alert('로그인이 필요합니다.');
-
-        // return;
-        // }
-
         setProductData(data.data[0]);
         setSizeSelectList(data.data);
       });
   }, []);
-
   const requestSize = selectedSizeInfo.size;
-
   const sizeSelectedClick = () => {
     navigate(
       isPurchaseSize

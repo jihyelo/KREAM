@@ -15,11 +15,11 @@ const ProductDetail = () => {
 
   useEffect(() => {
     const getData = async () => {
-      const { data } = await getProductDetail(productId);
+      const { result } = await getProductDetail(productId);
 
-      setDetailData(data[0]);
-      setDetailTrade(data[1].trade);
-      setSizePrice(data[2].sizePrice);
+      setDetailData(result.data[0]);
+      setDetailTrade(result.data[1].trade.allBidBuyData);
+      setSizePrice(result.data[1].sizePrice);
     };
 
     getData();

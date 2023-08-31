@@ -4,7 +4,12 @@ import { BsPlusLg } from 'react-icons/bs';
 import { MdCheckBoxOutlineBlank, MdCheckBox } from 'react-icons/md';
 import './FilteringCategory.scss';
 
-const FilteringCategory = ({ checkedFilterItem, setCheckedFilterItem }) => {
+const FilteringCategory = ({
+  categoryFilterItem,
+  setcategoryFilterItem,
+  brandFilterItem,
+  setBrandFilterItem,
+}) => {
   const [openCategoryList, setOpenCategoryList] = useState([]);
 
   const handlerFilterTitle = index => {
@@ -18,20 +23,33 @@ const FilteringCategory = ({ checkedFilterItem, setCheckedFilterItem }) => {
   };
 
   const onClickMenu = filterItem => {
-    if (checkedFilterItem.includes(filterItem)) {
-      setCheckedFilterItem(prevCheckedFilterItem =>
-        prevCheckedFilterItem.filter(item => filterItem !== item),
+    if (categoryFilterItem.includes(filterItem)) {
+      setcategoryFilterItem(prevcategoryFilterItem =>
+        prevcategoryFilterItem.filter(item => filterItem !== item),
       );
     } else {
-      setCheckedFilterItem(prevCheckedFilterItem => [
-        ...prevCheckedFilterItem,
+      setcategoryFilterItem(prevcategoryFilterItem => [
+        ...prevcategoryFilterItem,
         filterItem,
       ]);
     }
   };
 
+  const onClickBrand = filterItem => {
+    if (brandFilterItem.includes(filterItem)) {
+      setBrandFilterItem(prevBrandFilterItem =>
+        prevBrandFilterItem.filter(item => filterItem !== item),
+      );
+    } else {
+      setBrandFilterItem(prevBrandFilterItem => [
+        ...prevBrandFilterItem,
+        filterItem,
+      ]);
+    }
+  };
   const deleteFilter = () => {
-    setCheckedFilterItem([]);
+    setcategoryFilterItem([]);
+    setBrandFilterItem([]);
   };
 
   return (
@@ -39,8 +57,10 @@ const FilteringCategory = ({ checkedFilterItem, setCheckedFilterItem }) => {
       <div className="filterStatus">
         <div className="statusBox">
           <div className="statusText">필터</div>
-          {checkedFilterItem.length ? (
-            <div className="statusNum">{checkedFilterItem.length}</div>
+          {categoryFilterItem.length || brandFilterItem.length ? (
+            <div className="statusNum">
+              {categoryFilterItem.length + brandFilterItem.length}
+            </div>
           ) : null}
         </div>
         <div className="deleteFilterButton" onClick={deleteFilter}>
@@ -60,8 +80,10 @@ const FilteringCategory = ({ checkedFilterItem, setCheckedFilterItem }) => {
           filterItems={data['filterItems']}
           openCategoryList={openCategoryList.includes(index)}
           handlerFilterTitle={() => handlerFilterTitle(index)}
-          checkedFilterItem={checkedFilterItem}
+          brandFilterItem={brandFilterItem}
+          categoryFilterItem={categoryFilterItem}
           onClickMenu={onClickMenu}
+          onClickBrand={onClickBrand}
         />
       ))}
     </div>
@@ -76,8 +98,10 @@ const FilterList = ({
   filterItems,
   openCategoryList,
   handlerFilterTitle,
-  checkedFilterItem,
+  categoryFilterItem,
+  brandFilterItem,
   onClickMenu,
+  onClickBrand,
 }) => {
   return (
     <div className="filterList">
@@ -95,11 +119,27 @@ const FilterList = ({
       {openCategoryList && (
         <div className="filterMenu">
           {filterItems.map((item, index) => (
-            <div key={index} className="menu" onClick={() => onClickMenu(item)}>
-              {checkedFilterItem.includes(item) ? (
-                <MdCheckBox className={'CheckedFalse'} />
+            <div
+              key={index}
+              className="menu"
+              onClick={() => {
+                if (mainTitle === '신발') {
+                  onClickMenu(item);
+                } else {
+                  onClickBrand(item);
+                }
+              }}
+            >
+              {mainTitle === '신발' ? (
+                categoryFilterItem.includes(item) ? (
+                  <MdCheckBox className="CheckedTrue" />
+                ) : (
+                  <MdCheckBoxOutlineBlank className="CheckedFalse" />
+                )
+              ) : brandFilterItem.includes(item) ? (
+                <MdCheckBox className="CheckedTrue" />
               ) : (
-                <MdCheckBoxOutlineBlank className={'CheckedTrue'} />
+                <MdCheckBoxOutlineBlank className="CheckedFalse" />
               )}
               {item}
             </div>
@@ -114,12 +154,12 @@ const filterListData = [
   {
     mainTitle: '신발',
     placeholder: '모든 신발',
-    filterItems: ['스니커즈', '슬리퍼/샌달'],
+    filterItems: ['스니커즈', '샌들/슬리퍼'],
   },
   {
     mainTitle: '브랜드',
     placeholder: '모든 브랜드',
-    filterItems: ['Adidas', 'Nike', 'New Balance'],
+    filterItems: ['아디다스', '나이키', '뉴발란스'],
   },
   {
     mainTitle: '성별',

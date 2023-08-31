@@ -1,4 +1,5 @@
 import './CheckBox.scss';
+
 const CheckBox = ({ name, disabled, checked, onChange, checkItemHandler }) => {
   const checkHandled = e => {
     checkItemHandler(e.target.name, e.target.checked);
