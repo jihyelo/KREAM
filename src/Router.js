@@ -11,7 +11,8 @@ import ProductList from './pages/ProductList/ProductList';
 import ProductDetail from './pages/ProductDetail/ProductDetail';
 import Bookmark from './pages/Bookmark/Bookmark';
 import SizeSelect from './pages/SizeSelect/SizeSelect';
-import TradeOption from './pages/TradeOption/TradeOption';
+import PurchaseOption from './pages/PurchaseOption/PurchaseOption';
+import SellOption from './pages/SellOption/SellOption';
 import Payment from './pages/Payment/Payment';
 
 const Router = () => {
@@ -30,9 +31,18 @@ const Router = () => {
             element={<ProductDetail />}
           />
           <Route path="/bookmark" element={<Bookmark />} />
+          <Route
+            path="/purchase-size/:productId"
+            element={<SizeSelect isPurchaseSize={true} />}
+          />
+          <Route path="/sell-size/:productId" element={<SizeSelect />} />
+          <Route
+            path="/purchase-option/:requestSize"
+            element={<PurchaseOption />}
+          />
+          <Route path="/sell-option/:requestSize" element={<SellOption />} />
           <Route path="/size-select/:productId" element={<SizeSelect />} />
-          <Route path="/trade-option" element={<TradeOption />} />
-          <Route path="/payment" element={<Payment />} />
+          <Route path="/payment/:productId" element={<Payment />} />
         </Routes>
       </BrowserRouter>
       <Footer />

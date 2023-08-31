@@ -11,7 +11,7 @@ const ProductDetail = () => {
   const [sizePrice, setSizePrice] = useState([]);
 
   const params = useParams();
-  const productId = params.id;
+  const productId = params.productId;
 
   useEffect(() => {
     const getData = async () => {

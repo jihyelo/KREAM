@@ -1,44 +1,49 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import ProductInfo from '../../components/ProductInfo/ProductInfo';
 import BidDeadline from '../../components/BidDeadline/BidDeadline';
-import './TradeOption.scss';
+import './SellOption.scss';
 
-const TradeOption = () => {
+const SellOption = () => {
   const navigate = useNavigate();
   const [isToggled, setIsToggled] = useState(true);
+  const [isInputText, setIsInputText] = useState(false);
+  const [sellSizeSelect, setSellSizeSelect] = useState({});
+  const params = useParams();
+  const requestSize = params.requestSize;
+
+  useEffect(() => {
+    fetch(`http://10.58.52.69:3000/sell/1?size=${requestSize}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json;charset-utf8',
+        authorization: localStorage.getItem('TOKEN'),
+      },
+    })
+      .then(res => res.json())
+      .then(data => {
+        setSellSizeSelect(data.data[0]);
+      });
+  }, []);
 
   return (
-    <div className="tradeOption">
+    <div className="sellOption">
       <div className="container">
         <div className="contentArea">
           <div className="tradeBefore">
             <div class="productInfoArea">
-              <div className="productInfo">
-                <div className="productThumb">
-                  <div className="product">
-                    <img src="../../images/shoe1.jpg" alt="shoes" />
-                  </div>
-                </div>
-                <div className="productDetail">
-                  <p className="code">CJ9179-200</p>
-                  <p className="name">Nike Air Force 1 '07 WB Flex</p>
-                  <p className="translatedName">
-                    나이키 에어포스 1 '07 WB 플렉스
-                  </p>
-                  <div className="size">240(7Y)</div>
-                </div>
-              </div>
+              <ProductInfo />
             </div>
             <div className="priceDescisionBox">
               <ul className="priceList">
                 <li className="listItem">
                   <p className="title">즉시 구매가</p>
-                  <p className="price">100,000</p>
+                  <p className="price">{sellSizeSelect.buyprice}</p>
                   <p className="unit">원</p>
                 </li>
                 <li className="listItem">
                   <p className="title">즉시 판매가</p>
-                  <p className="price">100,000</p>
+                  <p className="price">{sellSizeSelect.sellPrice}</p>
                   <p className="unit">원</p>
                 </li>
               </ul>
@@ -49,9 +54,9 @@ const TradeOption = () => {
                       onClick={() => {
                         setIsToggled(false);
                       }}
-                      className={!isToggled ? ' on item' : 'item'}
+                      className={!isToggled ? 'on item' : 'item'}
                     >
-                      <button className="itemLink">구매 입찰</button>
+                      <button className="itemLink">판매 입찰</button>
                     </li>
 
                     <li
@@ -60,7 +65,7 @@ const TradeOption = () => {
                       }}
                       className={isToggled ? 'on item' : 'item'}
                     >
-                      <button className="itemLink ">즉시 구매</button>
+                      <button className="itemLink ">즉시 판매</button>
                     </li>
                   </ul>
                 </div>
@@ -68,9 +73,9 @@ const TradeOption = () => {
                 {isToggled ? (
                   <div className="priceNow">
                     <dl className="priceNowBox">
-                      <dt className="priceNowTitle">즉시 구매가</dt>
+                      <dt className="priceNowTitle">즉시 판매가</dt>
                       <dd className="price">
-                        <span className="amount">100,000</span>
+                        <span className="amount">{sellSizeSelect.price}</span>
                         <span className="unit">원</span>
                       </dd>
                     </dl>
@@ -79,12 +84,14 @@ const TradeOption = () => {
                 ) : (
                   <div className="priceNow">
                     <dl className="priceNowBox">
-                      <dt className="priceNowTitle">구매 희망가</dt>
+                      <dt className="priceNowTitle">판매 희망가</dt>
                       <dd className="price">
                         <input
                           className="inputAmount"
                           type="number"
                           placeholder="희망가 입력"
+                          value={isInputText}
+                          onChange={e => setIsInputText(e.target.value)}
                         />
                         <span className="unit">원</span>
                       </dd>
@@ -116,19 +123,18 @@ const TradeOption = () => {
                       navigate('/payment');
                     }}
                   >
-                    즉시 구매 계속
+                    즉시 판매 계속
                   </button>
                 </div>
               ) : (
                 <div className="btnConfirm">
                   <button
-                    className="nextBtn disabled"
+                    className={`nextBtn ${isInputText ? 'black' : ''}`}
                     onClick={() => {
                       navigate('/payment');
                     }}
-                    disabled
                   >
-                    구매 입찰 계속
+                    판매 입찰 계속
                   </button>
                 </div>
               )}
@@ -139,4 +145,4 @@ const TradeOption = () => {
     </div>
   );
 };
-export default TradeOption;
+export default SellOption;

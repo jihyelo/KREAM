@@ -1,20 +1,44 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './BidDeadline.scss';
 
 const BidDeadline = () => {
+  const [selectedDays, setSelectedDays] = useState(30);
+
+  const handleClick = days => {
+    setSelectedDays(days);
+  };
+  const formatDate = days => {
+    const deadlineDate = new Date();
+    deadlineDate.setDate(deadlineDate.getDate() + days);
+    return deadlineDate.toLocaleString('ko-KR', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    });
+  };
+
   return (
     <div className="deadlineInfoArea">
       <div className="sectionTitle">
-        <h3 className="titleTxt">입찰 마감기한</h3>
+        <h1 className="titleTxt">입찰 마감기한</h1>
       </div>
       <div className="sectionContent">
         <div className="bidDeadline">
-          <p className="deadlindTxt">30일 (2023/09/25 마감)</p>
+          <p className="deadlineTxt">
+            {`${selectedDays}일 (${formatDate(selectedDays)} 마감)`}
+          </p>
           <div className="deadlineTab">
-            <div className="btnOutlinegrey">1일</div>
-            <div className="btnOutlinegrey">3일</div>
-            <div className="btnOutlinegrey">7일</div>
-            <div className="btnOutlinegrey">30일</div>
+            {[1, 3, 7, 10, 30].map(days => (
+              <div
+                key={days}
+                className={`btnOutline ${
+                  selectedDays === days ? 'black' : 'grey'
+                }`}
+                onClick={() => handleClick(days)}
+              >
+                {days}일
+              </div>
+            ))}
           </div>
         </div>
       </div>
