@@ -1,42 +1,52 @@
-.infoTitle {
-  font-size: 18px;
-  font-weight: 600;
-  letter-spacing: -0.15px;
-  line-height: 22px;
-  padding: 40px 0 20px;
-}
-.detailProductWrap {
-  border: 1px solid #ebebeb;
-  border-width: 1px 0;
-  .detailProduct {
-    display: flex;
-    min-height: 20px;
-    padding-bottom: 20px;
-    padding-top: 20px;
-    .detailBox {
-      border-left: 1px solid #ebebeb;
-      flex: 1;
-      padding: 0 12px;
-      &.modelNum {
-        padding-left: 0;
-        border-left: none;
-        .productInfo {
-          font-weight: 600; /* 추가한 스타일 */
+.productInfoWrap {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  .infoTitle {
+    padding-bottom: 13px;
+    font-size: 18px;
+    font-weight: 600;
+    width: 100%;
+    letter-spacing: -0.15px;
+    line-height: 22px;
+    padding: 40px 0 20px;
+  }
+  .detailProductWrap {
+    border: 1px solid #ebebeb;
+    border-width: 1px 0;
+    .detailProduct {
+      display: flex;
+      min-height: 20px;
+      padding-bottom: 20px;
+      padding-top: 20px;
+      .detailBox {
+        border-left: 1px solid #ebebeb;
+        flex: 1;
+        padding: 0 12px;
+        &.modelNum {
+          padding-left: 0;
+          border-left: none;
         }
-      }
-      .productTitle {
-        color: rgba(34, 34, 34, 0.5);
-        font-size: 12px;
 
-        letter-spacing: -0.33px;
-        line-height: 14px;
-      }
-      .productInfo {
-        font-size: 14px;
-        line-height: 17px;
-        margin-top: 4px;
-        word-break: break-word;
-        color: #222;
+        .productInfo {
+          font-weight: 600;
+        }
+
+        .productTitle {
+          color: rgba(34, 34, 34, 0.5);
+          font-size: 12px;
+
+          letter-spacing: -0.33px;
+          line-height: 14px;
+        }
+        .productInfoText {
+          font-size: 14px;
+          line-height: 17px;
+          margin-top: 4px;
+          word-break: break-word;
+          color: #222;
+        }
       }
     }
   }

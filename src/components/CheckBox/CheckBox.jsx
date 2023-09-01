@@ -5,7 +5,7 @@ const CheckBox = ({ name, disabled, checked, onChange, checkItemHandler }) => {
     checkItemHandler(e.target.name, e.target.checked);
   };
   return (
-    <label>
+    <label className="checkBox">
       <input
         type="checkbox"
         name={name}

@@ -5,14 +5,14 @@ const SizeSelectModal = ({
   isOpen,
   onClose,
   onSelectSize,
-  recentPrice,
+  latestPrice,
   sizes,
-  sizePriceObject,
+  sizePriceData,
 }) => {
   if (!isOpen) {
     return null;
   }
-
+  // console.log(sizes);
   return (
     <div className="modalLayout">
       <div className="modalHeader">
@@ -28,9 +28,9 @@ const SizeSelectModal = ({
                 onClick={() => onSelectSize(size)}
               >
                 <div className="sizeText">{size}</div>
-                {sizePriceObject && sizePriceObject[size] && (
+                {sizePriceData && sizePriceData[size] && (
                   <div className="recentPrice">
-                    {sizePriceObject[size].latestPrice}
+                    {sizePriceData[size].latestPrice}
                   </div>
                 )}
               </div>

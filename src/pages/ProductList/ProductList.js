@@ -1,6 +1,5 @@
 import SortingResult from './SortingResult/SortingResult';
 import FilteringCategory from './FilteringCategory/FilteringCategory';
-import getProductList from '../../API/getProductList';
 import { useEffect, useState } from 'react';
 
 import './ProductList.scss';
@@ -45,7 +44,7 @@ const ProductList = () => {
         setProductDataList([...productDataList, ...data.data]);
       })
       .catch(error => {
-        alert('데이터를 불러오는 데 실패했습니다');
+        alert('데이터를 불러오는 데 실패했습니다2');
       });
   }, [moreButtonClickCount]);
 
@@ -70,13 +69,17 @@ const ProductList = () => {
         setProductDataList(data.data);
       })
       .catch(error => {
-        alert('데이터를 불러오는 데 실패했습니다');
+        alert('데이터를 불러오는 데 실패했습니다1');
       });
   }, [categoryFilterItem, brandFilterItem, countIndexQuery]);
 
   const onCliktMoreProduct = () => setMoreButtonClickCount(prev => prev + 1);
   const MoreButton = () => {
-    return <button onClick={onCliktMoreProduct}>더보기</button>;
+    return (
+      <button onClick={onCliktMoreProduct} className="moreButton">
+        더보기
+      </button>
+    );
   };
 
   return (
@@ -118,7 +121,10 @@ const ProductList = () => {
             productDataList={productDataList}
             setProductDataList={setProductDataList}
           />
-          <MoreButton />
+          <div className="moreButtonBox">
+            <MoreButton readOnly />
+          </div>
+
           {/* {loading == true ? <LoadingText /> : null} */}
         </div>
       </div>

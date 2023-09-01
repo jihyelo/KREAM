@@ -13,7 +13,7 @@ const ProductCard = ({ image, brand, engName, price }) => {
           <div className="brand">{brand}</div>
           <div className="engName">{engName}</div>
           <div className="priceArea">
-            <div className="byNowPrice">{price}원</div>
+            <div className="byNowPrice">{parseInt(price)}원</div>
             <div className="byNowPriceText">buyNowPrice</div>
           </div>
         </div>
