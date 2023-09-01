@@ -21,13 +21,17 @@ const Payment = () => {
   };
   const handleModal = () => {
     openModal();
-    fetch('http://10.58.52.66:3000/bidsell/sell', {
+    fetch('http://10.58.52.142:3000/bidsell/payment', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
         authorization: localStorage.getItem('TOKEN'),
       },
       body: JSON.stringify({
+        productId: paymentData.id,
+        size: paymentData.size,
+        price: paymentData.price,
+        orderPrice: paymentData.price - 3000 - usePoint,
         point: usePoint - payPoint,
       }),
     })
@@ -42,7 +46,7 @@ const Payment = () => {
   };
 
   useEffect(() => {
-    fetch(`http://10.58.52.66:3000/bidsell/${id}`, {
+    fetch(`http://10.58.52.142:3000/bidsell/${id}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',

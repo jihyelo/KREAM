@@ -13,7 +13,7 @@ const PurchaseOption = () => {
   const requestSize = params.requestSize;
 
   const postPrePayment = () => {
-    fetch('http://10:58:52:66:3000/bidsell/buy', {
+    fetch('http://10:58:52:142:3000/bidsell/buy', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset-utf8',
@@ -33,7 +33,7 @@ const PurchaseOption = () => {
 
   useEffect(() => {
     fetch(
-      `http://10.58.52.66:3000/buy/${params.productId}?size=${requestSize}`,
+      `http://10.58.52.142:3000/buy/${params.productId}?size=${requestSize}`,
       {
         method: 'GET',
         headers: {

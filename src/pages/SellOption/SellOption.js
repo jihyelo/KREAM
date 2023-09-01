@@ -13,7 +13,7 @@ const SellOption = () => {
   const requestSize = params.requestSize;
 
   const postPrePayment = () => {
-    fetch('http://10.58.52.66:3000/bidsell/sell', {
+    fetch('http://10.58.52.142:3000/bidsell/sell', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
@@ -33,7 +33,7 @@ const SellOption = () => {
 
   useEffect(() => {
     fetch(
-      `http://10.58.52.66:3000/sell/${params.productId}?size=${requestSize}`,
+      `http://10.58.52.142:3000/sell/${params.productId}?size=${requestSize}`,
       {
         method: 'GET',
         headers: {
