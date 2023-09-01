@@ -48,15 +48,26 @@ const Login = () => {
               placeholder="예) kream@kream.com"
               errorMessage="이메일 주소를 정확히 입력해주세요"
               inputTitle="이메일 주소"
-              email={email}
+              value={email}
+              isVaild={
+                email.length === 0
+                  ? true
+                  : email.includes('@') && email.endsWith('.com')
+              }
             />
             <InputBox
               type="password"
               className="input"
               name="password"
-              errorMessage="영문, 숫자, 특수문자를 조합해서 입력해주세요. (8-16자)"
+              placeholder="8자 이상 16자 이하"
+              errorMessage="8자 이상 16자 이하로 입력해주세요."
               inputTitle="비밀번호"
               password={password}
+              isVaild={
+                password.length === 0
+                  ? true
+                  : 8 <= password.length && password.length <= 16
+              }
             />
 
             <LoginSignUpButton

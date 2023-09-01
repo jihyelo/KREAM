@@ -1,5 +1,5 @@
-const getBuyBidsHistory = () => {
-  return fetch('/data/bidTableData.json', {
+const getBuyBidsHistory = productId => {
+  return fetch(`http://10.58.52.69:3000/product/selldata/${productId}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json;charset=utf-8',
@@ -13,6 +13,8 @@ const getBuyBidsHistory = () => {
       }
     })
     .then(data => {
+      console.log(data);
+      console.log(data.data);
       return data.data;
     })
     .catch(error => {

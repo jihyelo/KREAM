@@ -173,28 +173,38 @@ const SignUp = () => {
               className="input"
               name="email"
               placeholder="예) kream@kream.com"
-              errorMessage="이메일 주소를 정확히 입력해주세요"
+              errorMessage="이메일 주소를 정확히 입력해주세요."
               inputTitle="이메일 주소*"
               value={email}
+              isVaild={
+                email.length === 0
+                  ? true
+                  : email.includes('@') && email.endsWith('.com')
+              }
               onChange={handleInput}
             />
             <InputBox
               type="password"
               className="input"
               name="password"
-              placeholder="영문, 숫자, 특수문자 조합 8-16자"
-              errorMessage="영문, 숫자, 특수문자를 조합해서 입력해주세요. (8-16자)"
+              placeholder="8자 이상 16자 이하"
+              errorMessage="8자 이상 16자 이하로 입력해주세요."
               inputTitle="비밀번호*"
               value={password}
+              isVaild={
+                password.length === 0
+                  ? true
+                  : 8 <= password.length && password.length <= 16
+              }
               onChange={handleInput}
             />
             <InputBox
               type="text"
               className="input"
-              placeholder="추천인 코드를 입력해주세요"
-              errorMessage="일치하는 코드를 찾을 수 없습니다"
+              placeholder="추천인 코드를 입력해주세요."
               inputTitle="추천인코드"
               onChange={handleInput}
+              isVaild={true}
             />
             <InputBox
               type="text"
@@ -204,6 +214,7 @@ const SignUp = () => {
               inputTitle="신발 사이즈"
               value={selectedSize || ''}
               onClick={handleOpenModal}
+              isVaild={true}
               readOnly
             />
 
@@ -231,7 +242,11 @@ const SignUp = () => {
                     [필수] 만 14세 이상이며 모두 동의합니다.
                   </label>
                   <div className="plusIcon">
-                    ? <BsPlusLg onClick={openRequiredCheckMain} /> : <BiMinus />
+                    {selectedRequiredCheckMain ? (
+                      <BiMinus onClick={openRequiredCheckMain} />
+                    ) : (
+                      <BsPlusLg onClick={openRequiredCheckMain} />
+                    )}
                   </div>
                 </div>
                 {selectedRequiredCheckMain && (
@@ -244,24 +259,35 @@ const SignUp = () => {
                         checked={
                           requiredItems.includes(item.name) ? true : false
                         }
+                        className="checkSubText"
                       />
                     ))}
                   </div>
                 )}
               </div>
               <div className="termsBox">
-                <label className="checkMain">
-                  <input
-                    type="checkbox"
-                    className="checkMain"
-                    onClick={openServiceCheckMain}
-                    onChange={allServiceCheckedHandler}
-                    checked={
-                      ServiceItems.length === ServiceList.length ? true : false
-                    }
-                  />
-                  [선택] 광고성 정보 수신에 모두 동의합니다.
-                </label>
+                <div className="requiredMainBox">
+                  <label className="checkMain">
+                    <input
+                      type="checkbox"
+                      className="checkMain"
+                      onChange={allServiceCheckedHandler}
+                      checked={
+                        ServiceItems.length === ServiceList.length
+                          ? true
+                          : false
+                      }
+                    />
+                    [선택] 광고성 정보 수신에 모두 동의합니다.
+                  </label>
+                  <div className="plusIcon">
+                    {selectedServiceCheckMain ? (
+                      <BiMinus onClick={openServiceCheckMain} />
+                    ) : (
+                      <BsPlusLg onClick={openServiceCheckMain} />
+                    )}
+                  </div>
+                </div>
                 {selectedServiceCheckMain && (
                   <div className="checkSub">
                     {ServiceList.map(item => (

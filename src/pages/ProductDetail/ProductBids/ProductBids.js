@@ -1,27 +1,24 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import DataTable from '../DataTable/DataTable';
-import getBuyBidsHistory from '../../../API/getBuyBidsHistory';
-import getSellBidsHistory from '../../../API/getSellBidsHistory';
+
 import './ProductBids.scss';
 
-const ProductBids = ({ detailTrade }) => {
+const ProductBids = ({ detailTrade, detailSellPrice, detailBuyPrice }) => {
   const [selectedTableTab, setSelectedTableTab] = useState(1);
-  const [buyBidsHistory, setBuyBidsHistory] = useState();
-  const [sellBidsHistory, setSellBidsHistory] = useState();
 
   const handlertabItem = num => {
     setSelectedTableTab(num);
   };
 
-  useEffect(() => {
-    getBuyBidsHistory().then(data => {
-      setBuyBidsHistory(data);
-    });
-    getSellBidsHistory().then(data => {
-      setSellBidsHistory(data);
-    });
-  }, []);
+  // useEffect(() => {
+  //   getBuyBidsHistory().then(data => {
+  //     setBuyBidsHistory(data);
+  //   });
+  //   getSellBidsHistory().then(data => {
+  //     setSellBidsHistory(data);
+  //   });
+  // }, []);
 
   return (
     <div className="ProductBids">
@@ -68,10 +65,10 @@ const ProductBids = ({ detailTrade }) => {
               <TradeHistory detailTrade={detailTrade} />
             ) : null}
             {selectedTableTab === 2 ? (
-              <SellBidsHistory detailTrade={sellBidsHistory} />
+              <SellBidsHistory detailTrade={detailSellPrice} />
             ) : null}
             {selectedTableTab === 3 ? (
-              <BuyBidsHistory detailTrade={buyBidsHistory} />
+              <BuyBidsHistory detailTrade={detailBuyPrice} />
             ) : null}
           </div>
           <button className="moreDataButton">

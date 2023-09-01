@@ -10,9 +10,10 @@ const InputBox = ({
   onChange,
   value,
   onClick,
+  isVaild,
 }) => {
   return (
-    <div className="inputBox">
+    <div className={`inputBox ${isVaild ? '' : 'hasError'}`}>
       <p className="inputTitle">{inputTitle}</p>
       <div className="inputItem">
         <input
@@ -25,7 +26,7 @@ const InputBox = ({
           onClick={onClick}
         />
       </div>
-      <p className="inputError">{errorMessage}</p>
+      <p className="inputError">{!isVaild ? errorMessage : ''}</p>
     </div>
   );
 };
