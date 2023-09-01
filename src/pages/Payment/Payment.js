@@ -7,6 +7,7 @@ import './Payment.scss';
 const Payment = () => {
   const [paymentData, setPaymentData] = useState({});
   const [usePoint, setUsePoint] = useState();
+  const [payPoint, setPayPoint] = useState();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const navigate = useNavigate();
   const Params = useParams();
@@ -20,6 +21,20 @@ const Payment = () => {
   };
   const handleModal = () => {
     openModal();
+    fetch('http://10.58.52.66:3000/bidsell/sell', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        authorization: localStorage.getItem('TOKEN'),
+      },
+      body: JSON.stringify({
+        point: usePoint - payPoint,
+      }),
+    })
+      .then(res => res.json())
+      .then(data => {
+        navigate(`/payment/${data.data[0].id}`);
+      });
   };
   const endModalNavigate = () => {
     closeModal();
@@ -158,7 +173,13 @@ const Payment = () => {
                       setUsePoint(e.target.value);
                     }}
                   />
-                  <button className="btnInputCredit" disabled={usePoint === 0}>
+                  <button
+                    className="btnInputCredit"
+                    disabled={!usePoint || usePoint === 0}
+                    onClick={() => {
+                      setPayPoint(usePoint);
+                    }}
+                  >
                     사용
                   </button>
                 </div>
@@ -196,7 +217,9 @@ const Payment = () => {
                       <dt className="priceTitle">
                         <span>포인트</span>
                       </dt>
-                      <dd className="priceText">{usePoint}p</dd>
+                      <dd className="priceText">
+                        {payPoint ? payPoint : '0'}p
+                      </dd>
                     </dl>
                     <dl className="priceAddition">
                       <dt className="priceTitle">
@@ -240,10 +263,13 @@ const Payment = () => {
                 <ModalPayment
                   open={isModalOpen}
                   close={endModalNavigate}
-                  name={paymentData.name}
+                  key={paymentData.id}
+                  url={paymentData.url}
+                  serialNumber={paymentData.serialNumber}
+                  name={paymentData.product}
                   price={paymentData.price}
+                  size={paymentData.type}
                   orderPrice={paymentData.price - 3000 - usePoint}
-                  point={paymentData.point - usePoint}
                 />
               </div>
             </div>
