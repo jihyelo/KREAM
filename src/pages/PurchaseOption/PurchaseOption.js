@@ -7,22 +7,22 @@ import './PurchaseOption.scss';
 const PurchaseOption = () => {
   const navigate = useNavigate();
   const [isToggled, setIsToggled] = useState(true);
-  const [isInputText, setIsInputText] = useState(false);
+  const [inputText, setInputText] = useState('');
   const [purchaseSizeSelect, setPurchaseSizeSelect] = useState({});
   const params = useParams();
   const requestSize = params.requestSize;
 
   const postPrePayment = () => {
-    fetch('http://10:58:52:69:3000/', {
+    fetch('http://10:58:52:142:3000/bidsell/buy', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset-utf8',
+        authorization: localStorage.getItem('TOKEN'),
       },
       body: JSON.stringify({
-        token: purchaseSizeSelect.token,
-        productId: purchaseSizeSelect.postId,
+        productId: purchaseSizeSelect.id,
         size: purchaseSizeSelect.size,
-        price: purchaseSizeSelect.price,
+        price: isToggled ? purchaseSizeSelect.price : inputText,
       }),
     })
       .then(res => res.json())
@@ -32,13 +32,16 @@ const PurchaseOption = () => {
   };
 
   useEffect(() => {
-    fetch(`http://10.58.52.69:3000/buy/1?size=${requestSize}`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json;charset-utf8',
-        authorization: localStorage.getItem('TOKEN'),
+    fetch(
+      `http://10.58.52.142:3000/buy/${params.productId}?size=${requestSize}`,
+      {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json;charset-utf8',
+          authorization: localStorage.getItem('TOKEN'),
+        },
       },
-    })
+    )
       .then(res => res.json())
       .then(data => {
         setPurchaseSizeSelect(data.data[0]);
@@ -51,18 +54,29 @@ const PurchaseOption = () => {
         <div className="contentArea">
           <div className="tradeBefore">
             <div class="productInfoArea">
-              <ProductInfo />
+              <ProductInfo
+                key={purchaseSizeSelect.id}
+                url={purchaseSizeSelect.url}
+                serialNumber={purchaseSizeSelect.serialNumber}
+                name={purchaseSizeSelect.name}
+                price={purchaseSizeSelect.price}
+                size={purchaseSizeSelect.size}
+              />
             </div>
             <div className="priceDescisionBox">
               <ul className="priceList">
                 <li className="listItem">
                   <p className="title">즉시 판매가</p>
-                  <p className="price">{purchaseSizeSelect.sellPrice}</p>
+                  <p className="price">
+                    {Number(purchaseSizeSelect.sellPrice).toLocaleString()}
+                  </p>
                   <p className="unit">원</p>
                 </li>
                 <li className="listItem">
                   <p className="title">즉시 구매가</p>
-                  <p className="price">{purchaseSizeSelect.price}</p>
+                  <p className="price">
+                    {Number(purchaseSizeSelect.price).toLocaleString()}
+                  </p>
                   <p className="unit">원</p>
                 </li>
               </ul>
@@ -95,7 +109,7 @@ const PurchaseOption = () => {
                       <dt className="priceNowTitle">즉시 구매가</dt>
                       <dd className="price">
                         <span className="amount">
-                          {purchaseSizeSelect.price}
+                          {Number(purchaseSizeSelect.price).toLocaleString()}
                         </span>
                         <span className="unit">원</span>
                       </dd>
@@ -111,8 +125,8 @@ const PurchaseOption = () => {
                           className="inputAmount"
                           type="number"
                           placeholder="희망가 입력"
-                          value={isInputText}
-                          onChange={e => setIsInputText(e.target.value)}
+                          value={inputText}
+                          onChange={e => setInputText(e.target.value)}
                         />
                         <span className="unit">원</span>
                       </dd>
@@ -145,8 +159,8 @@ const PurchaseOption = () => {
               ) : (
                 <div className="btnConfirm">
                   <button
-                    className={`nextBtn 
-                    ${isInputText ? 'black' : ''}`}
+                    className="nextBtn"
+                    disabled={inputText.length === 0}
                     onClick={postPrePayment}
                   >
                     구매 입찰 계속

@@ -68,7 +68,7 @@
       }
 
       .priceDescisionBox {
-        padding: 32px;
+        padding: 0 32px 32px;
         width: 100%;
 
         .priceList {
@@ -276,10 +276,9 @@
 
         .btnConfirm {
           .nextBtn {
-            background-color: #ebebeb;
+            background-color: #222;
             color: #fff;
             align-items: center;
-            //color: rgba(34, 34, 34, 0.8);
             cursor: default;
             display: inline-flex;
             justify-content: center;
@@ -293,10 +292,10 @@
             letter-spacing: -0.16px;
             width: 100%;
             margin-top: 10px;
-          }
-          .black {
-            background-color: #222;
-            cursor: pointer;
+
+            &:disabled {
+              background: rgba(34, 34, 34, 0.2);
+            }
           }
         }
       }

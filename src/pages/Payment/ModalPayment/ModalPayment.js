@@ -1,29 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import './ModalPayment.scss';
 
-const ModalPayment = ({ open, close, name, price, orderPrice, point }) => {
-  const [modallData, setModalData] = useState({});
-
-  useEffect(() => {
-    fetch('http://10:58:52:69:3000/payment', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json;charset-utf8',
-      },
-      body: JSON.stringify({
-        productId: modallData.postId,
-        size: modallData.size,
-        price: price,
-        orderPrice: orderPrice,
-        point: point,
-      }),
-    })
-      .then(res => res.json())
-      .then(data => {
-        setModalData(data.data);
-      });
-  });
-
+const ModalPayment = ({
+  open,
+  close,
+  url,
+  serialNumber,
+  name,
+  size,
+  price,
+  orderPrice,
+}) => {
   if (!open) {
     return null;
   }
@@ -35,19 +22,19 @@ const ModalPayment = ({ open, close, name, price, orderPrice, point }) => {
         <div className="productInfo">
           <div className="productThumb">
             <div className="product">
-              <img src={modallData.url} alt="shoes" />
+              <img src={url} alt="shoes" />
             </div>
           </div>
           <div className="productDetail">
-            <p className="code">{modallData.serialNumber}</p>
+            <p className="code">{serialNumber}</p>
             <p className="name">{name}</p>
-            <p className="size">{modallData.size}</p>
+            <p className="size">{size}</p>
             <p className="price">{price}</p>
           </div>
-          <div className="finalPrice">
-            <p>최종 결제 금액</p>
-            <p>{orderPrice}</p>
-          </div>
+        </div>
+        <div className="finalPrice">
+          <p className="final">최종 결제 금액</p>
+          <p className="orderPrice">{orderPrice}원</p>
         </div>
         <button className="closeButton" onClick={close}>
           확인

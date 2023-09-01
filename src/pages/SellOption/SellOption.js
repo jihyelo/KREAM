@@ -7,19 +7,41 @@ import './SellOption.scss';
 const SellOption = () => {
   const navigate = useNavigate();
   const [isToggled, setIsToggled] = useState(true);
-  const [isInputText, setIsInputText] = useState(false);
+  const [inputText, setInputText] = useState('');
   const [sellSizeSelect, setSellSizeSelect] = useState({});
   const params = useParams();
   const requestSize = params.requestSize;
 
-  useEffect(() => {
-    fetch(`http://10.58.52.69:3000/sell/1?size=${requestSize}`, {
-      method: 'GET',
+  const postPrePayment = () => {
+    fetch('http://10.58.52.142:3000/bidsell/sell', {
+      method: 'POST',
       headers: {
-        'Content-Type': 'application/json;charset-utf8',
+        'Content-Type': 'application/json;charset=utf-8',
         authorization: localStorage.getItem('TOKEN'),
       },
+      body: JSON.stringify({
+        productId: sellSizeSelect.id,
+        size: sellSizeSelect.size,
+        price: isToggled ? sellSizeSelect.price : inputText,
+      }),
     })
+      .then(res => res.json())
+      .then(data => {
+        navigate(`/payment/${data.data[0].id}`);
+      });
+  };
+
+  useEffect(() => {
+    fetch(
+      `http://10.58.52.142:3000/sell/${params.productId}?size=${requestSize}`,
+      {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json;charset-utf8',
+          authorization: localStorage.getItem('TOKEN'),
+        },
+      },
+    )
       .then(res => res.json())
       .then(data => {
         setSellSizeSelect(data.data[0]);
@@ -32,18 +54,29 @@ const SellOption = () => {
         <div className="contentArea">
           <div className="tradeBefore">
             <div class="productInfoArea">
-              <ProductInfo />
+              <ProductInfo
+                key={sellSizeSelect.id}
+                url={sellSizeSelect.url}
+                serialNumber={sellSizeSelect.serialNumber}
+                name={sellSizeSelect.name}
+                price={sellSizeSelect.price}
+                size={sellSizeSelect.size}
+              />
             </div>
             <div className="priceDescisionBox">
               <ul className="priceList">
                 <li className="listItem">
                   <p className="title">즉시 구매가</p>
-                  <p className="price">{sellSizeSelect.buyprice}</p>
+                  <p className="price">
+                    {Number(sellSizeSelect.buyPrice).toLocaleString()}
+                  </p>
                   <p className="unit">원</p>
                 </li>
                 <li className="listItem">
                   <p className="title">즉시 판매가</p>
-                  <p className="price">{sellSizeSelect.sellPrice}</p>
+                  <p className="price">
+                    {Number(sellSizeSelect.price).toLocaleString()}
+                  </p>
                   <p className="unit">원</p>
                 </li>
               </ul>
@@ -75,7 +108,9 @@ const SellOption = () => {
                     <dl className="priceNowBox">
                       <dt className="priceNowTitle">즉시 판매가</dt>
                       <dd className="price">
-                        <span className="amount">{sellSizeSelect.price}</span>
+                        <span className="amount">
+                          {Number(sellSizeSelect.price).toLocaleString()}
+                        </span>
                         <span className="unit">원</span>
                       </dd>
                     </dl>
@@ -90,8 +125,8 @@ const SellOption = () => {
                           className="inputAmount"
                           type="number"
                           placeholder="희망가 입력"
-                          value={isInputText}
-                          onChange={e => setIsInputText(e.target.value)}
+                          value={inputText}
+                          onChange={e => setInputText(e.target.value)}
                         />
                         <span className="unit">원</span>
                       </dd>
@@ -117,22 +152,16 @@ const SellOption = () => {
               </div>
               {isToggled ? (
                 <div className="btnConfirm">
-                  <button
-                    className="nextBtn"
-                    onClick={() => {
-                      navigate('/payment');
-                    }}
-                  >
+                  <button className="nextBtn black" onClick={postPrePayment}>
                     즉시 판매 계속
                   </button>
                 </div>
               ) : (
                 <div className="btnConfirm">
                   <button
-                    className={`nextBtn ${isInputText ? 'black' : ''}`}
-                    onClick={() => {
-                      navigate('/payment');
-                    }}
+                    className="nextBtn"
+                    disabled={inputText.length === 0}
+                    onClick={postPrePayment}
                   >
                     판매 입찰 계속
                   </button>
