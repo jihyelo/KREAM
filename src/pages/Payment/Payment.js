@@ -130,7 +130,7 @@ const Payment = () => {
                       <div className="infoList">
                         <div className="infoBox">
                           <dt className="title">받는 분</dt>
-                          <dd className="desc">{paymentData.sellerName}</dd>
+                          <dd className="desc">Eun woo Song</dd>
                         </div>
                         <div className="infoBox">
                           <dt className="title">연락처</dt>
