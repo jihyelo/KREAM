@@ -53,7 +53,6 @@ const Payment = () => {
       })
         .then(res => res.json())
         .then(data => {
-          console.log(data);
           navigate(`/payment/${data.data[0].id}`);
         });
     } else {
@@ -73,7 +72,6 @@ const Payment = () => {
       })
         .then(res => res.json())
         .then(data => {
-          console.log(data);
           navigate(`/payment/${data.data[0].id}`);
         });
     }
@@ -132,7 +130,7 @@ const Payment = () => {
                       <div className="infoList">
                         <div className="infoBox">
                           <dt className="title">받는 분</dt>
-                          <dd className="desc">{paymentData.sellerName}</dd>
+                          <dd className="desc">Eun woo Song</dd>
                         </div>
                         <div className="infoBox">
                           <dt className="title">연락처</dt>

@@ -9,7 +9,7 @@ const HeaderMain = () => {
 
   return (
     <div className="headerMain">
-      <h1 className="logo">KREAM</h1>
+      <h1 className="logo">SREAM</h1>
       <div className="center">{centerTitle[pathname]}</div>
       <div className="right">
         {isTradePath ? (

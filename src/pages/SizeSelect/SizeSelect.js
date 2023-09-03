@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import ProductInfo from '../../components/ProductInfo/ProductInfo';
 import SelectItem from '../../components/SelectItem/SelectItem';
 import './SizeSelect.scss';
@@ -8,22 +8,39 @@ const SizeSelect = ({ isPurchaseSize }) => {
   const [sizeSelectList, setSizeSelectList] = useState([]);
   const [selectedSizeInfo, setSelectedSizeInfo] = useState({});
   const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const type = searchParams.get('type');
   const params = useParams();
   const productId = params.productId;
 
   useEffect(() => {
-    fetch(`http://10.58.52.238:3000/sell/${productId}?size=`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-        authorization: localStorage.getItem('TOKEN'),
-      },
-    })
-      .then(res => res.json())
-      .then(data => {
-        setProductData(data.data[0]);
-        setSizeSelectList(data.data);
-      });
+    if (type === 'sell') {
+      fetch(`http://10.58.52.238:3000/sell/${productId}?size=`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8',
+          authorization: localStorage.getItem('TOKEN'),
+        },
+      })
+        .then(res => res.json())
+        .then(data => {
+          setProductData(data.data[0]);
+          setSizeSelectList(data.data);
+        });
+    } else {
+      fetch(`http://10.58.52.238:3000/buy/${productId}?size=`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8',
+          authorization: localStorage.getItem('TOKEN'),
+        },
+      })
+        .then(res => res.json())
+        .then(data => {
+          setProductData(data.data[0]);
+          setSizeSelectList(data.data);
+        });
+    }
   }, []);
 
   const requestSize = selectedSizeInfo.size;

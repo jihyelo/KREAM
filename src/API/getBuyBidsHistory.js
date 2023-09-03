@@ -13,12 +13,9 @@ const getBuyBidsHistory = productId => {
       }
     })
     .then(data => {
-      console.log(data);
-      console.log(data.data);
       return data.data;
     })
     .catch(error => {
-      console.error(error);
       alert('데이터 불러오기 실패');
     });
 };
