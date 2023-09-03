@@ -12,7 +12,7 @@ const SizeSelect = ({ isPurchaseSize }) => {
   const productId = params.productId;
 
   useEffect(() => {
-    fetch(`http://10.58.52.142:3000/sell/${productId}?size=`, {
+    fetch(`http://10.58.52.238:3000/sell/${productId}?size=`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
@@ -30,7 +30,7 @@ const SizeSelect = ({ isPurchaseSize }) => {
   const sizeSelectedClick = () => {
     navigate(
       isPurchaseSize
-        ? `/purchase-option/${requestSize}`
+        ? `/purchase-option/${productId}/${requestSize}`
         : `/sell-option/${productId}/${requestSize}`,
     );
   };

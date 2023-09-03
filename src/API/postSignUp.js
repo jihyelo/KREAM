@@ -8,7 +8,7 @@ const postSignUp = (
   이메일,
   onSuccessSignUp,
 ) => {
-  fetch('http://10.58.52.142:3000/user/signup', {
+  fetch('http://10.58.52.238:3000/user/signup', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json;charset=utf-8',
