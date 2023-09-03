@@ -11,7 +11,7 @@ const ProductList = () => {
   const [brandFilterItem, setBrandFilterItem] = useState([]);
   const [moreButtonClickCount, setMoreButtonClickCount] = useState(1);
 
-  const [sortingItem, setSortingItem] = useState();
+  const [sortingItem, setSortingItem] = useState('');
 
   const categoryQuery =
     categoryFilterItem.length !== 0
@@ -67,6 +67,7 @@ const ProductList = () => {
       })
       .then(data => {
         setProductDataList(data.data);
+        setMoreButtonClickCount(1);
       })
       .catch(error => {
         alert('데이터를 불러오는 데 실패했습니다1');
@@ -81,7 +82,7 @@ const ProductList = () => {
       </button>
     );
   };
-
+  console.log('@@@@@@@', moreButtonClickCount);
   return (
     <div className="productList">
       <div className="searchTitle">

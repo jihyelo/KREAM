@@ -10,8 +10,16 @@
     cursor: pointer;
     .productImage {
       border-radius: 10px;
-      height: auto;
-      width: 100%;
+      height: 220px;
+      width: 220px;
+      overflow: hidden;
+      vertical-align: middle;
+      margin: 0 auto;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
     }
     .productInfoArea {
       padding-left: 4px;
