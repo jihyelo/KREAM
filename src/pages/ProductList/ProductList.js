@@ -1,7 +1,6 @@
 import SortingResult from './SortingResult/SortingResult';
 import FilteringCategory from './FilteringCategory/FilteringCategory';
 import { useEffect, useState } from 'react';
-
 import './ProductList.scss';
 import SearchResultList from './SearchResultList/SearchResultList';
 
@@ -82,7 +81,7 @@ const ProductList = () => {
       </button>
     );
   };
-  console.log('@@@@@@@', moreButtonClickCount);
+
   return (
     <div className="productList">
       <div className="searchTitle">

@@ -12,7 +12,6 @@ const SizeSelectModal = ({
   if (!isOpen) {
     return null;
   }
-  // console.log(sizes);
   return (
     <div className="modalLayout">
       <div className="modalHeader">

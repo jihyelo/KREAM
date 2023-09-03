@@ -9,6 +9,7 @@ const PurchaseOption = () => {
   const [isToggled, setIsToggled] = useState(true);
   const [inputText, setInputText] = useState('');
   const [purchaseSizeSelect, setPurchaseSizeSelect] = useState({});
+
   const params = useParams();
   const requestSize = params.requestSize;
 
@@ -47,7 +48,7 @@ const PurchaseOption = () => {
         setPurchaseSizeSelect(data.data[0]);
       });
   }, []);
-  console.log(purchaseSizeSelect);
+
   return (
     <div className="purchaseOption">
       <div className="container">

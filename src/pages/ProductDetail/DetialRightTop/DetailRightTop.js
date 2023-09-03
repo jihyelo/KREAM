@@ -30,8 +30,6 @@ const DetailRightTop = ({
     sizePriceData[sizeType] = priceData;
   });
 
-  console.log(sizePriceData);
-
   const handleCloseModal = () => {
     setIsModalOpen(false);
   };
@@ -53,7 +51,8 @@ const DetailRightTop = ({
       won: '원',
       nowPrice: '즉시 구매가',
       className: 'redButton',
-      onClickBuySell: () => navigate(`/purchase-size/${productId}`),
+      onClickBuySell: () =>
+        navigate(`/purchase-size/${productId}?type=purchase`),
     },
     {
       title: '판매',
@@ -64,7 +63,7 @@ const DetailRightTop = ({
       nowPrice: '즉시 판매가',
       className: 'greenButton',
       onClickBuySell: () => {
-        return navigate(`/sell-size/${productId}`);
+        return navigate(`/sell-size/${productId}?type=sell`);
       },
     },
   ];

@@ -53,7 +53,6 @@ const Payment = () => {
       })
         .then(res => res.json())
         .then(data => {
-          console.log(data);
           navigate(`/payment/${data.data[0].id}`);
         });
     } else {
@@ -73,7 +72,6 @@ const Payment = () => {
       })
         .then(res => res.json())
         .then(data => {
-          console.log(data);
           navigate(`/payment/${data.data[0].id}`);
         });
     }

@@ -36,9 +36,9 @@ const Login = () => {
         <div className="containerLogin">
           <div className="loginAera" onChange={handleInput}>
             <div className="loginTitle">
-              <p className="loginTitleLogo">KREAM</p>
+              <p className="loginTitleLogo">SREAM</p>
               <p className="logoTitleContent">
-                KICKS RULE EVERYTHING AROUND ME
+                SHOES RULE EVERYTHING AROUND ME
               </p>
             </div>
             <InputBox
