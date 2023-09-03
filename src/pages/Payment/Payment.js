@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import ProductInfo from '../../components/ProductInfo/ProductInfo';
 import ModalPayment from './ModalPayment/ModalPayment';
 import './Payment.scss';
 
 const Payment = () => {
   const [paymentData, setPaymentData] = useState({});
-  const [usePoint, setUsePoint] = useState();
-  const [payPoint, setPayPoint] = useState();
+  const [usePoint, setUsePoint] = useState(0);
+  const [payPoint, setPayPoint] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const type = searchParams.get('type');
   const navigate = useNavigate();
   const Params = useParams();
   const id = Params.id;
@@ -16,47 +18,92 @@ const Payment = () => {
   const openModal = () => {
     setIsModalOpen(true);
   };
+
+  // 1. endModalNavigate 함수 정의
+  const endModalNavigate = () => {
+    closeModal();
+    navigate('/product-list'); // navigate 함수 사용을 위해 useNavigate 훅을 가져와야 함
+  };
+
   const closeModal = () => {
     setIsModalOpen(false);
   };
+
   const handleModal = () => {
     openModal();
-    fetch('http://10.58.52.142:3000/bidsell/payment', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-        authorization: localStorage.getItem('TOKEN'),
-      },
-      body: JSON.stringify({
-        productId: paymentData.id,
-        size: paymentData.size,
-        price: paymentData.price,
-        orderPrice: paymentData.price - 3000 - usePoint,
-        point: usePoint - payPoint,
-      }),
-    })
-      .then(res => res.json())
-      .then(data => {
-        navigate(`/payment/${data.data[0].id}`);
-      });
-  };
-  const endModalNavigate = () => {
-    closeModal();
-    navigate('/product-list');
-  };
+    const orderPrice = parseInt(paymentData.price) - 3000 - (usePoint || 0);
+    const point = paymentData.payPoint
+      ? parseInt(paymentData.payPoint) - parseInt(usePoint)
+      : 0;
 
+    if (type === 'sell') {
+      fetch('http://10.58.52.238:3000/bidsell/payment', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8',
+          authorization: localStorage.getItem('TOKEN'),
+        },
+        body: JSON.stringify({
+          productId: parseInt(paymentData.productId),
+          size: paymentData.type,
+          price: paymentData.price,
+          orderPrice: orderPrice,
+          point: point,
+        }),
+      })
+        .then(res => res.json())
+        .then(data => {
+          console.log(data);
+          navigate(`/payment/${data.data[0].id}`);
+        });
+    } else {
+      fetch('http://10.58.52.238:3000/bidbuy/payment', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8',
+          authorization: localStorage.getItem('TOKEN'),
+        },
+        body: JSON.stringify({
+          productId: parseInt(paymentData.productId),
+          size: paymentData.type,
+          price: paymentData.price,
+          orderPrice: orderPrice,
+          point: point,
+        }),
+      })
+        .then(res => res.json())
+        .then(data => {
+          console.log(data);
+          navigate(`/payment/${data.data[0].id}`);
+        });
+    }
+  };
   useEffect(() => {
-    fetch(`http://10.58.52.142:3000/bidsell/${id}`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-        authorization: localStorage.getItem('TOKEN'),
-      },
-    })
-      .then(res => res.json())
-      .then(data => {
-        setPaymentData(data.data[0]);
-      });
+    if (type === 'sell') {
+      fetch(`http://10.58.52.238:3000/bidsell/${id}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8',
+          authorization: localStorage.getItem('TOKEN'),
+        },
+      })
+        .then(res => res.json())
+        .then(data => {
+          setPaymentData(data.data[0]);
+        });
+    } else {
+      fetch(`http://10.58.52.238:3000/bidbuy/${id}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8',
+          authorization: localStorage.getItem('TOKEN'),
+        },
+      })
+        .then(res => res.json())
+        .then(data => {
+          setPaymentData(data.data[0]);
+        });
+    }
   }, []);
 
   return (
@@ -74,10 +121,11 @@ const Payment = () => {
             />
             <section className="address">
               <div className="sectionUnit">
-                <dic className="sectionTitle">
+                {/* 2. div 사용 */}
+                <div className="sectionTitle">
                   <h1 className="titleTxt">배송 주소</h1>
                   <div className="addMore">+ 새 주소 추가</div>
-                </dic>
+                </div>
                 <div className="sectionContent">
                   <div className="deliveryInfo">
                     <div className="addressInfo">
@@ -267,13 +315,14 @@ const Payment = () => {
                 <ModalPayment
                   open={isModalOpen}
                   close={endModalNavigate}
-                  key={paymentData.id}
                   url={paymentData.url}
                   serialNumber={paymentData.serialNumber}
                   name={paymentData.product}
-                  price={paymentData.price}
                   size={paymentData.type}
-                  orderPrice={paymentData.price - 3000 - usePoint}
+                  price={Number(paymentData.price).toLocaleString()}
+                  orderPrice={
+                    parseInt(paymentData.price) - 3000 - (usePoint || 0)
+                  }
                 />
               </div>
             </div>

@@ -13,31 +13,31 @@ const PurchaseOption = () => {
   const requestSize = params.requestSize;
 
   const postPrePayment = () => {
-    fetch('http://10:58:52:142:3000/bidsell/buy', {
+    fetch('http://10.58.52.238:3000/bidbuy/buy', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json;charset-utf8',
+        'Content-Type': 'application/json;charset=utf-8',
         authorization: localStorage.getItem('TOKEN'),
       },
       body: JSON.stringify({
-        productId: purchaseSizeSelect.id,
+        productId: purchaseSizeSelect.productId,
         size: purchaseSizeSelect.size,
         price: isToggled ? purchaseSizeSelect.price : inputText,
       }),
     })
       .then(res => res.json())
       .then(data => {
-        navigate(`/payment/${data.data[0].id}`);
+        navigate(`/payment/${data.data[0].id}?type=buy`);
       });
   };
 
   useEffect(() => {
     fetch(
-      `http://10.58.52.142:3000/buy/${params.productId}?size=${requestSize}`,
+      `http://10.58.52.238:3000/buy/${params.productId}?size=${requestSize}`,
       {
         method: 'GET',
         headers: {
-          'Content-Type': 'application/json;charset-utf8',
+          'Content-Type': 'application/json;charset=utf-8',
           authorization: localStorage.getItem('TOKEN'),
         },
       },
@@ -47,7 +47,7 @@ const PurchaseOption = () => {
         setPurchaseSizeSelect(data.data[0]);
       });
   }, []);
-
+  console.log(purchaseSizeSelect);
   return (
     <div className="purchaseOption">
       <div className="container">
@@ -55,7 +55,7 @@ const PurchaseOption = () => {
           <div className="tradeBefore">
             <div class="productInfoArea">
               <ProductInfo
-                key={purchaseSizeSelect.id}
+                key={purchaseSizeSelect.productId}
                 url={purchaseSizeSelect.url}
                 serialNumber={purchaseSizeSelect.serialNumber}
                 name={purchaseSizeSelect.name}

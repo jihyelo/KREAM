@@ -1,5 +1,5 @@
 const getProductList = () => {
-  return fetch('http://10.58.52.142:3000/product/list?limit=8&offset=1', {
+  return fetch('http://10.58.52.238:3000/product/list?limit=8&offset=1', {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json;charset=utf-8',

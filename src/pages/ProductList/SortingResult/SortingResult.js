@@ -6,23 +6,6 @@ import './SortingResult.scss';
 const SortingResult = ({ sortingItem, setSortingItem }) => {
   const [toggleSortingList, setToggleSortingList] = useState(false);
   const [countIndex, setCountIndex] = useState(0);
-  //TODO sortingList 외부영역 클릭시 sortingList 닫히기
-
-  // const sortingListRef = useRef(null);
-
-  // useEffect(() => {
-  //   document.addEventListener('mousedown', clickSortingListOutside);
-  //   return () => {
-  //     document.removeEventListener('mousedown', clickSortingListOutside);
-  //   };
-  // });
-
-  // const clickSortingListOutside = event => {
-  //   if (toggleSortingList && !sortingListRef.current.contains(event.target)) {
-  //     setToggleSortingList(false);
-  //     console.log('clickSortingListOutside called');
-  //   }
-  // };
 
   const handleOnclick = (e, index) => {
     setCountIndex(index);
@@ -42,7 +25,7 @@ const SortingResult = ({ sortingItem, setSortingItem }) => {
   return (
     <div className="sortingResult">
       <button className="sortingTitleButton" onClick={SortingButtonOnClick}>
-        {SORTING_ITEM_DESC[countIndex]['mainDesc']}
+        {SORTING_ITEM_DESC[countIndex].mainDesc}
       </button>
       <LuArrowDownUp className="downUpIcon" />
       {toggleSortingList && (
@@ -53,8 +36,8 @@ const SortingResult = ({ sortingItem, setSortingItem }) => {
               itemOn={countIndex == index && 'itemOn'}
               isChecked={countIndex == index && true}
               handleOnclick={e => handleOnclick(e, index)}
-              itemMainDesc={item['mainDesc']}
-              itemSubDesc={item['subDesc']}
+              itemMainDesc={item.mainDesc}
+              itemSubDesc={item.subDesc}
             />
           ))}
         </ul>

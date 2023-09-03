@@ -25,7 +25,7 @@ const ProductList = () => {
 
   useEffect(() => {
     fetch(
-      `http://10.58.52.142:3000/product/list?limit=8&offset=${moreButtonClickCount}${categoryQuery}${brandQuery}${countIndexQuery}`,
+      `http://10.58.52.238:3000/product/list?limit=8&offset=${moreButtonClickCount}${categoryQuery}${brandQuery}${countIndexQuery}`,
       {
         method: 'GET',
         headers: {
@@ -50,7 +50,7 @@ const ProductList = () => {
 
   useEffect(() => {
     fetch(
-      `http://10.58.52.142:3000/product/list?limit=8&offset=1${categoryQuery}${brandQuery}${countIndexQuery}`,
+      `http://10.58.52.238:3000/product/list?limit=8&offset=1${categoryQuery}${brandQuery}${countIndexQuery}`,
       {
         method: 'GET',
         headers: {
