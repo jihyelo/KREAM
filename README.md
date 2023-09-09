@@ -69,22 +69,24 @@ KREAM은 리셀이라는 새로운 소비 트렌드를 캐치한 한정판 스�
 
 [BE] : email,password 값이 일치하는 회원정보 제공, 로그인시 JWT(Json Web Token) 발급
 
-
+<br>
 
 
 ### Sign Up
 ![SREAM-회원가입](https://github.com/wecode-bootcamp-korea/48-2nd-F_Kiiler-frontend/assets/126768997/37a5c504-64df-4387-add2-8f254bd67d81)
+
 [FE] :
 
 <br>
 
 [BE] : email 형식이 올바르고, 비밀번호 길이가 8~15 일때 회원가입 가능, 비밀번호 암호화
 
-
+<br>
 
 
 ### Sorting
 ![SREAM-리스트 정렬](https://github.com/wecode-bootcamp-korea/48-2nd-F_Kiiler-frontend/assets/126768997/9df6edd3-f992-4aeb-9fa8-98c773251708)
+
 
 [FE] :
 
@@ -92,11 +94,12 @@ KREAM은 리셀이라는 새로운 소비 트렌드를 캐치한 한정판 스�
 
 [BE] : 페이지 들어올시 가격이 오름차순으로 정렬, 높은 가격순 선택시 내림차순 정렬
 
-
+<br>
 
 
 
 ### Filtering
+
 
 [FE] :
 
@@ -104,11 +107,12 @@ KREAM은 리셀이라는 새로운 소비 트렌드를 캐치한 한정판 스�
 
 [BE] : queyry builder 이용하여 브랜드와 신발 카테고리로 필터 기능, 8개씩 보여주는 paging 설정
 
-
+<br>
 
 
 ### Product Detail
 ![SREAM-상세페이지](https://github.com/wecode-bootcamp-korea/48-2nd-F_Kiiler-frontend/assets/126768997/2656b684-bee4-4104-ac49-330dec945e00)
+
 
 [FE] :
 
@@ -116,7 +120,7 @@ KREAM은 리셀이라는 새로운 소비 트렌드를 캐치한 한정판 스�
 
 [BE] : 각 제품의 모든 사이즈 구매가와 판매가중 낮은 가격 보이게 설정, 체결 거래, 판매 입찰 수량, 구매 입찰 수량 제공 함
 
-
+<br>
 
 
 
@@ -129,7 +133,7 @@ KREAM은 리셀이라는 새로운 소비 트렌드를 캐치한 한정판 스�
 
 [BE] : 제품의 판매,구매 버튼의 각 사이즈 별 가격을 나타내고 클릭 하엿을때 즉시 구매와 구매 입찰을 하면, 포인트를 사용하여 결제를 하게 만들었습니다. 만일 뒤로 가기 버튼을 눌렀을때 결제가 진행 되지 않게 만들어 주었습니다. 
 
-
+<br>
 
 
 ### Sell & Payment
